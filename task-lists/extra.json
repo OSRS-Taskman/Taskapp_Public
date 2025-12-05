@@ -100,6 +100,13 @@
 			"displayItemId": 29786
 		},
 		{
+			"id": "45d58f26-929c-41b3-8c27-6ba270fbe636",
+			"name": "Get a Jar of feathers",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_feathers",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_feathers_detail.png/320px-Jar_of_feathers_detail.png",
+			"displayItemId": 32921
+		},
+		{
 			"id": "bf3ce43e-d365-419d-a3fc-edbda9b0a850",
 			"name": "Get 1 unique sigil from the Corporeal Beast",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Corporeal_Beast",
@@ -689,7 +696,7 @@
 		},
 		{
 			"id": "ab440920-6960-47f6-af1c-6fa08e15fa65",
-			"name": "Get a Twisted ancestral colour kit",
+			"name": "Get a Twisted ancestral color kit",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Twisted_ancestral_colour_kit",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Twisted_ancestral_colour_kit_detail.png/200px-Twisted_ancestral_colour_kit_detail.png",
 			"displayItemId": 24670
@@ -731,28 +738,28 @@
 		},
 		{
 			"id": "f3c24c46-f8f5-48ff-8ba6-3c4caef03512",
-			"name": "Get a Remnant of akkha",
+			"name": "Get a Remnant of Akkha",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Remnant_of_akkha",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Remnant_of_akkha_detail.png/200px-Remnant_of_akkha_detail.png",
 			"displayItemId": 27377
 		},
 		{
 			"id": "107f7fe7-4f09-4aec-b4ab-da3f2309bb68",
-			"name": "Get a Remnant of ba-ba",
+			"name": "Get a Remnant of Ba-ba",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Remnant_of_ba-ba",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Remnant_of_ba-ba_detail.png/200px-Remnant_of_ba-ba_detail.png",
 			"displayItemId": 27378
 		},
 		{
 			"id": "0fd84bb1-f54f-4d8a-bd55-14841aa15bbb",
-			"name": "Get a Remnant of kephri",
+			"name": "Get a Remnant of Kephri",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Remnant_of_kephri",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Remnant_of_kephri_detail.png/200px-Remnant_of_kephri_detail.png",
 			"displayItemId": 27379
 		},
 		{
 			"id": "d382e513-4655-468d-9316-e37f8f27b424",
-			"name": "Get a Remnant of zebak",
+			"name": "Get a Remnant of Zebak",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Remnant_of_zebak",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Remnant_of_zebak_detail.png/200px-Remnant_of_zebak_detail.png",
 			"displayItemId": 27380

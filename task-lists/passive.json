@@ -60,7 +60,7 @@
 		{
 			"id": "d4daebe8-75b6-4e47-90da-170666f716a5",
 			"name": "Get the Golden tench",
-			"tip": "Can be obtained by aerial fishing at Lake Molch.",
+			"tip": "Can be obtained by aerial fishing at Molch island.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Golden_tench",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Golden_tench_detail.png/200px-Golden_tench_detail.png",
 			"displayItemId": 22840
@@ -360,6 +360,175 @@
 			"wikiLink": "https://oldschool.runescape.wiki/w/Coagulated_venom",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Coagulated_venom_detail.png/200px-Coagulated_venom_detail.png",
 			"displayItemId": 29781
+		},
+		{
+			"id": "1abf334c-772d-4482-bf65-cece36422127",
+			"name": "Get the Angler's paint",
+			"tip": "Can be rarely obtained while Deep Sea Trawling. Glistening shoals have a slightly higher rate.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Angler's_paint",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Angler's_paint_detail.png/320px-Angler's_paint_detail.png",
+			"displayItemId": 32096,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 32096 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "3fbcf0fc-5fdb-4132-a7df-4f4ddb43f660",
+			"name": "Get the Merchant's paint",
+			"tip": "Obtained by trading all five tradable paints (Inky, Barracuda, Shark, Angler, Salvor) to Trader Stan in Port Sarim.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Merchant's_paint",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Merchant's_paint_detail.png/320px-Merchant's_paint_detail.png",
+			"displayItemId": 32110,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 32110 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "f2016e7e-dc53-42ac-a8f5-2d290bfa764b",
+			"name": "Get a Tiny pearl",
+			"tip": "Obtained by feeding an item to the Giant Clam ocean encounter. The next time you encounter the clam, you will receive a pearl based off the fed item's value.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Tiny_pearl",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tiny_pearl_detail.png/320px-Tiny_pearl_detail.png",
+			"displayItemId": 31770,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31770 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "983f5ee2-881f-4c74-bc8a-35e008255a3b",
+			"name": "Get a Small pearl",
+			"tip": "Obtained by feeding an item to the Giant Clam ocean encounter. The next time you encounter the clam, you will receive a pearl based off the fed item's value.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Small_pearl",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Small_pearl_detail.png/320px-Small_pearl_detail.png",
+			"displayItemId": 31773,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31773 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "dac54044-bff0-40df-828c-10c7fb9a8928",
+			"name": "Get a Shiny pearl",
+			"tip": "Obtained by feeding an item to the Giant Clam ocean encounter. The next time you encounter the clam, you will receive a pearl based off the fed item's value.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Shiny_pearl",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Shiny_pearl_detail.png/320px-Shiny_pearl_detail.png",
+			"displayItemId": 31776,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31776 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "3313077a-2175-4adf-9ec5-511d96192820",
+			"name": "Get a Bright pearl",
+			"tip": "Obtained by feeding an item to the Giant Clam ocean encounter. The next time you encounter the clam, you will receive a pearl based off the fed item's value.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Bright_pearl",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Bright_pearl_detail.png/320px-Bright_pearl_detail.png",
+			"displayItemId": 31779,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31779 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "ee190c9a-0322-4361-b08c-aa2d6c01e036",
+			"name": "Get a Big pearl",
+			"tip": "Obtained by feeding an item to the Giant Clam ocean encounter. The next time you encounter the clam, you will receive a pearl based off the fed item's value.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Big_pearl",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Big_pearl_detail.png/320px-Big_pearl_detail.png",
+			"displayItemId": 31782,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31782 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "6a8ed3ce-6297-474d-bb49-e5462985580b",
+			"name": "Get a Huge pearl",
+			"tip": "Obtained by feeding an item to the Giant Clam ocean encounter. The next time you encounter the clam, you will receive a pearl based off the fed item's value.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Huge_pearl",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Huge_pearl_detail.png/320px-Huge_pearl_detail.png",
+			"displayItemId": 31785,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31785 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "21d47e44-7760-4a27-b4ee-04d587bc97a7",
+			"name": "Get a Enormous pearl",
+			"tip": "Obtained by feeding an item to the Giant Clam ocean encounter. The next time you encounter the clam, you will receive a pearl based off the fed item's value.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Enormous_pearl",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Enormous_pearl_detail.png/320px-Enormous_pearl_detail.png",
+			"displayItemId": 31788,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31788 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "c926e9cc-7dca-4cc7-8d60-b5abb984d31c",
+			"name": "Get a Shimmering pearl",
+			"tip": "Obtained by feeding an item to the Giant Clam ocean encounter. The next time you encounter the clam, you will receive a pearl based off the fed item's value.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Shimmering_pearl",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Shimmering_pearl_detail.png/320px-Shimmering_pearl_detail.png",
+			"displayItemId": 31791,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31791 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "8f208cb1-6ebe-4909-a2b5-596283591c3e",
+			"name": "Get a Glistening pearl",
+			"tip": "Obtained by feeding an item to the Giant Clam ocean encounter. The next time you encounter the clam, you will receive a pearl based off the fed item's value.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Glistening_pearl",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Glistening_pearl_detail.png/320px-Glistening_pearl_detail.png",
+			"displayItemId": 31794,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31794 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "2fb4189c-2dec-4522-8fee-577f40ba3cbf",
+			"name": "Get a Brilliant pearl",
+			"tip": "Obtained by feeding an item to the Giant Clam ocean encounter. The next time you encounter the clam, you will receive a pearl based off the fed item's value.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Brilliant_pearl",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Brilliant_pearl_detail.png/320px-Brilliant_pearl_detail.png",
+			"displayItemId": 31797,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31797 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "433597ee-eb7a-4d6d-b62d-b5bc4bc48f6a",
+			"name": "Get a Radiant pearl",
+			"tip": "Obtained by feeding an item to the Giant Clam ocean encounter. The next time you encounter the clam, you will receive a pearl based off the fed item's value.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Radiant_pearl",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Radiant_pearl_detail.png/320px-Radiant_pearl_detail.png",
+			"displayItemId": 31800,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31800 ],
+				"count": 1
+			}
 		}
 	]
 }
