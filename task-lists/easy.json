@@ -4,8 +4,8 @@
 		{
 			"id": "5aa40ab6-d572-4b7b-ae0e-bed226478f13",
 			"name": "Get Bolt racks from Barrows",
-			"tip": "Bolt racks are obtained from the Barrows Combat Minigame.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Barrows",
+			"tip": "Can be obtained by completing the Barrows.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Bolt_rack",
 			"imageLink": "https://oldschool.runescape.wiki/images/d/de/Bolt_rack_5.png",
 			"displayItemId": 4740,
 			"verification": {
@@ -17,7 +17,7 @@
 		{
 			"id": "11968c49-8398-4125-826c-829dfe85b0b2",
 			"name": "Get a Mole claw + skin",
-			"tip": "Mole Skin and Mole Claw are guarenteed drops from the Giant Mole Boss.",
+			"tip": "Mole Skin and Mole Claw are guaranteed drops from the Giant Mole boss.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Giant_Mole",
 			"imageLink": "https://oldschool.runescape.wiki/images/d/d8/Mole_claw.png",
 			"displayItemId": 7416,
@@ -437,7 +437,7 @@
 		{
 			"id": "a3b1b2c4-05cd-4171-aaec-9a074c0d713c",
 			"name": "Get Runner boots",
-			"tip": "Can be purchased as a reward from the Barbarian Assault Combat Minigame. You can ask the Clan Chat or the Discord to gather a team, last ditch effort would be to do PUB runs in World 306.. YIKES.",
+			"tip": "Can be purchased as a reward from the Barbarian Assault minigame. You can ask the Clan Chat or the Discord to gather a team, last ditch effort would be to do PUB runs in World 306.. YIKES.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Barbarian_Assault",
 			"imageLink": "https://oldschool.runescape.wiki/images/6/6b/Runner_boots.png",
 			"displayItemId": 10552,
@@ -450,7 +450,7 @@
 		{
 			"id": "1bc6158d-dd1e-499e-8ffd-3225eace2dae",
 			"name": "Get Penance gloves",
-			"tip": "Can be purchased as a reward from the Barbarian Assault Combat Minigame. You can ask the Clan Chat or the Discord to gather a team, last ditch effort would be to do PUB runs in World 306.. YIKES.",
+			"tip": "Can be purchased as a reward from the Barbarian Assault minigame. You can ask the Clan Chat or the Discord to gather a team, last ditch effort would be to do PUB runs in World 306.. YIKES.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Barbarian_Assault",
 			"imageLink": "https://oldschool.runescape.wiki/images/3/34/Penance_gloves.png",
 			"displayItemId": 10553,
@@ -463,7 +463,7 @@
 		{
 			"id": "c59bd20a-c811-47dd-85bb-23a68b92b144",
 			"name": "Get a Granite body",
-			"tip": "Can be purchased as a reward from the Barbarian Assault Combat Minigame. You can ask the Clan Chat or the Discord to gather a team, last ditch effort would be to do PUB runs in World 306.. YIKES.",
+			"tip": "Can be purchased as a reward from the Barbarian Assault minigame. You can ask the Clan Chat or the Discord to gather a team, last ditch effort would be to do PUB runs in World 306.. YIKES.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Barbarian_Assault",
 			"imageLink": "https://oldschool.runescape.wiki/images/1/15/Granite_body.png",
 			"displayItemId": 10564,
@@ -476,7 +476,7 @@
 		{
 			"id": "5d8fc07b-a864-4afb-aec1-edefcdf60140",
 			"name": "Get 1 new halo",
-			"tip": "Can be purchased as a reward from the Castle Wars \"Combat Minigame\". The best way to do this is by using an alt account and join the games with both accounts. Castle Wars is F2P therefore, alt account does not needed to be a member. Enjoy your AFK time.",
+			"tip": "Can be purchased as a reward from the Castle Wars minigame. The best way to do this is by using an alt account and join the games with both accounts. Castle Wars is F2P therefore, alt account does not needed to be a member. Enjoy your AFK time.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
 			"imageLink": "https://oldschool.runescape.wiki/images/6/67/Saradomin_halo.png",
 			"displayItemId": 12637,
@@ -489,7 +489,7 @@
 		{
 			"id": "af93b5ec-e862-4af6-b299-605da3275e74",
 			"name": "Get the full Red decorative set",
-			"tip": "Can be purchased as a reward from the Castle Wars \"Combat Minigame\". The best way to do this is by using an alt account and join the games with both accounts. Castle Wars is F2P therefore, alt account does not needed to be a member. Enjoy your AFK time.",
+			"tip": "Can be purchased as a reward from the Castle Wars minigame. The best way to do this is by using an alt account and join the games with both accounts. Castle Wars is F2P therefore, alt account does not needed to be a member. Enjoy your AFK time.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/0/0d/Decorative_armour_(red_platebody)_detail.png/130px-Decorative_armour_(red_platebody)_detail.png",
 			"displayItemId": 4069,
@@ -502,7 +502,7 @@
 		{
 			"id": "46ca45fc-4654-40dd-bcfa-9157b15f216f",
 			"name": "Get the Zamorak hood & cloak",
-			"tip": "Can be purchased as a reward from the Castle Wars \"Combat Minigame\". The best way to do this is by using an alt account and join the games with both accounts. Castle Wars is F2P therefore, alt account does not needed to be a member. Enjoy your AFK time.",
+			"tip": "Can be purchased as a reward from the Castle Wars minigame. The best way to do this is by using an alt account and join the games with both accounts. Castle Wars is F2P therefore, alt account does not needed to be a member. Enjoy your AFK time.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
 			"imageLink": "https://oldschool.runescape.wiki/images/9/9c/Castlewars_hood_(Zamorak).png",
 			"displayItemId": 4515,
@@ -515,7 +515,7 @@
 		{
 			"id": "b05c1479-a3ab-475d-92ff-463be1232224",
 			"name": "Get the Saradomin hood & cloak",
-			"tip": "Can be purchased as a reward from the Castle Wars \"Combat Minigame\". The best way to do this is by using an alt account and join the games with both accounts. Castle Wars is F2P therefore, alt account does not needed to be a member. Enjoy your AFK time.",
+			"tip": "Can be purchased as a reward from the Castle Wars minigame. The best way to do this is by using an alt account and join the games with both accounts. Castle Wars is F2P therefore, alt account does not needed to be a member. Enjoy your AFK time.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
 			"imageLink": "https://oldschool.runescape.wiki/images/b/b2/Castlewars_hood_(Saradomin).png",
 			"displayItemId": 4513,
@@ -528,7 +528,7 @@
 		{
 			"id": "549a24ea-4798-4734-9f0c-b8cb39323c60",
 			"name": "Get 1 Angler piece",
-			"tip": "Potential reward from the Fishing Trawler minigame. Protip: Turn the camera shake off whilst within the minigame and don't let your feet get too wet.",
+			"tip": "Potential reward from the Fishing Trawler minigame. Pro tip: Turn the camera shake off whilst within the minigame and don't let your feet get too wet.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Fishing_Trawler",
 			"imageLink": "https://oldschool.runescape.wiki/images/a/a0/Angler_top.png",
 			"displayItemId": 13259,
@@ -541,7 +541,7 @@
 		{
 			"id": "1e9b6339-c463-4f6e-aae8-eff2943e1ea6",
 			"name": "Get 1 Angler piece",
-			"tip": "Potential reward from the Fishing Trawler minigame. Protip: Turn the camera shake off whilst within the minigame and don't let your feet get too wet.",
+			"tip": "Potential reward from the Fishing Trawler minigame. Pro tip: Turn the camera shake off whilst within the minigame and don't let your feet get too wet.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Fishing_Trawler",
 			"imageLink": "https://oldschool.runescape.wiki/images/a/a0/Angler_top.png",
 			"displayItemId": 13259,
@@ -554,7 +554,7 @@
 		{
 			"id": "3b8b6926-f4c2-406b-a3de-090775321720",
 			"name": "Get 1 Angler piece",
-			"tip": "Potential reward from the Fishing Trawler minigame. Protip: Turn the camera shake off whilst within the minigame and don't let your feet get too wet.",
+			"tip": "Potential reward from the Fishing Trawler minigame. Pro tip: Turn the camera shake off whilst within the minigame and don't let your feet get too wet.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Fishing_Trawler",
 			"imageLink": "https://oldschool.runescape.wiki/images/a/a0/Angler_top.png",
 			"displayItemId": 13259,
@@ -567,7 +567,7 @@
 		{
 			"id": "1c6e5f0c-1874-4633-ac5b-ca427b5a8431",
 			"name": "Get 1 Angler piece",
-			"tip": "Potential reward from the Fishing Trawler minigame. Protip: Turn the camera shake off whilst within the minigame and don't let your feet get too wet.",
+			"tip": "Potential reward from the Fishing Trawler minigame. Pro tip: Turn the camera shake off whilst within the minigame and don't let your feet get too wet.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Fishing_Trawler",
 			"imageLink": "https://oldschool.runescape.wiki/images/a/a0/Angler_top.png",
 			"displayItemId": 13259,
@@ -671,7 +671,7 @@
 		{
 			"id": "100fc573-a473-4f8e-82d8-bda08f454a06",
 			"name": "Get a Void Knight seal",
-			"tip": "Can be purchased as a reward from the Pest Control Combat Minigame.",
+			"tip": "Can be purchased as a reward from the Pest Control minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Pest_Control",
 			"imageLink": "https://oldschool.runescape.wiki/images/8/8e/Void_seal.png",
 			"displayItemId": 11666,
@@ -684,7 +684,7 @@
 		{
 			"id": "010d0bc4-d9e1-46da-a802-ed62efe66de7",
 			"name": "Get Void Knight gloves",
-			"tip": "Can be purchased as a reward from the Pest Control Combat Minigame.",
+			"tip": "Can be purchased as a reward from the Pest Control Combat minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Pest_Control",
 			"imageLink": "https://oldschool.runescape.wiki/images/9/91/Void_knight_gloves.png",
 			"displayItemId": 8842,
@@ -697,7 +697,7 @@
 		{
 			"id": "330d732a-5aad-463a-a79e-7b07f9dfbc2f",
 			"name": "Get 1 piece of Rogue equipment",
-			"tip": "Potential reward from the Rogues Den Minigame.",
+			"tip": "Potential reward from the Rogues Den minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Rogues'_Den",
 			"imageLink": "https://oldschool.runescape.wiki/images/e/ea/Rogue_top.png",
 			"displayItemId": 5553,
@@ -710,7 +710,7 @@
 		{
 			"id": "b8dea3b4-7391-4487-a008-06348a866d93",
 			"name": "Get 1 piece of Rogue equipment",
-			"tip": "Potential reward from the Rogues Den Minigame.",
+			"tip": "Potential reward from the Rogues Den minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Rogues'_Den",
 			"imageLink": "https://oldschool.runescape.wiki/images/e/ea/Rogue_top.png",
 			"displayItemId": 5553,
@@ -723,7 +723,7 @@
 		{
 			"id": "336e3028-a91b-4acb-ac66-256aa99ff381",
 			"name": "Get 1 piece of Rogue equipment",
-			"tip": "Potential reward from the Rogues Den Minigame.",
+			"tip": "Potential reward from the Rogues Den minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Rogues'_Den",
 			"imageLink": "https://oldschool.runescape.wiki/images/e/ea/Rogue_top.png",
 			"displayItemId": 5553,
@@ -736,7 +736,7 @@
 		{
 			"id": "44c15a4c-fd1e-47ae-8651-7f807cce9ea5",
 			"name": "Get 1 piece of Rogue equipment",
-			"tip": "Potential reward from the Rogues Den Minigame.",
+			"tip": "Potential reward from the Rogues Den minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Rogues'_Den",
 			"imageLink": "https://oldschool.runescape.wiki/images/e/ea/Rogue_top.png",
 			"displayItemId": 5553,
@@ -749,7 +749,7 @@
 		{
 			"id": "1555801d-9603-42c2-90bd-f056bc8404fe",
 			"name": "Get 1 piece of Rogue equipment",
-			"tip": "Potential reward from the Rogues Den Minigame.",
+			"tip": "Potential reward from the Rogues Den minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Rogues'_Den",
 			"imageLink": "https://oldschool.runescape.wiki/images/e/ea/Rogue_top.png",
 			"displayItemId": 5553,
@@ -762,7 +762,7 @@
 		{
 			"id": "679c04c8-ff5b-4c47-a9dc-a4984d8366bb",
 			"name": "Get 1 unique from Shades of Mort'ton",
-			"tip": "Potential reward from the Shades of Morton Minigame.",
+			"tip": "Potential reward from the Shades of Morton minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Shades_of_Mort'ton_(minigame)",
 			"imageLink": "https://oldschool.runescape.wiki/images/c/c4/Fine_cloth.png",
 			"displayItemId": 3470,
@@ -778,7 +778,7 @@
 		{
 			"id": "9157d0d5-abca-4654-8646-38b293c22754",
 			"name": "Get 1 unique from Shades of Mort'ton",
-			"tip": "Potential reward from the Shades of Morton Minigame.",
+			"tip": "Potential reward from the Shades of Morton minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Shades_of_Mort'ton_(minigame)",
 			"imageLink": "https://oldschool.runescape.wiki/images/c/c4/Fine_cloth.png",
 			"displayItemId": 3470,
@@ -794,7 +794,7 @@
 		{
 			"id": "16e4779b-6093-4be1-9cac-17f36c5958fd",
 			"name": "Get 1 piece of Lumberjack equipment",
-			"tip": "Guarenteed reward from the Temple Trekking Minigame find the correct \"Bog\" event. Do easy Treks for best results.",
+			"tip": "Guaranteed reward from the Temple Trekking minigame find the correct \"Bog\" event. Do easy Treks for best results.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Temple_Trekking",
 			"imageLink": "https://oldschool.runescape.wiki/images/4/48/Lumberjack_top.png",
 			"displayItemId": 10939,
@@ -807,7 +807,7 @@
 		{
 			"id": "505a8138-9414-406c-a739-a9c907c3e85f",
 			"name": "Get 1 piece of Lumberjack equipment",
-			"tip": "Guarenteed reward from the Temple Trekking Minigame find the correct \"Bog\" event. Do easy Treks for best results.",
+			"tip": "Guaranteed reward from the Temple Trekking minigame find the correct \"Bog\" event. Do easy Treks for best results.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Temple_Trekking",
 			"imageLink": "https://oldschool.runescape.wiki/images/4/48/Lumberjack_top.png",
 			"displayItemId": 10939,
@@ -820,7 +820,7 @@
 		{
 			"id": "3c6bfbd5-f950-4e8c-8a7f-43afc849fe49",
 			"name": "Get 1 piece of Lumberjack equipment",
-			"tip": "Guarenteed reward from the Temple Trekking Minigame find the correct \"Bog\" event. Do easy Treks for best results.",
+			"tip": "Guaranteed reward from the Temple Trekking minigame find the correct \"Bog\" event. Do easy Treks for best results.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Temple_Trekking",
 			"imageLink": "https://oldschool.runescape.wiki/images/4/48/Lumberjack_top.png",
 			"displayItemId": 10939,
@@ -833,7 +833,7 @@
 		{
 			"id": "79a0736d-d4a6-4708-a18b-f236f2cab147",
 			"name": "Get 1 piece of Lumberjack equipment",
-			"tip": "Guarenteed reward from the Temple Trekking Minigame find the correct \"Bog\" event. Do easy Treks for best results.",
+			"tip": "Guaranteed reward from the Temple Trekking minigame find the correct \"Bog\" event. Do easy Treks for best results.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Temple_Trekking",
 			"imageLink": "https://oldschool.runescape.wiki/images/4/48/Lumberjack_top.png",
 			"displayItemId": 10939,
@@ -846,8 +846,8 @@
 		{
 			"id": "bd2c8923-be2b-4295-acd6-5f949dc3e27e",
 			"name": "Get the Gricoller's can",
-			"tip": "Can be purchased as a reward from the Tithe Farm Minigame. Plant those seeds!",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Tithe_Farm",
+			"tip": "Can be purchased as a reward from the Tithe Farm minigame. Plant those seeds!",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Gricoller's_can",
 			"imageLink": "https://oldschool.runescape.wiki/images/e/ed/Gricoller's_can.png",
 			"displayItemId": 13353,
 			"verification": {
@@ -859,7 +859,7 @@
 		{
 			"id": "f580b79d-da36-4d99-acd9-b23cabc31b68",
 			"name": "Get 1 piece of Farmer's equipment",
-			"tip": "Can be purchased as a reward from the Tithe Farm Minigame. Plant those seeds!",
+			"tip": "Can be purchased as a reward from the Tithe Farm minigame. Plant those seeds!",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tithe_Farm",
 			"imageLink": "https://oldschool.runescape.wiki/images/b/bd/Farmer's_jacket.png",
 			"displayItemId": 13643,
@@ -872,7 +872,7 @@
 		{
 			"id": "ae71c97d-0a6f-46e7-82e3-a7b1178c9f87",
 			"name": "Get 1 piece of Farmer's equipment",
-			"tip": "Can be purchased as a reward from the Tithe Farm Minigame. Plant those seeds!",
+			"tip": "Can be purchased as a reward from the Tithe Farm minigame. Plant those seeds!",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tithe_Farm",
 			"imageLink": "https://oldschool.runescape.wiki/images/b/bd/Farmer's_jacket.png",
 			"displayItemId": 13643,
@@ -885,7 +885,7 @@
 		{
 			"id": "8513ab1a-12dd-4f24-9939-a36a7015bbc5",
 			"name": "Get Blue Rum",
-			"tip": "Can be purchased as a reward from the Trouble Brewing Minigame. Fill and deposit 100 buckets of water. Enjoy your AFK time.",
+			"tip": "Can be purchased as a reward from the Trouble Brewing minigame. Fill and deposit 100 buckets of water. Enjoy your AFK time.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Trouble_Brewing",
 			"imageLink": "https://oldschool.runescape.wiki/images/2/28/Rum_(blue).png",
 			"displayItemId": 8941,
@@ -898,7 +898,7 @@
 		{
 			"id": "02111c7f-3db9-4eed-b848-dfa0e18a91d5",
 			"name": "Get Red Rum",
-			"tip": "Can be purchased as a reward from the Trouble Brewing Minigame. Fill and deposit 100 buckets of water. Enjoy your AFK time.",
+			"tip": "Can be purchased as a reward from the Trouble Brewing minigame. Fill and deposit 100 buckets of water. Enjoy your AFK time.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Trouble_Brewing",
 			"imageLink": "https://oldschool.runescape.wiki/images/2/24/Rum_(red).png",
 			"displayItemId": 8940,
@@ -911,7 +911,7 @@
 		{
 			"id": "18edfb99-8954-400f-b6ec-a4f6281e5b39",
 			"name": "Get The stuff",
-			"tip": "Can be purchased as a reward from the Trouble Brewing Minigame. Fill and deposit 100 buckets of water. Enjoy your AFK time.",
+			"tip": "Can be purchased as a reward from the Trouble Brewing minigame. Fill and deposit 100 buckets of water. Enjoy your AFK time.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Trouble_Brewing",
 			"imageLink": "https://oldschool.runescape.wiki/images/4/40/The_stuff.png",
 			"displayItemId": 8988,
@@ -950,7 +950,7 @@
 		{
 			"id": "1d7c9237-a900-44f7-92e0-9013fb45dda8",
 			"name": "Get the Marksman headpiece",
-			"tip": "Guarenteed from Chompy bird hunting.",
+			"tip": "Guaranteed from Chompy bird hunting.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Chompy_bird_hunting",
 			"imageLink": "https://oldschool.runescape.wiki/images/2/22/Chompy_bird_hat_(marksman).png",
 			"displayItemId": 2983,
@@ -966,7 +966,7 @@
 		{
 			"id": "44cb00e0-3fab-4361-b9cf-22127b1c2f2d",
 			"name": "Get 1 unique from Creature Creation",
-			"tip": "Can be received as a drop from the Creature Creation \"Minigame\". Make a abominiation with two different ingredients, mix together and murder.",
+			"tip": "Can be received as a drop from the Creature Creation \"minigame\". Make a abomination with two different ingredients, mix together and murder.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Creature_Creation",
 			"imageLink": "https://oldschool.runescape.wiki/images/Frogeel.png",
 			"displayItemId": 25623,
@@ -979,7 +979,7 @@
 		{
 			"id": "740a7a6e-efdf-4cc0-bac3-b27e38445ea3",
 			"name": "Get 1 unique from Creature Creation",
-			"tip": "Can be received as a drop from the Creature Creation \"Minigame\". Make a abominiation with two different ingredients, mix together and murder.",
+			"tip": "Can be received as a drop from the Creature Creation \"minigame\". Make a abomination with two different ingredients, mix together and murder.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Creature_Creation",
 			"imageLink": "https://oldschool.runescape.wiki/images/Frogeel.png",
 			"displayItemId": 25623,
@@ -992,7 +992,7 @@
 		{
 			"id": "977865aa-cb22-4d3f-ad89-d7959e99570b",
 			"name": "Get 1 unique from Creature Creation",
-			"tip": "Can be received as a drop from the Creature Creation \"Minigame\". Make a abominiation with two different ingredients, mix together and murder.",
+			"tip": "Can be received as a drop from the Creature Creation \"minigame\". Make a abomination with two different ingredients, mix together and murder.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Creature_Creation",
 			"imageLink": "https://oldschool.runescape.wiki/images/Frogeel.png",
 			"displayItemId": 25623,
@@ -1005,7 +1005,7 @@
 		{
 			"id": "122ccccc-fb1d-4d01-bd9e-78397735ffee",
 			"name": "Get 1 unique from Creature Creation",
-			"tip": "Can be received as a drop from the Creature Creation \"Minigame\". Make a abominiation with two different ingredients, mix together and murder.",
+			"tip": "Can be received as a drop from the Creature Creation \"minigame\". Make a abomination with two different ingredients, mix together and murder.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Creature_Creation",
 			"imageLink": "https://oldschool.runescape.wiki/images/Frogeel.png",
 			"displayItemId": 25623,
@@ -1018,7 +1018,7 @@
 		{
 			"id": "8817aa4f-8fb2-4210-b506-d9f111442060",
 			"name": "Get 1 unique from Creature Creation",
-			"tip": "Can be received as a drop from the Creature Creation \"Minigame\". Make a abominiation with two different ingredients, mix together and murder.",
+			"tip": "Can be received as a drop from the Creature Creation \"minigame\". Make a abomination with two different ingredients, mix together and murder.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Creature_Creation",
 			"imageLink": "https://oldschool.runescape.wiki/images/Frogeel.png",
 			"displayItemId": 25623,
@@ -1031,7 +1031,7 @@
 		{
 			"id": "7e168420-ec5d-4e6f-be37-6c070e257d1c",
 			"name": "Get 1 unique from Creature Creation",
-			"tip": "Can be received as a drop from the Creature Creation \"Minigame\". Make a abominiation with two different ingredients, mix together and murder.",
+			"tip": "Can be received as a drop from the Creature Creation \"minigame\". Make a abomination with two different ingredients, mix together and murder.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Creature_Creation",
 			"imageLink": "https://oldschool.runescape.wiki/images/Frogeel.png",
 			"displayItemId": 25623,
@@ -1044,7 +1044,7 @@
 		{
 			"id": "e0cd073e-8844-43f0-bff7-dad3bdf88c26",
 			"name": "Get 1 unique from Creature Creation",
-			"tip": "Can be received as a drop from the Creature Creation \"Minigame\". Make a abominiation with two different ingredients, mix together and murder.",
+			"tip": "Can be received as a drop from the Creature Creation \"minigame\". Make a abomination with two different ingredients, mix together and murder.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Creature_Creation",
 			"imageLink": "https://oldschool.runescape.wiki/images/Frogeel.png",
 			"displayItemId": 25623,
@@ -1057,7 +1057,7 @@
 		{
 			"id": "e3bf623c-08f8-47be-98f7-bb9d5d313c2a",
 			"name": "Get a Rune defender",
-			"tip": "Can be received as a drop from Cycolps in the warrier guild. Good ole defender grind.",
+			"tip": "Can be received as a drop from Cyclops in the Warrior's guild. Good ole defender grind.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Defender",
 			"imageLink": "https://oldschool.runescape.wiki/images/5/58/Rune_defender.png",
 			"displayItemId": 8850,
@@ -1070,7 +1070,7 @@
 		{
 			"id": "3dfeba06-9e6d-4d2c-bfbf-06df8ea9bdbe",
 			"name": "Get 2 unique notes from Fossil Island",
-			"tip": "Can be received by opening the chest(s) on Fossil Island with 100 Numulite. Killing hoop snakes for the Numulite is recommended.",
+			"tip": "Can be received by opening the chest(s) on Fossil Island with 100 Nummulite. Killing hoop snakes for the Nummulite is recommended.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Ancient_note",
 			"imageLink": "https://oldschool.runescape.wiki/images/8/82/Scribbled_note.png",
 			"displayItemId": 21664,
@@ -1085,7 +1085,7 @@
 		{
 			"id": "0a52ddc7-b1b5-4708-bc50-173fa1a7155a",
 			"name": "Get 2 unique notes from Fossil Island",
-			"tip": "Can be received by opening the chest(s) on Fossil Island with 100 Numulite. Killing hoop snakes for the Numulite is recommended.",
+			"tip": "Can be received by opening the chest(s) on Fossil Island with 100 Nummulite. Killing hoop snakes for the Nummulite is recommended.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Ancient_note",
 			"imageLink": "https://oldschool.runescape.wiki/images/8/82/Scribbled_note.png",
 			"displayItemId": 21664,
@@ -1415,7 +1415,7 @@
 		{
 			"id": "5563c02a-0615-4afd-b11e-9fc2fb1c10c8",
 			"name": "Get the next tier of metal boots",
-			"tip": "Can be received as a drop from serveral monsters. You must start by obtaining the lowest pair of you do not currently have. Bronze through Rune.",
+			"tip": "Can be received as a drop from several monsters. You must start by obtaining the lowest pair of you do not currently have. Bronze through Rune.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Metal_boots",
 			"imageLink": "https://oldschool.runescape.wiki/images/5/5e/Bronze_boots.png",
 			"displayItemId": 4119,
@@ -1428,7 +1428,7 @@
 		{
 			"id": "9c8888e3-24f3-429e-b682-605199e48532",
 			"name": "Get the next tier of metal boots",
-			"tip": "Can be received as a drop from serveral monsters. You must start by obtaining the lowest pair of you do not currently have. Bronze through Rune.",
+			"tip": "Can be received as a drop from several monsters. You must start by obtaining the lowest pair of you do not currently have. Bronze through Rune.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Metal_boots",
 			"imageLink": "https://oldschool.runescape.wiki/images/5/5e/Bronze_boots.png",
 			"displayItemId": 4119,
@@ -1441,7 +1441,7 @@
 		{
 			"id": "68cbb071-cca7-4db4-9cec-64a9eec6d11f",
 			"name": "Get the next tier of metal boots",
-			"tip": "Can be received as a drop from serveral monsters. You must start by obtaining the lowest pair of you do not currently have. Bronze through Rune.",
+			"tip": "Can be received as a drop from several monsters. You must start by obtaining the lowest pair of you do not currently have. Bronze through Rune.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Metal_boots",
 			"imageLink": "https://oldschool.runescape.wiki/images/5/5e/Bronze_boots.png",
 			"displayItemId": 4119,
@@ -1454,7 +1454,7 @@
 		{
 			"id": "85b5057d-1b4b-489d-bf0f-eb3a1927ef40",
 			"name": "Get the next tier of metal boots",
-			"tip": "Can be received as a drop from serveral monsters. You must start by obtaining the lowest pair of you do not currently have. Bronze through Rune.",
+			"tip": "Can be received as a drop from several monsters. You must start by obtaining the lowest pair of you do not currently have. Bronze through Rune.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Metal_boots",
 			"imageLink": "https://oldschool.runescape.wiki/images/5/5e/Bronze_boots.png",
 			"displayItemId": 4119,
@@ -1467,7 +1467,7 @@
 		{
 			"id": "a39723bd-cc16-49e8-ac94-268114557270",
 			"name": "Get the next tier of metal boots",
-			"tip": "Can be received as a drop from serveral monsters. You must start by obtaining the lowest pair of you do not currently have. Bronze through Rune.",
+			"tip": "Can be received as a drop from several monsters. You must start by obtaining the lowest pair of you do not currently have. Bronze through Rune.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Metal_boots",
 			"imageLink": "https://oldschool.runescape.wiki/images/5/5e/Bronze_boots.png",
 			"displayItemId": 4119,
@@ -1557,7 +1557,7 @@
 		},
 		{
 			"id": "1f1cf951-abfb-4585-9376-3bdf7299ea49",
-			"name": "Get 1 unique Tzhaar drop",
+			"name": "Get 1 unique TzHaar drop",
 			"tip": "Can be received as a drop from TzHaar creatures. Recommended to kill Kets until you have all their unique drops, the kill Xils.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/TzHaar",
 			"imageLink": "https://oldschool.runescape.wiki/images/e/ea/Obsidian_cape.png",
@@ -1570,7 +1570,7 @@
 		},
 		{
 			"id": "08c4f12a-cdb2-4997-87c3-038ecdd3986f",
-			"name": "Get 1 unique Tzhaar drop",
+			"name": "Get 1 unique TzHaar drop",
 			"tip": "Can be received as a drop from TzHaar creatures. Recommended to kill Kets until you have all their unique drops, the kill Xils.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/TzHaar",
 			"imageLink": "https://oldschool.runescape.wiki/images/e/ea/Obsidian_cape.png",
@@ -1584,7 +1584,7 @@
 		{
 			"id": "1b8cd395-3105-4960-b022-3eda90e2c92e",
 			"name": "Get a Big swordfish",
-			"tip": "Obainted randomly while fishing for swordfish. Good luck!",
+			"tip": "Obtained randomly while fishing for swordfish. Good luck!",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Big_swordfish",
 			"imageLink": "https://oldschool.runescape.wiki/images/e/e3/Big_swordfish.png",
 			"displayItemId": 7991,
@@ -1688,7 +1688,7 @@
 		{
 			"id": "eb5d9f9a-bb6d-4301-bc2e-6183ee67acf8",
 			"name": "Get Mining gloves",
-			"tip": "Can be purchased as a reward in the Mining Guild. Obtain unidentified minerals by minining in the guild. Mining iron ore is recommended.",
+			"tip": "Can be purchased as a reward in the Mining Guild. Obtain unidentified minerals by mining in the guild. Mining iron ore is recommended.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Mining_gloves",
 			"imageLink": "https://oldschool.runescape.wiki/images/9/96/Mining_gloves.png",
 			"displayItemId": 21343,
@@ -1714,7 +1714,7 @@
 		{
 			"id": "c66d13eb-955f-426c-9336-18e0a74eda78",
 			"name": "Get a Left skull half",
-			"tip": "Can be received as a drop from Ankou in the Stronghold of Security.",
+			"tip": "Can be received as a drop from Ankous in the Stronghold of Security.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Left_skull_half",
 			"imageLink": "https://oldschool.runescape.wiki/images/9/97/Left_skull_half.png",
 			"displayItemId": 9008,
@@ -1727,7 +1727,7 @@
 		{
 			"id": "f877eaa5-be6b-4857-92e9-4e3b4b3f0196",
 			"name": "Get a Top of sceptre",
-			"tip": "Can be received as a drop from Catablepon in the Stronghold of Security.",
+			"tip": "Can be received as a drop from Catablepons in the Stronghold of Security.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Top_of_sceptre",
 			"imageLink": "https://oldschool.runescape.wiki/images/f/f0/Top_of_sceptre.png",
 			"displayItemId": 9010,
@@ -1961,7 +1961,7 @@
 		{
 			"id": "d6f7fda8-e5fb-48fd-addd-2f23e9f5fc01",
 			"name": "Get a Supply crate from Mahogany Homes",
-			"tip": "Can be purchased as a reward from the Mahogany Homes Minigame. Don't pull a Kats and do Daddys Home. :)",
+			"tip": "Can be purchased as a reward from the Mahogany Homes minigame. Don't pull a Shadu and do Daddy's Home. :)",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Mahogany_Homes",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/c/ce/Supply_crate_(Mahogany_Homes)_detail.png/1024px-Supply_crate_(Mahogany_Homes)_detail.png",
 			"displayItemId": 24884,
@@ -1974,7 +1974,7 @@
 		{
 			"id": "043ba4f2-591d-4828-8fb2-aa88260f5fcf",
 			"name": "Get 1 unique from Tempoross",
-			"tip": "Can be received as a reward from the Tempoross Skilling Boss.",
+			"tip": "Can be received as a reward from the Tempoross Skilling boss.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/a/ab/Tome_of_water_(empty)_detail.png/160px-Tome_of_water_(empty)_detail.png",
 			"displayItemId": 25574,
@@ -1989,7 +1989,7 @@
 		{
 			"id": "e77633b4-40f3-4dd6-9e6e-5554ecbec38c",
 			"name": "Get 1 unique from Tempoross",
-			"tip": "Can be received as a reward from the Tempoross Skilling Boss.",
+			"tip": "Can be received as a reward from the Tempoross Skilling boss.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/a/ab/Tome_of_water_(empty)_detail.png/160px-Tome_of_water_(empty)_detail.png",
 			"displayItemId": 25574,
@@ -2004,7 +2004,7 @@
 		{
 			"id": "c13a79ba-49f7-46ae-ab34-09b2dea01df1",
 			"name": "Get 1 unique from Tempoross",
-			"tip": "Can be received as a reward from the Tempoross Skilling Boss.",
+			"tip": "Can be received as a reward from the Tempoross Skilling boss.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/a/ab/Tome_of_water_(empty)_detail.png/160px-Tome_of_water_(empty)_detail.png",
 			"displayItemId": 25574,
@@ -2019,7 +2019,7 @@
 		{
 			"id": "0fe7ee39-2387-48e3-8316-1f3a73ba7d31",
 			"name": "Get 1 unique from Tempoross",
-			"tip": "Can be received as a reward from the Tempoross Skilling Boss.",
+			"tip": "Can be received as a reward from the Tempoross Skilling boss.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/a/ab/Tome_of_water_(empty)_detail.png/160px-Tome_of_water_(empty)_detail.png",
 			"displayItemId": 25574,
@@ -2064,7 +2064,7 @@
 		{
 			"id": "29f0793b-ab50-48f5-8e5f-c665b37f302b",
 			"name": "Get 1 unique from Guardians of the Rift",
-			"tip": "Can be received as a reward from the Guardians of the Rift Skilling Minigame. Runecrafting... it's actually kinda fun now.",
+			"tip": "Can be received as a reward from the Guardians of the Rift Skilling minigame. Runecrafting... it's actually kinda fun now.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/120px-Hat_of_the_eye_detail.png",
 			"displayItemId": 26850,
@@ -2080,7 +2080,7 @@
 		{
 			"id": "eaa7fb4c-8647-4952-866f-0ff17175566f",
 			"name": "Get 1 unique from Guardians of the Rift",
-			"tip": "Can be received as a reward from the Guardians of the Rift Skilling Minigame. Runecrafting... it's actually kinda fun now.",
+			"tip": "Can be received as a reward from the Guardians of the Rift Skilling minigame. Runecrafting... it's actually kinda fun now.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/120px-Hat_of_the_eye_detail.png",
 			"displayItemId": 26850,
@@ -2096,7 +2096,7 @@
 		{
 			"id": "5cf8c24d-4c39-4626-a529-8e92c0beaae1",
 			"name": "Get 1 unique from Guardians of the Rift",
-			"tip": "Can be received as a reward from the Guardians of the Rift Skilling Minigame. Runecrafting... it's actually kinda fun now.",
+			"tip": "Can be received as a reward from the Guardians of the Rift Skilling minigame. Runecrafting... it's actually kinda fun now.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/120px-Hat_of_the_eye_detail.png",
 			"displayItemId": 26850,
@@ -2112,7 +2112,7 @@
 		{
 			"id": "c58b3f37-57d8-4230-917e-b1a6289a085f",
 			"name": "Get 1 unique from Guardians of the Rift",
-			"tip": "Can be received as a reward from the Guardians of the Rift Skilling Minigame. Runecrafting... it's actually kinda fun now.",
+			"tip": "Can be received as a reward from the Guardians of the Rift Skilling minigame. Runecrafting... it's actually kinda fun now.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/120px-Hat_of_the_eye_detail.png",
 			"displayItemId": 26850,
@@ -2128,7 +2128,7 @@
 		{
 			"id": "59834ab0-010c-45d2-91d3-73dd45bb5963",
 			"name": "Get 1 unique from Giants' Foundry",
-			"tip": "Can be purchased as a reward from the Giants' Foundry Skilling Minigame.",
+			"tip": "Can be purchased as a reward from the Giants' Foundry Skilling minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Giants'_Foundry",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Kovac's_grog_detail.png/100px-Kovac's_grog_detail.png",
 			"displayItemId": 27014,
@@ -2141,7 +2141,7 @@
 		{
 			"id": "c66b3654-6987-43c3-8b0b-de91e8819932",
 			"name": "Get 1 unique from Giants' Foundry",
-			"tip": "Can be purchased as a reward from the Giants' Foundry Skilling Minigame.",
+			"tip": "Can be purchased as a reward from the Giants' Foundry Skilling minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Giants'_Foundry",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Kovac's_grog_detail.png/100px-Kovac's_grog_detail.png",
 			"displayItemId": 27014,
@@ -2154,7 +2154,7 @@
 		{
 			"id": "ea129e62-a3e5-4b86-96fd-b0c8dceb8856",
 			"name": "Get 1 unique from Giants' Foundry",
-			"tip": "Can be purchased as a reward from the Giants' Foundry Skilling Minigame.",
+			"tip": "Can be purchased as a reward from the Giants' Foundry Skilling minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Giants'_Foundry",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Kovac's_grog_detail.png/100px-Kovac's_grog_detail.png",
 			"displayItemId": 27014,
@@ -2167,7 +2167,7 @@
 		{
 			"id": "de313a0b-4736-4e55-bf95-9d1f7329d533",
 			"name": "Get 1 unique from Giants' Foundry",
-			"tip": "Can be purchased as a reward from the Giants' Foundry Skilling Minigame.",
+			"tip": "Can be purchased as a reward from the Giants' Foundry Skilling minigame.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Giants'_Foundry",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Kovac's_grog_detail.png/100px-Kovac's_grog_detail.png",
 			"displayItemId": 27014,
@@ -2302,7 +2302,7 @@
 		{
 			"id": "3a0fb1be-70be-4caa-a84b-99d2c331cbfe",
 			"name": "Get the Sulphur blades",
-			"tip": "Received as a drop from sulphur Nagua",
+			"tip": "Received as a drop from Sulphur Naguas",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Sulphur_Nagua",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Sulphur_blades_detail.png/200px-Sulphur_blades_detail.png",
 			"displayItemId": 29084,
@@ -2315,7 +2315,7 @@
 		{
 			"id": "f000fd28-3515-4667-a1fc-65ef5c6333aa",
 			"name": "Get a Colossal wyrm teleport scroll",
-			"tip": "Obtained by spending termites through Wyrm Agility Course",
+			"tip": "Obtained by spending termites through the Colossal Wyrm Agility Course in Varlamore",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Colossal_Wyrm_Agility_Course",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Colossal_wyrm_teleport_scroll_detail.png/320px-Colossal_wyrm_teleport_scroll_detail.png",
 			"displayItemId": 30040,
@@ -2349,6 +2349,162 @@
 				"method": "collection-log",
 				"itemIds": [ 31032, 31052, 31043, 31034 ],
 				"count": 2
+			}
+		},
+		{
+			"id": "b9298587-5e62-4a65-af06-ef7032cca3f1",
+			"name": "Get a Gryphon feather",
+			"tip": "Obtained as a guaranteed drop from regular Gryphons.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Gryphon_feather",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Gryphon_feather_detail.png/320px-Gryphon_feather_detail.png",
+			"displayItemId": 31235,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31235 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "c986eb1e-33f4-4dea-95f8-f335a0add59f",
+			"name": "Get the next reward from The Tempor Tantrum",
+			"tip": "Obtained by completing the next rank's course under the corresponding time.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/The_Tempor_Tantrum",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Stormy_key_detail.png/320px-Stormy_key_detail.png",
+			"displayItemId": 31732,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31732, 31733, 31734 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "8caef83f-cec6-4518-a537-8ec68c2d517d",
+			"name": "Get the next reward from The Tempor Tantrum",
+			"tip": "Obtained by completing the next rank's course under the corresponding time.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/The_Tempor_Tantrum",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Stormy_key_detail.png/320px-Stormy_key_detail.png",
+			"displayItemId": 31732,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31732, 31733, 31734 ],
+				"count": 2
+			}
+		},
+		{
+			"id": "18170f6d-d0f5-476a-9832-3b8f3df3b3b3",
+			"name": "Get the next reward from The Tempor Tantrum",
+			"tip": "Obtained by completing the next rank's course under the corresponding time.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/The_Tempor_Tantrum",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Stormy_key_detail.png/320px-Stormy_key_detail.png",
+			"displayItemId": 31732,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31732, 31733, 31734 ],
+				"count": 3
+			}
+		},
+		{
+			"id": "26a417bd-9635-4bc3-9739-c019b458247b",
+			"name": "Get the Shark paint",
+			"tip": "Can be obtained by completing port tasks.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Shark_paint",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Shark_paint_detail.png/320px-Shark_paint_detail.png",
+			"displayItemId": 32090,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 32090 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "53f410fd-6adc-4ec3-96d3-2cab2f2cfd39",
+			"name": "Get the Salvaging station schematic",
+			"tip": "Obtained from the locked lockbox on Chinchompa Island. The key is buried on The Pandemonium.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Salvaging_station_schematic",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Salvaging_station_schematic_detail.png/320px-Salvaging_station_schematic_detail.png",
+			"displayItemId": 32401,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 32401 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "4e70e2c5-e2a6-41d0-b6f4-18a4ef2edf89",
+			"name": "Get Ray barbs",
+			"tip": "Obtained as a drop from Butterfly Rays; these can be safespotted from land, on the northern shore of the Isle of Souls.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Ray_barbs",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Ray_barbs_detail.png/320px-Ray_barbs_detail.png",
+			"displayItemId": 31959,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31959 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "89225e24-54f1-497d-a23d-65627f62e0ec",
+			"name": "Get a Boat bottle",
+			"tip": "Obtained while sorting Small, Fishy and Barracuda salvages.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Boat_bottle",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Boat_bottle_(full)_detail.png/320px-Boat_bottle_(full)_detail.png",
+			"displayItemId": 31992,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31989 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "a2b53f89-3b42-43f4-a208-75d24ceb11cb",
+			"name": "Get the next Sea Treasure",
+			"tip": "Obtained while sorting salvage. Each sea treasure can be found in a unique salvage type. The Sailors' amulet can be found in all salvages and also completes the task.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Sea_treasure",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Plundered_salvage_detail.png/320px-Plundered_salvage_detail.png",
+			"displayItemId": 32855,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 32398, 32863, 32864, 32865, 32866, 32867, 32868, 32869, 32870 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "924f0d22-b935-45b6-a7c6-31f1187f7cbe",
+			"name": "Get the next Sea Treasure",
+			"tip": "Obtained while sorting salvage. Each sea treasure can be found in a unique salvage type. The Sailors' amulet can be found in all salvages and also completes the task.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Sea_treasure",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Plundered_salvage_detail.png/320px-Plundered_salvage_detail.png",
+			"displayItemId": 32855,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 32398, 32863, 32864, 32865, 32866, 32867, 32868, 32869, 32870 ],
+				"count": 2
+			}
+		},
+		{
+			"id": "a61dc64d-1e9f-44de-bec8-4c9c64c10fef",
+			"name": "Get the next Sea Treasure",
+			"tip": "Obtained while sorting salvage. Each sea treasure can be found in a unique salvage type. The Sailors' amulet can be found in all salvages and also completes the task.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Sea_treasure",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Plundered_salvage_detail.png/320px-Plundered_salvage_detail.png",
+			"displayItemId": 32855,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 32398, 32863, 32864, 32865, 32866, 32867, 32868, 32869, 32870 ],
+				"count": 3
+			}
+		},
+		{
+			"id": "4dc96a62-263a-4083-a0b9-4772e15ee6d4",
+			"name": "Get the next Sea Treasure",
+			"tip": "Obtained while sorting salvage. Each sea treasure can be found in a unique salvage type. The Sailors' amulet can be found in all salvages and also completes the task.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Sea_treasure",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Plundered_salvage_detail.png/320px-Plundered_salvage_detail.png",
+			"displayItemId": 32855,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 32398, 32863, 32864, 32865, 32866, 32867, 32868, 32869, 32870 ],
+				"count": 4
 			}
 		}
 	]

@@ -224,7 +224,7 @@
 		},
 		{
 			"id": "afde6030-8cba-4e6f-8be6-b54dd5883a40",
-			"name": "Jal-nib-rek/Tzrek-zuk",
+			"name": "Jal-nib-rek",
 			"tip": "Can be obtained by defeating TzKal-Zuk, upon completion of the Inferno.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Jal-nib-rek",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jal-nib-rek.png/200px-Jal-nib-rek.png",
@@ -791,6 +791,32 @@
 			"verification": {
 				"method": "collection-log",
 				"itemIds": [ 26901 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "256bfe5f-7c30-4ed5-9293-baa17fbebff1",
+			"name": "Gull",
+			"tip": "Can be obtained by defeating the Shellbane gryphon.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Gull_(pet)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Gull_(follower).png/320px-Gull_(follower).png",
+			"displayItemId": 31285,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31285 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "fea72f44-d76b-412e-a5dc-c4688aa9f6d4",
+			"name": "Soup",
+			"tip": "Can be obtained while training Sailing",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Soup",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Soup_detail.png/320px-Soup_detail.png",
+			"displayItemId": 31283,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31283 ],
 				"count": 1
 			}
 		}
