@@ -155,6 +155,7 @@ def token_required(f):
 def api_login():
     auth = request.authorization
     if not auth or not auth.username or not auth.password:
+        print("Test")
         return make_response({'message': 'Could not verify'}, 401, {'WWW.Authentication': 'Basic realm: "login required"'})
     coll = db['users']
     user = coll.find_one({'username': auth.username}, {'_id': 0})
@@ -173,7 +174,7 @@ def api_login():
 def api_current_task(user):
     current_task = get_taskCurrent(user.username)
     if current_task:
-        return jsonify({'message': {'taskName': current_task[0], 'taskImage': current_task[6]}})
+        return jsonify({'message': {'taskName': current_task[0], 'taskImage': current_task[6], 'taskTip': current_task[4]}})
     return jsonify({'message': None})
 
 @app.route('/api/v1/resource/task_progress')
