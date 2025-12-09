@@ -175,7 +175,8 @@ def api_current_task(user):
             'message': {
                 'taskId': current_task[3],
                 'taskName': current_task[0],
-                'taskImage': current_task[6]
+                'taskImage': current_task[6],
+                'taskTip': current_task[4]
             }
         })
 
