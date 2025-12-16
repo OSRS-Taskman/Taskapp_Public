@@ -130,6 +130,33 @@ class BasePageInfo:
 #     return items
 
 
+@app.route('/api/v1/resource/task_list')
+def api_task_list():
+    return jsonify({'message' : {
+                        "easy" : tasklists.list_for_tier('easy'),
+                        'medium' : tasklists.list_for_tier('medium'),
+                        'hard' : tasklists.list_for_tier('hard'),
+                        'elite' : tasklists.list_for_tier('elite'),
+                        'master' : tasklists.list_for_tier('master'),
+                        'passive' : tasklists.list_for_tier('passive'),
+                        'pets' : tasklists.list_for_tier('pets'),
+                        'extra' : tasklists.list_for_tier('extra'),
+    }}), 200
+
+@app.route('/api/v1/resource/completed_tasks/<username>')
+def api_completed_tasks(username):
+    user_data = get_user(username)
+    return jsonify({'message': {
+                        'easy' : user_data.easy,
+                        'medium' : user_data.medium,
+                        'hard' : user_data.hard,
+                        'elite' : user_data.elite,
+                        'master' : user_data.master,
+                        'passive' : user_data.passive,
+                        'pets' : user_data.pets,
+                        'extra' : user_data.extra            
+    }})
+
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
