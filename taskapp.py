@@ -146,15 +146,16 @@ def api_task_list():
 @app.route('/api/v1/resource/completed_tasks/<username>')
 def api_completed_tasks(username):
     user_data = get_user(username)
+    print(username)
     return jsonify({'message': {
-                        'easy' : user_data.easy,
-                        'medium' : user_data.medium,
-                        'hard' : user_data.hard,
-                        'elite' : user_data.elite,
-                        'master' : user_data.master,
-                        'passive' : user_data.passive,
-                        'pets' : user_data.pets,
-                        'extra' : user_data.extra            
+                        'easy' : user_data.easy.completed_tasks,
+                        'medium' : user_data.medium.completed_tasks,
+                        'hard' : user_data.hard.completed_tasks,
+                        'elite' : user_data.elite.completed_tasks,
+                        'master' : user_data.master.completed_tasks,
+                        'passive' : user_data.passive.completed_tasks,
+                        'pets' : user_data.pets.completed_tasks,
+                        'extra' : user_data.extra.completed_tasks            
     }})
 
 def token_required(f):
