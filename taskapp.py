@@ -155,7 +155,7 @@ def api_completed_tasks(username):
                         'master' : user_data.master.completed_tasks,
                         'passive' : user_data.passive.completed_tasks,
                         'pets' : user_data.pets.completed_tasks,
-                        'extra' : user_data.extra.completed_tasks            
+                        'extra' : user_data.extra.completed_tasks
     }})
 
 def token_required(f):
@@ -371,6 +371,7 @@ def login():
                 if username_found:
                     passwordcheck = username_found['hashed_password']
                     if bcrypt.checkpw(attempted_password.encode('utf-8'), passwordcheck):
+                        session.permanent = True
                         session['logged_in'] = True
                         session['username'] = request.form['username']
                         return redirect(url_for('dashboard'))
