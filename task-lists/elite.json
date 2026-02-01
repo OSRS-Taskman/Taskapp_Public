@@ -1834,6 +1834,19 @@
 			}
 		},
 		{
+			"id": "f496e5d7-722f-4ef5-bb5e-d1b88a7b1555",
+			"name": "Get 1 new halo",
+			"tip": "Can be purchased as a reward from the Castle Wars minigame. Playing on official worlds is recommended, as you get about the same amount of tickets in addition to other resources. Alternatively, you may play with an alt account (works in F2P) for complete AFK.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
+			"imageLink": "https://oldschool.runescape.wiki/images/6/67/Saradomin_halo.png",
+			"displayItemId": 12637,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 12637, 12638, 12639 ],
+				"count": 3
+			}
+		},
+		{
 			"id": "b25d9d8b-ba1a-4caf-a525-6c1d0bea2469",
 			"name": "Get a Gold decorative helm",
 			"tip": "Can be purchased as a reward from the Castle Wars minigame. Playing on official worlds is recommended, as you get about the same amount of tickets in addition to other resources. Alternatively, you may play with an alt account (works in F2P) for complete AFK.",
