@@ -115,8 +115,13 @@ $(document).on('click', '#generate_unofficial', function(){
     imagePlaceholder.href = data.link
     imagePreview.name = data.name;
     task.innerHTML = data.name;
+    if (data.image === 'Cake_of_guidance_detail.png') {
+    image.src = '/static/assets/Cake_of_guidance_detail.png';
+    imagePreview.src = '/static/assets/Cake_of_guidance_detail.png';
+  } else {
     image.src = data.image;
     imagePreview.src = data.image;
+  }
   });
 });
 
