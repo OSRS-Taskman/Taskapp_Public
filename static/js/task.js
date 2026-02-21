@@ -255,6 +255,215 @@ $(document).ready(function(){
   });
 });
 
+function getVerificationItemIds(elementTarget) {
+  const hiddenInput = elementTarget.querySelector('.verification-item-ids');
+  if (!hiddenInput || !hiddenInput.value) {
+    return [];
+  }
+  return hiddenInput.value
+    .split(',')
+    .map((value) => parseInt(value.trim(), 10))
+    .filter((value) => !Number.isNaN(value));
+}
+
+function getCompletedItemIds(elementTarget) {
+  const hiddenInput = elementTarget.querySelector('.completed-item-ids');
+  if (!hiddenInput || !hiddenInput.value) {
+    return [];
+  }
+  return hiddenInput.value
+    .split(',')
+    .map((value) => parseInt(value.trim(), 10))
+    .filter((value) => !Number.isNaN(value));
+}
+
+function getTaskMetaValue(elementTarget, selector) {
+  const node = elementTarget.querySelector(selector);
+  return node ? node.value : '';
+}
+
+function formatUserDateTime(value) {
+  if (!value) {
+    return '--/--/---- --:--';
+  }
+
+  const parsedDate = new Date(value);
+  if (Number.isNaN(parsedDate.getTime())) {
+    return '--/--/---- --:--';
+  }
+
+  return new Intl.DateTimeFormat(undefined, {
+    dateStyle: 'short',
+    timeStyle: 'short'
+  }).format(parsedDate);
+}
+
+function renderTaskTimestamps() {
+  const timestampNodes = document.querySelectorAll('.task-timestamp');
+  timestampNodes.forEach((node) => {
+    const completedAt = node.getAttribute('data-completed-at');
+    node.textContent = formatUserDateTime(completedAt);
+  });
+}
+
+$(document).ready(function(){
+  renderTaskTimestamps();
+});
+
+function isoToDateTimeLocal(isoValue) {
+  const parsedDate = isoValue ? new Date(isoValue) : new Date();
+  const safeDate = Number.isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
+  const pad = (value) => String(value).padStart(2, '0');
+  const year = safeDate.getFullYear();
+  const month = pad(safeDate.getMonth() + 1);
+  const day = pad(safeDate.getDate());
+  const hours = pad(safeDate.getHours());
+  const minutes = pad(safeDate.getMinutes());
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
+
+function dateTimeLocalToISO(localValue) {
+  if (!localValue) {
+    return null;
+  }
+  const parsedDate = new Date(localValue);
+  if (Number.isNaN(parsedDate.getTime())) {
+    return null;
+  }
+  return parsedDate.toISOString();
+}
+
+function attachFallbackImage(imgElement, fallbackSrc) {
+  imgElement.onerror = () => {
+    imgElement.onerror = null;
+    imgElement.src = fallbackSrc;
+  };
+}
+
+function openTaskActionModal(options) {
+  const {
+    actionLabel,
+    taskName,
+    taskTip,
+    taskWikiLink,
+    itemIds,
+    recordedItemIds,
+    currentCompletedAtISO,
+    allowTimeEdit,
+    onConfirm,
+  } = options;
+
+  const modal = document.getElementById('taskActionModal');
+  const modalTitle = document.getElementById('taskActionModalTitle');
+  const modalTip = document.getElementById('taskActionTip');
+  const wikiButton = document.getElementById('taskActionWikiButton');
+  const progressFill = document.getElementById('taskActionProgressFill');
+  const progressText = document.getElementById('taskActionProgressText');
+  const itemContainer = document.getElementById('taskActionModalItems');
+  const timeInput = document.getElementById('taskActionTimeInput');
+  const confirmButton = document.getElementById('taskActionConfirmButton');
+  const backButton = document.getElementById('taskActionBackButton');
+
+  if (!modal || !modalTitle || !modalTip || !wikiButton || !progressFill || !progressText || !itemContainer || !timeInput || !confirmButton || !backButton) {
+    onConfirm();
+    return;
+  }
+
+  modalTitle.textContent = taskName || 'Task';
+  modalTip.textContent = taskTip || '';
+  wikiButton.href = taskWikiLink || '#';
+  confirmButton.textContent = actionLabel;
+
+  progressFill.style.width = '100%';
+  progressText.textContent = 'Applicable Items';
+
+  timeInput.value = isoToDateTimeLocal(currentCompletedAtISO);
+  timeInput.disabled = allowTimeEdit === false;
+
+  itemContainer.innerHTML = '';
+
+  const normalizedItemIds = Array.from(new Set((itemIds || [])
+    .map((value) => parseInt(value, 10))
+    .filter((value) => !Number.isNaN(value))));
+  const selectedItemIds = new Set((recordedItemIds || [])
+    .map((value) => parseInt(value, 10))
+    .filter((value) => !Number.isNaN(value) && normalizedItemIds.includes(value)));
+
+  const renderItems = () => {
+    itemContainer.innerHTML = '';
+
+    if (normalizedItemIds.length === 0) {
+      const empty = document.createElement('p');
+      empty.className = 'task-action-empty';
+      empty.textContent = 'No verification items for this task.';
+      itemContainer.appendChild(empty);
+      return;
+    }
+
+    normalizedItemIds.forEach((itemId) => {
+      const isRecorded = selectedItemIds.has(itemId);
+      const image = document.createElement('img');
+      image.className = `task-action-item ${isRecorded ? 'task-action-item-active' : 'task-action-item-muted'}`;
+      attachFallbackImage(image, '/static/clog.png');
+      image.src = `https://static.runelite.net/cache/item/icon/${itemId}.png`;
+      image.alt = `Item ${itemId}`;
+      image.width = 36;
+      image.height = 32;
+      image.loading = 'lazy';
+      image.title = isRecorded
+        ? `Item ID: ${itemId} (click to mark incomplete)`
+        : `Item ID: ${itemId} (click to mark complete)`;
+      image.setAttribute('role', 'button');
+      image.tabIndex = 0;
+
+      const toggleItem = () => {
+        if (selectedItemIds.has(itemId)) {
+          selectedItemIds.delete(itemId);
+        } else {
+          selectedItemIds.add(itemId);
+        }
+        renderItems();
+      };
+
+      image.addEventListener('click', toggleItem);
+      image.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleItem();
+        }
+      });
+
+      itemContainer.appendChild(image);
+    });
+  };
+
+  renderItems();
+
+  const closeModal = () => {
+    if (typeof modal.close === 'function') {
+      modal.close();
+    }
+  };
+
+  confirmButton.onclick = () => {
+    closeModal();
+    onConfirm(
+      dateTimeLocalToISO(timeInput.value),
+      Array.from(selectedItemIds).sort((a, b) => a - b),
+    );
+  };
+
+  backButton.onclick = () => {
+    closeModal();
+  };
+
+  if (typeof modal.showModal === 'function') {
+    modal.showModal();
+  } else {
+    onConfirm();
+  }
+}
+
 $(document).ready(function(){
   $(document).on('click', '.updateButton', function(){
     if ($(this).data('type') === 'bossPets' || $(this).data('type') === 'skillPets' || $(this).data('type') === 'otherPets'){
@@ -267,40 +476,72 @@ $(document).ready(function(){
     }
     var elementTarget = this;
     var parent = elementTarget.parentElement;
+    const verificationItemIds = getVerificationItemIds(elementTarget);
+    const completedItemIds = getCompletedItemIds(elementTarget);
+    const taskName = getTaskMetaValue(elementTarget, '.task-name');
+    const taskTip = getTaskMetaValue(elementTarget, '.task-tip');
+    const taskWikiLink = getTaskMetaValue(elementTarget, '.task-wiki-link');
+    const timestampNode = elementTarget.querySelector('.task-timestamp');
+    const currentCompletedAtISO = timestampNode ? timestampNode.getAttribute('data-completed-at') : null;
 
+    openTaskActionModal({
+      actionLabel: 'Mark Complete',
+      taskName: taskName,
+      taskTip: taskTip,
+      taskWikiLink: taskWikiLink,
+      itemIds: verificationItemIds,
+      recordedItemIds: completedItemIds,
+      currentCompletedAtISO: currentCompletedAtISO,
+      allowTimeEdit: true,
+      onConfirm: function(selectedCompletedAtISO, selectedItemIds) {
+      $('form').submit(false);
+      req = $.ajax({
+        url :  '/update_completed/',
+        type : 'POST',
+        data : {
+          id : elementTarget.id,
+          tier : tier,
+          completedAtISO: selectedCompletedAtISO,
+          completedItemIds: JSON.stringify(selectedItemIds || []),
+        }
+      });
 
-
-    $('form').submit(false);
-    req = $.ajax({
-      url :  '/update_completed/',
-      type : 'POST',
-      data : {id : this.id, tier : tier}
-    });
-
-    req.done(function(data){
-      $(elementTarget).fadeOut(1000).fadeIn(1000);
-      $(elementTarget).removeClass('updateButton').addClass('revertButton');
-      $(parent).removeClass('incomplete-hover').addClass('complete-hover');
-      parent.setAttribute('data-tooltip', 'Mark Incomplete');
-      if (tier === 'bossPets' || tier === 'skillPets' || tier === 'otherPets'){
-        updatePercent.innerHTML = data["allPets"] + '%';
-      }
-      else {
-        updatePercent.innerHTML = data[tier] + '%';
-      }
-
-      for (const child of elementTarget.children) {
-        if (child.tagName === 'DIV') {
-          $(child).addClass('square-complete');
-          $(child).removeClass('square-incomplete');
+      req.done(function(data){
+        $(elementTarget).fadeOut(1000).fadeIn(1000);
+        $(elementTarget).removeClass('updateButton').addClass('revertButton');
+        $(parent).removeClass('incomplete-hover').addClass('complete-hover');
+        parent.setAttribute('data-tooltip', 'Mark Incomplete');
+        const taskTextNodes = elementTarget.getElementsByTagName('p');
+        if (taskTextNodes.length > 1) {
+          taskTextNodes[1].textContent = formatUserDateTime(data.completedAtISO);
+          taskTextNodes[1].setAttribute('data-completed-at', data.completedAtISO || '');
+        }
+        const completedIdsNode = elementTarget.querySelector('.completed-item-ids');
+        if (completedIdsNode) {
+          const returnedIds = Array.isArray(data.completedItemIds) ? data.completedItemIds : [];
+          completedIdsNode.value = returnedIds.join(',');
+        }
+        if (tier === 'bossPets' || tier === 'skillPets' || tier === 'otherPets'){
+          updatePercent.innerHTML = data["allPets"] + '%';
+        }
+        else {
+          updatePercent.innerHTML = data[tier] + '%';
         }
 
-        if (child.tagName === 'P'){
-          $(child).addClass('complete');
-          $(child).removeClass('incomplete');
-        }
-      }
+        for (const child of elementTarget.children) {
+          if (child.tagName === 'DIV') {
+            $(child).addClass('square-complete');
+            $(child).removeClass('square-incomplete');
+          }
 
+          if (child.tagName === 'P'){
+            $(child).addClass('complete');
+            $(child).removeClass('incomplete');
+          }
+        }
+
+      });
+      }
     });
   });
 });
@@ -317,40 +558,63 @@ $(document).ready(function(){
     }
     var elementTarget = this;
     var parent = elementTarget.parentElement;
+    const verificationItemIds = getVerificationItemIds(elementTarget);
+    const completedItemIds = getCompletedItemIds(elementTarget);
+    const taskName = getTaskMetaValue(elementTarget, '.task-name');
+    const taskTip = getTaskMetaValue(elementTarget, '.task-tip');
+    const taskWikiLink = getTaskMetaValue(elementTarget, '.task-wiki-link');
+    const timestampNode = elementTarget.querySelector('.task-timestamp');
+    const currentCompletedAtISO = timestampNode ? timestampNode.getAttribute('data-completed-at') : null;
 
+    openTaskActionModal({
+      actionLabel: 'Mark Incomplete',
+      taskName: taskName,
+      taskTip: taskTip,
+      taskWikiLink: taskWikiLink,
+      itemIds: verificationItemIds,
+      recordedItemIds: completedItemIds,
+      currentCompletedAtISO: currentCompletedAtISO,
+      allowTimeEdit: false,
+      onConfirm: function() {
+      $('form').submit(false);
+      req = $.ajax({
+        url :  '/revert_completed/',
+        type : 'POST',
+        data : {id : elementTarget.id, tier : tier}
+      });
 
-    $('form').submit(false);
-    req = $.ajax({
-      url :  '/revert_completed/',
-      type : 'POST',
-      data : {id : this.id, tier : tier}
-    });
-
-    req.done(function(data){
-      $(elementTarget).fadeOut(1000).fadeIn(1000);
-      $(elementTarget).removeClass('revertButton').addClass('updateButton');
-      $(parent).removeClass('complete-hover').addClass('incomplete-hover');
-      parent.setAttribute('data-tooltip', 'Mark Complete');
-      if (tier === 'bossPets' || tier === 'skillPets' || tier === 'otherPets'){
-        updatePercent.innerHTML = data["allPets"] + '%';
-      }
-      else {
-        console.log(tier)
-        updatePercent.innerHTML = data[tier] + '%';
-      }
-
-      for (const child of elementTarget.children) {
-        if (child.tagName === 'DIV') {
-          $(child).addClass('square-incomplete');
-          $(child).removeClass('square-complete');
+      req.done(function(data){
+        $(elementTarget).fadeOut(1000).fadeIn(1000);
+        $(elementTarget).removeClass('revertButton').addClass('updateButton');
+        $(parent).removeClass('complete-hover').addClass('incomplete-hover');
+        parent.setAttribute('data-tooltip', 'Mark Complete');
+        const taskTextNodes = elementTarget.getElementsByTagName('p');
+        if (taskTextNodes.length > 1) {
+          taskTextNodes[1].textContent = '--/--/---- --:--';
+          taskTextNodes[1].setAttribute('data-completed-at', '');
+        }
+        if (tier === 'bossPets' || tier === 'skillPets' || tier === 'otherPets'){
+          updatePercent.innerHTML = data["allPets"] + '%';
+        }
+        else {
+          console.log(tier)
+          updatePercent.innerHTML = data[tier] + '%';
         }
 
-        if (child.tagName === 'P'){
-          $(child).addClass('incomplete');
-          $(child).removeClass('complete');
-        }
-      }
+        for (const child of elementTarget.children) {
+          if (child.tagName === 'DIV') {
+            $(child).addClass('square-incomplete');
+            $(child).removeClass('square-complete');
+          }
 
+          if (child.tagName === 'P'){
+            $(child).addClass('incomplete');
+            $(child).removeClass('complete');
+          }
+        }
+
+      });
+      }
     });
   });
 });

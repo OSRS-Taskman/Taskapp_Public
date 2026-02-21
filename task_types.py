@@ -37,11 +37,13 @@ class UserCompletedTask:
     id: str
     assigned_date: datetime = None
     completed_date: datetime = None
+    completed_item_ids: list[int] = None
 
 @dataclass
 class UserTaskList:
     current_task: UserCurrentTask
     completed_tasks: list[UserCompletedTask]
+    recorded_item_ids_by_task: dict[str, list[int]] = None
 
 @dataclass
 class TierProgress:
@@ -50,7 +52,11 @@ class TierProgress:
     total_complete: int
 
 class PageTask:
-    def __init__(self, is_completed: bool, is_current: bool, task_data: TaskData):
+    def __init__(self, is_completed: bool, is_current: bool, task_data: TaskData,
+                 completed_date = None, completed_date_iso: str = None,
+                 verification_item_ids: list[int] = None,
+                 verification_required_count: int = None,
+                 completed_item_ids: list[int] = None):
         self.name = task_data.name
         self.is_completed = is_completed
         self.id = task_data.id
@@ -58,6 +64,11 @@ class PageTask:
         self.wiki_link = task_data.wiki_link
         self.image_link = task_data.image_link
         self.tip = task_data.tip
+        self.completed_date = completed_date
+        self.completed_date_iso = completed_date_iso
+        self.verification_item_ids = verification_item_ids or []
+        self.verification_required_count = verification_required_count
+        self.completed_item_ids = completed_item_ids or []
 
 @dataclass
 class LeaderboardEntry:
