@@ -1,60 +1,202 @@
-$(window).on('load', function(){
-    var frameSpeed = 1000,
-        frameContainer = $('#frame-container'),
-        frames = $('.frame',frameContainer ),
-        frameCount = frames.length,
-        messageContainer = $('#message-container'),
-        messages = $('.message', messageContainer)
-        messageCount = messages.length,
-        t = null,
-        start = $('#start'),
-        showFrame = function (n){
-        		if (n != frameCount){
-            	return frames.hide().eq(n).show() && messages.hide().eq(n).show();
+const SPECIAL_ROLL_USERNAMES = new Set(['shadukat', 'gerni shadu']);
 
-            }
-            return frames.eq(frameCount).show() && messages.eq(messageCount).show();
+function getCurrentUsername() {
+  const profileLink = document.querySelector('a.profile');
+  return profileLink ? profileLink.textContent.trim().toLowerCase() : '';
+}
 
-        },
-        nextFrame = function(){
-        		if (index == frameCount){
-            	stopFrames();
-              showFrame(frameCount - 1);
-            }
-            else {
-              showFrame(++index);
-              t = setTimeout(nextFrame,frameSpeed);
-            }
+function isSpecialRollUser() {
+  return SPECIAL_ROLL_USERNAMES.has(getCurrentUsername());
+}
 
-        },
-        stopFrames = function(){
-            clearInterval(t);
-            index = 0;
-        };
-    frameContainer
-    	start.on('click', nextFrame)
-        stopFrames();
-        showFrame(0);
-});
+function shuffleArray(items) {
+  const cloned = items.slice();
+  for (let i = cloned.length - 1; i > 0; i -= 1) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    [cloned[i], cloned[randomIndex]] = [cloned[randomIndex], cloned[i]];
+  }
+  return cloned;
+}
+
+function ensureRollModal() {
+  let modal = document.getElementById('taskRollModal');
+  if (modal) {
+    return modal;
+  }
+
+  modal = document.createElement('dialog');
+  modal.id = 'taskRollModal';
+  modal.className = 'task-roll-modal';
+  modal.innerHTML = `
+    <div class="task-roll-shell rsText">
+      <div class="task-roll-title">Rolling Task</div>
+      <div class="task-roll-content">
+        <img id="taskRollModalImage" class="task-roll-image" src="/static/assets/Cake_of_guidance_detail.png" alt="Task roll image" />
+        <p id="taskRollModalMessage" class="task-roll-message">Rolling...</p>
+        <p id="taskRollModalSpecial" class="task-roll-special" hidden>Hi Youtube &lt;3 Gerni Task</p>
+      </div>
+      <div class="task-roll-actions">
+        <button id="taskRollModalClose" class="task-roll-button" type="button">Continue</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  const closeButton = modal.querySelector('#taskRollModalClose');
+  closeButton.addEventListener('click', () => {
+    if (typeof modal.close === 'function') {
+      modal.close();
+    }
+  });
+
+  return modal;
+}
+
+function buildFallbackRollCandidates() {
+  return [
+    { name: 'Rolling...', image: '/static/assets/Cake_of_guidance_detail.png' },
+    { name: 'Rolling...', image: '/static/assets/Tome_of_fire_(empty).png' },
+    { name: 'Rolling...', image: '/static/assets/Cockatrice_head.png' },
+    { name: 'Rolling...', image: '/static/assets/Dragon_sword.png' },
+    { name: 'Rolling...', image: '/static/assets/Guilded_smile_flag.png' },
+    { name: 'Rolling...', image: '/static/assets/Malediction_shard_2.png' }
+  ];
+}
+
+function getOfficialRollCandidates() {
+  const frameNodes = document.querySelectorAll('#frame-container .frame');
+  const messageNodes = document.querySelectorAll('#message-container .message');
+  const candidates = [];
+
+  frameNodes.forEach((frameNode, index) => {
+    const imageSrc = frameNode.getAttribute('src');
+    const messageNode = messageNodes[index];
+    const messageText = messageNode ? messageNode.textContent.trim() : 'Rolling...';
+    if (imageSrc) {
+      candidates.push({ name: messageText || 'Rolling...', image: imageSrc });
+    }
+  });
+
+  return candidates.length > 0 ? candidates : buildFallbackRollCandidates();
+}
+
+function normalizeServerRollCandidates(serverCandidates) {
+  if (!Array.isArray(serverCandidates)) {
+    return [];
+  }
+
+  return serverCandidates
+    .map((candidate) => ({
+      name: candidate && candidate.name ? candidate.name : 'Rolling...',
+      image: candidate && candidate.image ? candidate.image : '/static/assets/Cake_of_guidance_detail.png'
+    }))
+    .filter((candidate) => Boolean(candidate.image));
+}
+
+function resolveTaskImageSource(imageValue) {
+  if (!imageValue) {
+    return '/static/assets/Cake_of_guidance_detail.png';
+  }
+  if (imageValue.startsWith('http://') || imageValue.startsWith('https://') || imageValue.startsWith('/static/')) {
+    return imageValue;
+  }
+  return `/static/assets/${imageValue}`;
+}
+
+function rollTaskModal(options) {
+  const {
+    finalName,
+    finalImage,
+    instant = false,
+    candidates = []
+  } = options;
+
+  return new Promise((resolve) => {
+    const modal = ensureRollModal();
+    const imageNode = modal.querySelector('#taskRollModalImage');
+    const messageNode = modal.querySelector('#taskRollModalMessage');
+    const specialNode = modal.querySelector('#taskRollModalSpecial');
+    const closeButton = modal.querySelector('#taskRollModalClose');
+
+    let settled = false;
+
+    const finish = () => {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      closeButton.onclick = null;
+      resolve();
+    };
+
+    closeButton.onclick = () => {
+      if (typeof modal.close === 'function') {
+        modal.close();
+      }
+      finish();
+    };
+
+    if (typeof modal.showModal === 'function') {
+      modal.showModal();
+    }
+
+    const finalImageSource = resolveTaskImageSource(finalImage);
+    specialNode.hidden = !instant;
+
+    if (instant) {
+      imageNode.src = finalImageSource;
+      messageNode.textContent = finalName;
+      closeButton.disabled = false;
+      return;
+    }
+
+    const baseCandidates = candidates.length > 0 ? candidates : buildFallbackRollCandidates();
+    const randomizedCandidates = shuffleArray(baseCandidates).concat([{ name: finalName, image: finalImageSource }]);
+    let pointer = 0;
+    closeButton.disabled = true;
+
+    const intervalId = window.setInterval(() => {
+      const nextCandidate = randomizedCandidates[pointer];
+      imageNode.src = resolveTaskImageSource(nextCandidate.image);
+      messageNode.textContent = nextCandidate.name || 'Rolling...';
+      pointer += 1;
+
+      if (pointer >= randomizedCandidates.length) {
+        window.clearInterval(intervalId);
+        imageNode.src = finalImageSource;
+        messageNode.textContent = finalName;
+        closeButton.disabled = false;
+      }
+    }, 120);
+  });
+}
 
 $(document).on('click', '#start', function(){
   req = $.ajax({
     url : '/generate/',
     type : 'POST'
-  })
+  });
 
-  req.done(function(data){
-    delay(function(){
-        const message = document.getElementById("message_target");
-        const image = document.getElementById("image_target");
-        const imageLink = document.getElementById("taskImage");
-        imageLink.href = data.link;
-        imageLink.setAttribute('data-tip', data.tip);
-        message.innerHTML = data.name;
-        image.src = data.image;
-        document.getElementById("start").disabled = true;
-        document.getElementById("complete").disabled = false;
-    }, 6000);
+  req.done(async function(data){
+    const serverCandidates = normalizeServerRollCandidates(data.rollCandidates);
+    const rollCandidates = serverCandidates.length > 0 ? serverCandidates : getOfficialRollCandidates();
+    await rollTaskModal({
+      finalName: data.name,
+      finalImage: data.image,
+      instant: isSpecialRollUser(),
+      candidates: rollCandidates
+    });
+
+    const message = document.getElementById("message_target");
+    const image = document.getElementById("image_target");
+    const imageLink = document.getElementById("taskImage");
+    imageLink.href = data.link;
+    imageLink.setAttribute('data-tip', data.tip);
+    message.innerHTML = data.name;
+    image.src = resolveTaskImageSource(data.image);
+    document.getElementById("start").disabled = true;
+    document.getElementById("complete").disabled = false;
   });
 });
 
@@ -69,14 +211,6 @@ $(document).on('click', '#complete', function(){
   })
 });
 
-
-var delay = (function(){
-  var timer = 0;
-  return function(callback, ms) {
-    clearTimeout (timer);
-    timer = setTimeout(callback, ms);
-  };
-})();
 
 // $(document).on('click', '#easy_generate', function(){
 //   $('form').submit(false);
@@ -103,7 +237,15 @@ $(document).on('click', '#generate_unofficial', function(){
     type : 'POST',
     data : {tier : tier + 'Tasks'}
   });
-  req.done(function(data){
+  req.done(async function(data){
+    const rollCandidates = normalizeServerRollCandidates(data.rollCandidates);
+    await rollTaskModal({
+      finalName: data.name,
+      finalImage: data.image,
+      instant: isSpecialRollUser(),
+      candidates: rollCandidates.length > 0 ? rollCandidates : getOfficialRollCandidates()
+    });
+
     const task = document.getElementById(tier + "_task");
     const image = document.getElementById(tier + "_image");
     const imagePreview = document.getElementById(tier + "_image_preview");
@@ -115,13 +257,9 @@ $(document).on('click', '#generate_unofficial', function(){
     imagePlaceholder.href = data.link
     imagePreview.name = data.name;
     task.innerHTML = data.name;
-    if (data.image === 'Cake_of_guidance_detail.png') {
-    image.src = '/static/assets/Cake_of_guidance_detail.png';
-    imagePreview.src = '/static/assets/Cake_of_guidance_detail.png';
-  } else {
-    image.src = data.image;
-    imagePreview.src = data.image;
-  }
+    const resolvedImageSource = resolveTaskImageSource(data.image);
+    image.src = resolvedImageSource;
+    imagePreview.src = resolvedImageSource;
   });
 });
 

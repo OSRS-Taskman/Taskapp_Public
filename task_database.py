@@ -376,6 +376,41 @@ def generate_task_for_tier(username, tier) -> TaskData or None: # type: ignore
         __set_current_task(username, task_tier, task_number, False)
         return None
 
+
+def get_roll_candidates_for_tier(username: str, tier: str, min_candidates: int = 10) -> list[dict]:
+    user = get_user(username)
+    all_tasks = tasklists.list_for_tier(tier, user.lms_enabled)
+    completed_task_ids = {task.id for task in user.get_task_list(tier).completed_tasks}
+    remaining_tasks = [task for task in all_tasks if task.id not in completed_task_ids]
+
+    candidate_tasks = remaining_tasks[:]
+    random.shuffle(candidate_tasks)
+
+    if len(candidate_tasks) < min_candidates:
+        extras = all_tasks[:]
+        random.shuffle(extras)
+
+        existing_ids = {task.id for task in candidate_tasks}
+        for task in extras:
+            if len(candidate_tasks) >= min_candidates:
+                break
+            if task.id in existing_ids:
+                continue
+            candidate_tasks.append(task)
+            existing_ids.add(task.id)
+
+        while all_tasks and len(candidate_tasks) < min_candidates:
+            candidate_tasks.append(random.choice(all_tasks))
+
+    return [
+        {
+            'id': task.id,
+            'name': task.name,
+            'image': task.image_link,
+        }
+        for task in candidate_tasks
+    ]
+
 '''
 generate_task:
 
