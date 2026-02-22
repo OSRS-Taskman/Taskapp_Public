@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, flash, url_for, ses
 from flask_recaptcha import ReCaptcha # type: ignore
 import jwt
 import datetime
+import json
 import bcrypt # type: ignore
 import config
 from functools import wraps
@@ -146,7 +147,6 @@ def api_task_list():
 @app.route('/api/v1/resource/completed_tasks/<username>')
 def api_completed_tasks(username):
     user_data = get_user(username)
-    print(username)
     return jsonify({'message': {
                         'easy' : user_data.easy.completed_tasks,
                         'medium' : user_data.medium.completed_tasks,
@@ -318,9 +318,8 @@ def register():
         else:
             return render_template('registerV2.html')
 
-    except Exception as e:
+    except Exception:
         error = 'An error occurred while processing your request, please try again.'
-        print(e)
         return error
 
 
@@ -350,7 +349,7 @@ def register_user():
 
         error = 'Please fill out the captcha!'
         return {'success' : False, 'error' : error}
-    except Exception as e:
+    except Exception:
         error = 'An error occurred while processing your request, please try again.'
         return error
 
@@ -390,9 +389,8 @@ def login():
         else:
             return render_template('loginV2.html')
 
-    except Exception as e:
+    except Exception:
         error = "An error occurred while processing your request, please try again."
-        print(e)
         flash(error)
         return render_template('loginV2.html')
 
@@ -499,12 +497,27 @@ def collection_log_check():
 def collection_log_import():
     form_data = request.form
     rs_username = form_data['username']
-    easy_import = check_logs(rs_username, tasklists.list_for_tier('easy'), 'import')
-    medium_import = check_logs(rs_username, tasklists.list_for_tier('medium'), 'import')
-    hard_import = check_logs(rs_username, tasklists.list_for_tier('hard'), 'import')
-    elite_import = check_logs(rs_username, tasklists.list_for_tier('elite'), 'import')
+    easy_import_result = check_logs(rs_username, tasklists.list_for_tier('easy'), 'import-recorded')
+    medium_import_result = check_logs(rs_username, tasklists.list_for_tier('medium'), 'import-recorded')
+    hard_import_result = check_logs(rs_username, tasklists.list_for_tier('hard'), 'import-recorded')
+    elite_import_result = check_logs(rs_username, tasklists.list_for_tier('elite'), 'import-recorded')
+    easy_import = easy_import_result.get('completedTasks', [])
+    medium_import = medium_import_result.get('completedTasks', [])
+    hard_import = hard_import_result.get('completedTasks', [])
+    elite_import = elite_import_result.get('completedTasks', [])
     all_tasks = [easy_import, medium_import, hard_import, elite_import]
-    update = update_imported_tasks(session['username'], all_tasks, form_data['username'])
+    recorded_item_ids_by_tier = {
+        'easy': easy_import_result.get('recordedItemIdsByTask', {}),
+        'medium': medium_import_result.get('recordedItemIdsByTask', {}),
+        'hard': hard_import_result.get('recordedItemIdsByTask', {}),
+        'elite': elite_import_result.get('recordedItemIdsByTask', {}),
+    }
+    update = update_imported_tasks(
+        session['username'],
+        all_tasks,
+        form_data['username'],
+        recorded_item_ids_by_tier,
+    )
 
     return render_template('collection_log_import.html',
                             rs_username = rs_username,
@@ -629,7 +642,7 @@ def complete_unofficial():
 
 def single_task_list(list_title, task_type):
     user_info = BasePageInfo()
-    progress = get_task_progress(user_info.username)
+    progress = user_info.progress
     tasks = user_info.user.page_tasks(task_type)
     context = {
         'easy': progress['easy']['percent_complete'],
@@ -742,7 +755,24 @@ def update():
     user_info = BasePageInfo()
     task_id = request.form['id']
     tier = request.form['tier']
-    manual_complete_tasks(session['username'], tier, task_id)
+    completed_at_iso = request.form.get('completedAtISO')
+    completed_item_ids_raw = request.form.get('completedItemIds')
+    completed_item_ids = []
+    if completed_item_ids_raw:
+        try:
+            parsed = json.loads(completed_item_ids_raw)
+            if isinstance(parsed, list):
+                completed_item_ids = parsed
+        except json.JSONDecodeError:
+            completed_item_ids = []
+
+    completed_task = manual_complete_tasks(
+        session['username'],
+        tier,
+        task_id,
+        completed_at_iso,
+        completed_item_ids,
+    )
     progress = get_task_progress(user_info.username)
     data = {
         'easy': progress['easy']['percent_complete'],
@@ -753,6 +783,8 @@ def update():
         'passive' : progress['passive']['percent_complete'],
         'extra' : progress['extra']['percent_complete'],
         'allPets' : progress['all_pets']['percent_complete'],
+        'completedAtISO': completed_task.get('completed_date_iso') if completed_task else None,
+        'completedItemIds': completed_task.get('completed_item_ids') if completed_task else [],
     }
     return data
 
@@ -967,8 +999,8 @@ def reset_request():
         if session.get('username'):
             return redirect(url_for('dashboard'))
         return render_template('password-request.html')
-    except Exception as e:
-        print(str(e))
+    except Exception:
+        return None
 
 @app.route("/reset-password/request/", methods=['POST'])
 def reset_password_request():

@@ -44,13 +44,20 @@
                                     <div class="decoration-bottom-right shadow"></div>
                                 </div>
                                     <div id="{{task.id}}" class="content-container rsText revertButton">
+                                            {% if task.verification_item_ids %}
+                                            <input type="hidden" class="verification-item-ids" value="{{task.verification_item_ids|join(',')}}">
+                                            {% endif %}
+                                            <input type="hidden" class="completed-item-ids" value="{{task.completed_item_ids|join(',')}}">
+                                            <input type="hidden" class="task-tip" value="{{task.tip or ''}}">
+                                            <input type="hidden" class="task-name" value="{{task.name}}">
+                                            <input type="hidden" class="task-wiki-link" value="{{task.wiki_link}}">
                                             <div class="square cut-corners square-complete">
                                                 <a href="{{task.wiki_link}}" target="_blank">
                                                     <img class="lazyload task-image" src="{{task.image_link}}" alt="" width="50px" height="50px" name="{{task.tip}}">
                                                 </a>
                                             </div>
                                         <p class="complete">{{task.name}}</p>
-                                        <p class="complete">--/--/---- --:--</p>
+                                        <p class="complete task-timestamp" data-completed-at="{{task.completed_date_iso or ''}}">--/--/---- --:--</p>
                                     </div>
                             </div>
                     </tr>
@@ -100,6 +107,13 @@
                                 <div class="decoration-bottom-right shadow"></div>
                             </div>
                             <div id="{{task.id}}" class="content-container rsText updateButton">
+                                {% if task.verification_item_ids %}
+                                <input type="hidden" class="verification-item-ids" value="{{task.verification_item_ids|join(',')}}">
+                                {% endif %}
+                                <input type="hidden" class="completed-item-ids" value="{{task.completed_item_ids|join(',')}}">
+                                <input type="hidden" class="task-tip" value="{{task.tip or ''}}">
+                                <input type="hidden" class="task-name" value="{{task.name}}">
+                                <input type="hidden" class="task-wiki-link" value="{{task.wiki_link}}">
                                 <div class="square cut-corners square-incomplete ">
                                     <a href="{{task.wiki_link}}" target="_blank">
                                         <img class="lazyload task-image" src="{{task.image_link}}" alt="" width="50px" height="50px" name="{{task.tip}}">
@@ -113,6 +127,32 @@
                     {% endfor %}
                 </tbody>
             </table>
+
+            <dialog id="taskActionModal" class="rsText task-action-modal">
+                <div class="rect task-action-shell">
+                    <div class="task-action-header">
+                        <button id="taskActionBackButton" class="button-style" type="button">Back</button>
+                        <h3 id="taskActionModalTitle" class="task-action-title">Task</h3>
+                        <a id="taskActionWikiButton" class="button-style task-action-wiki" href="#" target="_blank" rel="noopener noreferrer">Wiki</a>
+                    </div>
+                    <hr class="task-action-divider">
+                    <p id="taskActionTip" class="task-action-tip"></p>
+                    <div id="taskActionProgressWrap" class="task-action-progress-wrap">
+                        <div class="task-action-progress-bar">
+                            <div id="taskActionProgressFill" class="task-action-progress-fill"></div>
+                            <div id="taskActionProgressText" class="task-action-progress-text"></div>
+                        </div>
+                    </div>
+                    <div class="task-action-time">
+                        <label class="task-action-time-label" for="taskActionTimeInput">Time</label>
+                        <input id="taskActionTimeInput" class="task-action-time-input" type="datetime-local">
+                    </div>
+                    <div id="taskActionModalItems" class="task-action-items"></div>
+                    <div class="task-action-footer">
+                        <button id="taskActionConfirmButton" class="button-style" type="button">Mark Complete</button>
+                    </div>
+                </div>
+            </dialog>
 
 <!-- For searching purpose -->
 <script>
