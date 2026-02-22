@@ -159,7 +159,7 @@
 $(document).ready(function(){
     $("#txtInputTable").on("keyup", function(){
         var value = $(this).val().toLowerCase();
-        $(".rect").filter(function(){
+        $(".rect").not(".task-action-shell").filter(function(){
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
