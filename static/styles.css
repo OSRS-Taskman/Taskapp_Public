@@ -691,6 +691,84 @@ hr {
     justify-content: center;
 }
 
+.task-roll-modal {
+    border: none;
+    padding: 0;
+    background: transparent;
+    color: #d8d8d8;
+}
+
+.task-roll-modal::backdrop {
+    background: rgba(0, 0, 0, 0.72);
+}
+
+.task-roll-shell {
+    min-width: 430px;
+    max-width: 460px;
+    border: 1px solid #8f8d7d;
+    background: #5a564b;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+    padding: 14px;
+}
+
+.task-roll-title {
+    border: 1px solid #8f8d7d;
+    background: #4e4a3f;
+    text-align: center;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+}
+
+.task-roll-content {
+    border: 1px solid #606060;
+    background: #3f3930;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-height: 180px;
+}
+
+.task-roll-image {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    border: 1px solid #8f8d7d;
+    padding: 4px;
+    background: #52524d;
+}
+
+.task-roll-message,
+.task-roll-special {
+    margin: 0;
+    text-align: center;
+}
+
+.task-roll-special {
+    color: var(--complete-color);
+}
+
+.task-roll-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.task-roll-button {
+    border: 1px solid #8f8d7d;
+    background: #4e4a3f;
+    color: #d8d8d8;
+    padding: 8px 14px;
+    cursor: pointer;
+}
+
+.task-roll-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
 @media (max-width: 640px) {
     .task-action-shell {
         min-width: 320px;
@@ -701,6 +779,12 @@ hr {
 
     .task-action-items {
         min-height: 240px;
+    }
+
+    .task-roll-shell {
+        min-width: 320px;
+        max-width: calc(100vw - 20px);
+        width: calc(100vw - 20px);
     }
 }
 

@@ -12,7 +12,8 @@ from task_database import (get_taskCurrent, generate_task, complete_task, get_ta
                            manual_complete_tasks, manual_revert_tasks,
                            get_lms_status, lms_status_change, update_imported_tasks,
                            official_status_change, username_change, get_taskCurrent_tier, generate_task_for_tier,
-                           complete_task_unofficial_tier, get_user, get_leaderboard)
+                           complete_task_unofficial_tier, get_user, get_leaderboard,
+                           get_roll_candidates_for_tier)
 import send_grid_email
 from templesync import check_logs
 
@@ -532,7 +533,21 @@ def collection_log_import():
 def generate_button():
     username = session['username']
     task = generate_task(username)
-    data = {"name" : task.name, "image" : task.image_link, "tip" : task.tip, "link" : task.wiki_link}
+    current_task = get_taskCurrent(username)
+
+    if current_task is not None:
+        task_tier = current_task[2]
+        roll_candidates = get_roll_candidates_for_tier(username, task_tier, 10)
+    else:
+        roll_candidates = []
+
+    data = {
+        "name" : task.name,
+        "image" : task.image_link,
+        "tip" : task.tip,
+        "link" : task.wiki_link,
+        "rollCandidates": roll_candidates,
+    }
     return data
 
 @app.route('/complete/', methods =['POST'])
@@ -551,15 +566,23 @@ def complete_button():
 def generate_unofficial():
     username = session['username']
     tier = request.form["tier"]
+    roll_candidates = get_roll_candidates_for_tier(username, tier, 10)
     task = generate_task_for_tier(username, tier)
     if task:
-        data = {"name" : task.name, "image" : task.image_link, "tip" : task.tip, "link" : task.wiki_link}
+        data = {
+            "name" : task.name,
+            "image" : task.image_link,
+            "tip" : task.tip,
+            "link" : task.wiki_link,
+            "rollCandidates": roll_candidates,
+        }
         return data
     tier = tier.replace('Tasks', '')
     data = {"name" : f"You have no {tier} task!",
             "image" : "Cake_of_guidance_detail.png",
             "tip" : "Generate a Task!",
-            "link" : "#"
+            "link" : "#",
+            "rollCandidates": roll_candidates,
             }
     return data
 
