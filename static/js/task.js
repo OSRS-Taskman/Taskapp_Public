@@ -124,7 +124,7 @@ function showTaskRollModal(options) {
     if (!task) {
       return;
     }
-    imageNode.src = task.image;
+    imageNode.src = resolveTaskImageSrc(task.image);
     nameNode.textContent = task.name;
     const progress = total > 1 ? Math.min(100, Math.floor((index / (total - 1)) * 100)) : 100;
     progressFill.style.width = `${progress}%`;
@@ -181,6 +181,16 @@ function isSpecialInstantRollUser() {
   return username === 'shadukat' || username === 'gerni shadu';
 }
 
+function resolveTaskImageSrc(imageValue) {
+  if (!imageValue || typeof imageValue !== 'string') {
+    return '/static/assets/Cake_of_guidance_detail.png';
+  }
+  if (imageValue.startsWith('/static/') || imageValue.startsWith('http://') || imageValue.startsWith('https://')) {
+    return imageValue;
+  }
+  return `/static/assets/${imageValue}`;
+}
+
 $(document).on('click', '#start', function(){
   const startButton = document.getElementById('start');
   const completeButton = document.getElementById('complete');
@@ -204,7 +214,7 @@ $(document).on('click', '#start', function(){
         imageLink.href = task.link;
         imageLink.setAttribute('data-tip', task.tip || '');
         message.innerHTML = task.name;
-        image.src = task.image;
+        image.src = resolveTaskImageSrc(task.image);
       };
 
       const sequence = buildRollSequence(availableTasks, generatedTask);
@@ -267,8 +277,9 @@ $(document).on('click', '#generate_unofficial', function(){
         imagePlaceholder.href = taskData.link || '#';
         imagePreview.name = taskData.name;
         task.innerHTML = taskData.name;
-        image.src = taskData.image;
-        imagePreview.src = taskData.image;
+        const imageSrc = resolveTaskImageSrc(taskData.image);
+        image.src = imageSrc;
+        imagePreview.src = imageSrc;
       };
 
       const sequence = buildRollSequence(availableTasks, generatedTask);
