@@ -116,7 +116,7 @@ function showTaskRollModal(options) {
   const confirmButton = modal.querySelector('#taskRollConfirm');
 
   titleNode.textContent = title || 'Rolling New Task';
-  subtitleNode.textContent = subtitle || 'This could be your next 100-hour grind.';
+  subtitleNode.textContent = subtitle || 'This could be your next grind.';
   confirmButton.disabled = true;
   confirmButton.textContent = 'Rolling...';
 
@@ -221,7 +221,7 @@ $(document).on('click', '#start', function(){
       const instantRoll = isSpecialInstantRollUser();
       showTaskRollModal({
         title: 'Official Task Roll',
-        subtitle: instantRoll ? 'Hi Youtube <3 Gerni Task' : 'This could be your next 100-hour grind.',
+        subtitle: instantRoll ? 'Hi Youtube <3 Gerni Task' : 'This could be your next grind.',
         sequence: instantRoll ? [generatedTask] : sequence,
         onRender: null,
         onComplete: function() {
@@ -286,7 +286,7 @@ $(document).on('click', '#generate_unofficial', function(){
       const instantRoll = isSpecialInstantRollUser();
       showTaskRollModal({
         title: `${tier.charAt(0).toUpperCase() + tier.slice(1)} Task Roll`,
-        subtitle: instantRoll ? 'Hi Youtube <3 Gerni Task' : 'This could be your next 100-hour grind.',
+        subtitle: instantRoll ? 'Hi Youtube <3 Gerni Task' : 'This could be your next grind.',
         sequence: instantRoll ? [generatedTask] : sequence,
         onRender: null,
         onComplete: function() {
