@@ -1,61 +1,229 @@
-$(window).on('load', function(){
-    var frameSpeed = 1000,
-        frameContainer = $('#frame-container'),
-        frames = $('.frame',frameContainer ),
-        frameCount = frames.length,
-        messageContainer = $('#message-container'),
-        messages = $('.message', messageContainer)
-        messageCount = messages.length,
-        t = null,
-        start = $('#start'),
-        showFrame = function (n){
-        		if (n != frameCount){
-            	return frames.hide().eq(n).show() && messages.hide().eq(n).show();
+function uniqueRollPool(tasks) {
+  const seen = new Set();
+  const output = [];
+  (tasks || []).forEach((task) => {
+    if (!task || !task.name || !task.image) {
+      return;
+    }
+    const key = `${task.name}|${task.image}|${task.link || ''}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      output.push(task);
+    }
+  });
+  return output;
+}
 
-            }
-            return frames.eq(frameCount).show() && messages.eq(messageCount).show();
+function shufflePool(tasks) {
+  const shuffled = [...tasks];
+  for (let i = shuffled.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
 
-        },
-        nextFrame = function(){
-        		if (index == frameCount){
-            	stopFrames();
-              showFrame(frameCount - 1);
-            }
-            else {
-              showFrame(++index);
-              t = setTimeout(nextFrame,frameSpeed);
-            }
+function buildRollSequence(pool, finalTask) {
+  const safePool = uniqueRollPool(pool);
+  if (!safePool.length) {
+    return [finalTask, finalTask, finalTask, finalTask, finalTask].filter(Boolean);
+  }
 
-        },
-        stopFrames = function(){
-            clearInterval(t);
-            index = 0;
-        };
-    frameContainer
-    	start.on('click', nextFrame)
-        stopFrames();
-        showFrame(0);
-});
+  const sequence = [];
+  const spins = Math.max(10, Math.floor(safePool.length * 1.35));
+  while (sequence.length < spins) {
+    const chunk = shufflePool(safePool);
+    for (let i = 0; i < chunk.length && sequence.length < spins; i += 1) {
+      sequence.push(chunk[i]);
+    }
+  }
+  sequence.push(finalTask);
+  return sequence;
+}
+
+function runSlotRollAnimation(sequence, renderTask, onComplete) {
+  let index = 0;
+
+  const tick = () => {
+    renderTask(sequence[index], index, sequence.length);
+    index += 1;
+
+    if (index >= sequence.length) {
+      if (typeof onComplete === 'function') {
+        onComplete(sequence[sequence.length - 1]);
+      }
+      return;
+    }
+
+    const progress = index / sequence.length;
+    const delay = 30 + Math.floor(Math.pow(progress, 2) * 150);
+    window.setTimeout(tick, delay);
+  };
+
+  tick();
+}
+
+function ensureTaskRollModal() {
+  let dialog = document.getElementById('taskRollModal');
+  if (dialog) {
+    return dialog;
+  }
+
+  dialog = document.createElement('dialog');
+  dialog.id = 'taskRollModal';
+  dialog.className = 'task-action-modal task-roll-modal rsText';
+  dialog.innerHTML = `
+    <div class="rect task-action-shell task-roll-shell">
+      <div class="task-action-header task-roll-header">
+        <h3 id="taskRollTitle" class="task-roll-title">Rolling New Task</h3>
+      </div>
+      <hr class="task-action-divider task-roll-divider">
+      <p id="taskRollSubtitle" class="task-roll-subtitle">Welcome to your next grind!</p>
+      <div class="task-roll-reel">
+        <img id="taskRollImage" class="task-roll-image" src="/static/assets/Cake_of_guidance_detail.png" alt="Rolling task image" />
+      </div>
+      <div id="taskRollName" class="task-roll-name">Rolling...</div>
+      <div class="task-action-progress-wrap task-roll-progress-wrap">
+        <div class="task-action-progress-bar task-roll-progress-bar">
+          <div id="taskRollProgressFill" class="task-roll-progress-fill"></div>
+        </div>
+      </div>
+      <div class="task-action-footer">
+        <button id="taskRollConfirm" class="button-style task-roll-confirm" type="button" disabled>Rolling...</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(dialog);
+  return dialog;
+}
+
+function showTaskRollModal(options) {
+  const {
+    title,
+    subtitle,
+    sequence,
+    onRender,
+    onComplete,
+  } = options;
+
+  const modal = ensureTaskRollModal();
+  const titleNode = modal.querySelector('#taskRollTitle');
+  const subtitleNode = modal.querySelector('#taskRollSubtitle');
+  const imageNode = modal.querySelector('#taskRollImage');
+  const nameNode = modal.querySelector('#taskRollName');
+  const progressFill = modal.querySelector('#taskRollProgressFill');
+  const confirmButton = modal.querySelector('#taskRollConfirm');
+
+  titleNode.textContent = title || 'Rolling New Task';
+  subtitleNode.textContent = subtitle || 'This could be your next 100-hour grind.';
+  confirmButton.disabled = true;
+  confirmButton.textContent = 'Rolling...';
+
+  const setVisualTask = (task, index, total) => {
+    if (!task) {
+      return;
+    }
+    imageNode.src = task.image;
+    nameNode.textContent = task.name;
+    const progress = total > 1 ? Math.min(100, Math.floor((index / (total - 1)) * 100)) : 100;
+    progressFill.style.width = `${progress}%`;
+    if (typeof onRender === 'function') {
+      onRender(task);
+    }
+  };
+
+  confirmButton.onclick = () => {
+    if (typeof modal.close === 'function') {
+      modal.close();
+    }
+  };
+
+  modal.addEventListener('cancel', (event) => {
+    if (confirmButton.disabled) {
+      event.preventDefault();
+    }
+  }, { once: true });
+
+  if (typeof modal.showModal === 'function') {
+    modal.showModal();
+  }
+
+  runSlotRollAnimation(sequence, setVisualTask, (finalTask) => {
+    progressFill.style.width = '100%';
+    confirmButton.disabled = false;
+    confirmButton.textContent = 'Begin Grind';
+    if (typeof onComplete === 'function') {
+      onComplete(finalTask);
+    }
+  });
+}
+
+function loadAvailableRollTasks(tier) {
+  const payload = tier ? { tier: `${tier}Tasks` } : {};
+  return $.ajax({
+    url: '/available_roll_tasks/',
+    type: 'POST',
+    data: payload,
+  });
+}
+
+function getCurrentUsername() {
+  const profileLink = document.querySelector('a.profile');
+  if (!profileLink) {
+    return '';
+  }
+  return (profileLink.textContent || '').trim();
+}
+
+function isSpecialInstantRollUser() {
+  const username = getCurrentUsername().toLowerCase();
+  return username === 'shadukat' || username === 'gerni shadu';
+}
 
 $(document).on('click', '#start', function(){
-  req = $.ajax({
+  const startButton = document.getElementById('start');
+  const completeButton = document.getElementById('complete');
+  startButton.disabled = true;
+
+  const generateRequest = $.ajax({
     url : '/generate/',
     type : 'POST'
-  })
-
-  req.done(function(data){
-    delay(function(){
-        const message = document.getElementById("message_target");
-        const image = document.getElementById("image_target");
-        const imageLink = document.getElementById("taskImage");
-        imageLink.href = data.link;
-        imageLink.setAttribute('data-tip', data.tip);
-        message.innerHTML = data.name;
-        image.src = data.image;
-        document.getElementById("start").disabled = true;
-        document.getElementById("complete").disabled = false;
-    }, 6000);
   });
+  const poolRequest = loadAvailableRollTasks(null);
+
+  $.when(generateRequest, poolRequest)
+    .done(function(generateResponse, poolResponse){
+      const generatedTask = generateResponse[0];
+      const availableTasks = (poolResponse[0] && poolResponse[0].tasks) ? poolResponse[0].tasks : [];
+
+      const renderTask = function(task) {
+        const message = document.getElementById('message_target');
+        const image = document.getElementById('image_target');
+        const imageLink = document.getElementById('taskImage');
+        imageLink.href = task.link;
+        imageLink.setAttribute('data-tip', task.tip || '');
+        message.innerHTML = task.name;
+        image.src = task.image;
+      };
+
+      const sequence = buildRollSequence(availableTasks, generatedTask);
+      const instantRoll = isSpecialInstantRollUser();
+      showTaskRollModal({
+        title: 'Official Task Roll',
+        subtitle: instantRoll ? 'Hi Youtube <3 Gerni Task' : 'This could be your next 100-hour grind.',
+        sequence: instantRoll ? [generatedTask] : sequence,
+        onRender: null,
+        onComplete: function() {
+          renderTask(generatedTask);
+          startButton.disabled = true;
+          completeButton.disabled = false;
+        }
+      });
+    })
+    .fail(function(){
+      startButton.disabled = false;
+    });
 });
 
 $(document).on('click', '#complete', function(){
@@ -69,57 +237,57 @@ $(document).on('click', '#complete', function(){
   })
 });
 
-
-var delay = (function(){
-  var timer = 0;
-  return function(callback, ms) {
-    clearTimeout (timer);
-    timer = setTimeout(callback, ms);
-  };
-})();
-
-// $(document).on('click', '#easy_generate', function(){
-//   $('form').submit(false);
-//   req = $.ajax({
-//     url : '/generate_unofficial_easy/',
-//     type : 'POST'
-//   });
-//   req.done(function(data){
-//     const task = document.getElementById("easy_task")
-//     const image = document.getElementById("easy_image")
-//     const imagePreview = document.getElementById("easy_image_preview")
-//     task.innerHTML = data.name
-//     image.src = "/static/assets/" + data.image
-//     imagePreview.src = "/static/assets/" + data.image
-
-//   });
-// });
-
 $(document).on('click', '#generate_unofficial', function(){
   $('form').submit(false);
-  let tier = this.name
-  req = $.ajax({
+  let tier = this.name;
+  const generateButton = this;
+  generateButton.disabled = true;
+
+  const generateRequest = $.ajax({
     url : '/generate_unofficial/',
     type : 'POST',
     data : {tier : tier + 'Tasks'}
   });
-  req.done(function(data){
-    const task = document.getElementById(tier + "_task");
-    const image = document.getElementById(tier + "_image");
-    const imagePreview = document.getElementById(tier + "_image_preview");
-    var imagePlaceholder = document.getElementById(tier + "_placeholder");
-    if (!imagePlaceholder){
-       imagePlaceholder = document.getElementById(tier + '_imageTask')
-    }
-    imagePlaceholder.setAttribute('data-tip', data.tip)
-    imagePlaceholder.href = data.link
-    imagePreview.name = data.name;
-    task.innerHTML = data.name;
-    image.src = data.image;
-    imagePreview.src = data.image;
-  });
-});
+  const poolRequest = loadAvailableRollTasks(tier);
 
+  $.when(generateRequest, poolRequest)
+    .done(function(generateResponse, poolResponse){
+      const generatedTask = generateResponse[0];
+      const availableTasks = (poolResponse[0] && poolResponse[0].tasks) ? poolResponse[0].tasks : [];
+
+      const renderTask = function(taskData) {
+        const task = document.getElementById(tier + '_task');
+        const image = document.getElementById(tier + '_image');
+        const imagePreview = document.getElementById(tier + '_image_preview');
+        let imagePlaceholder = document.getElementById(tier + '_placeholder');
+        if (!imagePlaceholder){
+          imagePlaceholder = document.getElementById(tier + '_imageTask');
+        }
+        imagePlaceholder.setAttribute('data-tip', taskData.tip || '');
+        imagePlaceholder.href = taskData.link || '#';
+        imagePreview.name = taskData.name;
+        task.innerHTML = taskData.name;
+        image.src = taskData.image;
+        imagePreview.src = taskData.image;
+      };
+
+      const sequence = buildRollSequence(availableTasks, generatedTask);
+      const instantRoll = isSpecialInstantRollUser();
+      showTaskRollModal({
+        title: `${tier.charAt(0).toUpperCase() + tier.slice(1)} Task Roll`,
+        subtitle: instantRoll ? 'Hi Youtube <3 Gerni Task' : 'This could be your next 100-hour grind.',
+        sequence: instantRoll ? [generatedTask] : sequence,
+        onRender: null,
+        onComplete: function() {
+          renderTask(generatedTask);
+          generateButton.disabled = false;
+        }
+      });
+    })
+    .fail(function(){
+      generateButton.disabled = false;
+    });
+});
 
 $(document).on('click', '#complete_unofficial', function(){
   $('form').submit(false);

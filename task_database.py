@@ -376,6 +376,27 @@ def generate_task_for_tier(username, tier) -> TaskData or None: # type: ignore
         __set_current_task(username, task_tier, task_number, False)
         return None
 
+
+def get_available_roll_tasks(username: str, tier: str | None = None) -> tuple[str | None, list[TaskData]]:
+    user = get_user(username)
+
+    def get_uncompleted_for_tier(target_tier: str) -> list[TaskData]:
+        normalized_tier = target_tier.replace('Tasks', '')
+        all_tasks = tasklists.list_for_tier(normalized_tier, user.lms_enabled)
+        completed_task_ids = {task.id for task in user.get_task_list(normalized_tier).completed_tasks}
+        return [task for task in all_tasks if task.id not in completed_task_ids]
+
+    if tier:
+        normalized_tier = tier.replace('Tasks', '')
+        return normalized_tier, get_uncompleted_for_tier(normalized_tier)
+
+    for candidate_tier in ['easy', 'medium', 'hard', 'elite', 'master']:
+        available = get_uncompleted_for_tier(candidate_tier)
+        if available:
+            return candidate_tier, available
+
+    return None, []
+
 '''
 generate_task:
 

@@ -12,7 +12,8 @@ from task_database import (get_taskCurrent, generate_task, complete_task, get_ta
                            manual_complete_tasks, manual_revert_tasks,
                            get_lms_status, lms_status_change, update_imported_tasks,
                            official_status_change, username_change, get_taskCurrent_tier, generate_task_for_tier,
-                           complete_task_unofficial_tier, get_user, get_leaderboard)
+                           complete_task_unofficial_tier, get_user, get_leaderboard,
+                           get_available_roll_tasks)
 import send_grid_email
 from templesync import check_logs
 
@@ -534,6 +535,24 @@ def generate_button():
     task = generate_task(username)
     data = {"name" : task.name, "image" : task.image_link, "tip" : task.tip, "link" : task.wiki_link}
     return data
+
+
+@app.route('/available_roll_tasks/', methods=['POST'])
+@login_required
+def available_roll_tasks():
+    tier = request.form.get('tier')
+    _, tasks = get_available_roll_tasks(session['username'], tier)
+    return {
+        'tasks': [
+            {
+                'name': task.name,
+                'image': task.image_link,
+                'tip': task.tip,
+                'link': task.wiki_link,
+            }
+            for task in tasks
+        ]
+    }
 
 @app.route('/complete/', methods =['POST'])
 @login_required

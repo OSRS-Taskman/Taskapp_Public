@@ -29,23 +29,11 @@
             </div>
             {% else %}
             <div id="frame-container">
-                <img class="frame item-image" src="/static/assets/Cake_of_guidance_detail.png" />
-                <img class="frame item-image" src="/static/assets/Tome_of_fire_(empty).png" />
-                <img class="frame item-image" src="/static/assets/Cockatrice_head.png" />
-                <img class="frame item-image" src="/static/assets/Dragon_sword.png" />
-                <img class="frame item-image" src="/static/assets/Guilded_smile_flag.png" />
-                <img class="frame item-image" src="/static/assets/Malediction_shard_2.png" />
-                <a id="taskImage" href="" target="_blank" data-tip="" ><img id ="image_target" class="frame item-image" src="/static/assets/Mystic_robe_bottom_(light).png"/></a>
+                <a id="taskImage" href="" target="_blank" data-tip="" ><img id ="image_target" class="frame item-image" src="/static/assets/Cake_of_guidance_detail.png"/></a>
 
             </div>
             <div id="message-container">
-                <p class="message">You have no task!</p>
-                <p class="message">So many tasks</p>
-                <p class="message">So little time</p>
-                <p class="message">What will be</p>
-                <p class="message">Your next grind?</p>
-                <p class="message">Easy or Hard</p>
-                <p id="message_target" class="message">It's time to GRIND!</p>
+                <p id="message_target" class="message">You have no task!</p>
             </div>
             {% endif %}
         </div>
@@ -63,135 +51,4 @@
         {% endif %}
     </div>
 </div>
-
-
-
-<!--
-<div class="register-container">
-    <div class="main-content">
-        <div class="task-center">
-            <div class="triangle-top-left">
-                <div class="decoration-top-left shadow"></div>
-            </div>
-            <div class="triangle-top-right">
-                <div class="decoration-top-right shadow"></div>
-            </div>
-            <div class="triangle-bottom-left">
-                <div class="decoration-bottom-left shadow"></div>
-            </div>
-            <div class="triangle-bottom-right">
-                <div class="decoration-bottom-right shadow"></div>
-            </div>
-            <div class="task-header rsText">
-                <h1>Current Task</h3>
-            </div>
-            <hr>
-            <div class="task-content rsText">
-                {% if task %}
-                <div class="frame-container">
-                    <a id="taskImage" href="{{link}}" target="_blank" data-tip="{{tip}}"><img id="taskImage" src="/static/assets/{{image}}" alt="" class="frame item-image" ></a>
-                </div>
-                <div class="message-container">
-                    <p class="message">{{task}}</p>
-                </div>
-                {% else %}
-                <div id="frame-container">
-                    <img class="frame item-image" src="/static/assets/Cake_of_guidance_detail.png" />
-                    <img class="frame item-image" src="/static/assets/Tome_of_fire_(empty).png" />
-                    <img class="frame item-image" src="/static/assets/Cockatrice_head.png" />
-                    <img class="frame item-image" src="/static/assets/Dragon_sword.png" />
-                    <img class="frame item-image" src="/static/assets/Guilded_smile_flag.png" />
-                    <img class="frame item-image" src="/static/assets/Malediction_shard_2.png" />
-                    <a id="taskImage" href="" target="_blank" data-tip="" ><img id ="image_target" class="frame item-image" src="/static/assets/Mystic_robe_bottom_(light).png"/></a>
-
-                </div>
-                <div id="message-container">
-                    <p class="message">You have no task!</p>
-                    <p class="message">So many tasks</p>
-                    <p class="message">So little time</p>
-                    <p class="message">What will be</p>
-                    <p class="message">Your next grind?</p>
-                    <p class="message">Easy or Hard</p>
-                    <p id="message_target" class="message">It's time to GRIND!</p>
-                </div>
-                {% endif %}
-            </div>
-            <hr>
-            {% if task %}
-            <div class="button-section">
-                <button id="start" class="button-style" disabled><img class="responsive-image" src="/static/generate_task_button.png" alt=""></button>
-                <button id="complete" class="button-style"  ><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
-            </div>
-            {% else %}
-            <div class="button-section">
-                <button id="start" class="button-style"><img class="responsive-image" src="/static/generate_task_button.png" alt=""></button>
-                <button id="complete" class="button-style" disabled ><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
-            </div>
-            {% endif %}
-        </div>
-</div> -->
-    <!-- <div class="container">
-        <div class="main-content">
-            <div class="task-center task-margin">
-                <div class="triangle-top-left">
-                    <div class="decoration-top-left shadow"></div>
-                </div>
-                <div class="triangle-top-right">
-                    <div class="decoration-top-right shadow"></div>
-                </div>
-                <div class="triangle-bottom-left">
-                    <div class="decoration-bottom-left shadow"></div>
-                </div>
-                <div class="triangle-bottom-right">
-                    <div class="decoration-bottom-right shadow"></div>
-                </div>
-                <div class="task-header rsText">
-                    <h1>Current Task</h3>
-                </div>
-                <hr>
-                <div class="task-content rsText">
-                    {% if task %}
-                    <div class="frame-container">
-                        <a id="taskImage" href="{{link}}" target="_blank" data-tip="{{tip}}"><img id="taskImage" src="/static/assets/{{image}}" alt="" class="frame item-image" ></a>
-                    </div>
-                    <div class="message-container">
-                        <p class="message">{{task}}</p>
-                    </div>
-                    {% else %}
-                    <div id="frame-container">
-                        <img class="frame item-image" src="/static/assets/Cake_of_guidance_detail.png" />
-                        <img class="frame item-image" src="/static/assets/Tome_of_fire_(empty).png" />
-                        <img class="frame item-image" src="/static/assets/Cockatrice_head.png" />
-                        <img class="frame item-image" src="/static/assets/Dragon_sword.png" />
-                        <img class="frame item-image" src="/static/assets/Guilded_smile_flag.png" />
-                        <img class="frame item-image" src="/static/assets/Malediction_shard_2.png" />
-                        <a id="taskImage" href="" target="_blank" data-tip="" ><img id ="image_target" class="frame item-image" src="/static/assets/Mystic_robe_bottom_(light).png"/></a>
-
-                    </div>
-                    <div id="message-container">
-                        <p class="message">You have no task!</p>
-                        <p class="message">So many tasks</p>
-                        <p class="message">So little time</p>
-                        <p class="message">What will be</p>
-                        <p class="message">Your next grind?</p>
-                        <p class="message">Easy or Hard</p>
-                        <p id="message_target" class="message">It's time to GRIND!</p>
-                    </div>
-                    {% endif %}
-                </div>
-                <hr>
-                {% if task %}
-                <div class="button-section">
-                    <button id="start" class="button-style" disabled><img class="responsive-image" src="/static/generate_task_button.png" alt=""></button>
-                    <button id="complete" class="button-style"  ><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
-                </div>
-                {% else %}
-                <div class="button-section">
-                    <button id="start" class="button-style"><img class="responsive-image" src="/static/generate_task_button.png" alt=""></button>
-                    <button id="complete" class="button-style" disabled ><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </div> -->
 {% endblock %}

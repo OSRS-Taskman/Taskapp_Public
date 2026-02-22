@@ -691,6 +691,88 @@ hr {
     justify-content: center;
 }
 
+.task-roll-modal {
+    max-width: calc(100vw - 20px);
+}
+
+.task-roll-shell {
+    min-width: 420px;
+    max-width: 620px;
+    width: max-content;
+    min-height: 420px;
+}
+
+.task-roll-header {
+    text-align: center;
+    justify-content: center;
+}
+
+.task-roll-title {
+    margin: 0;
+}
+
+.task-roll-divider {
+    margin: 8px 0;
+}
+
+.task-roll-subtitle {
+    margin: 0 0 10px 0;
+    text-align: center;
+    color: var(--current-task-color);
+}
+
+.task-roll-reel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 170px;
+    border: 1px solid #606060;
+    background: #3f3930;
+}
+
+.task-roll-image {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.task-roll-name {
+    margin: 10px 0 8px 0;
+    text-align: center;
+    font-size: 1.05rem;
+    min-height: 26px;
+}
+
+.task-roll-progress-wrap {
+    margin-bottom: 12px;
+}
+
+.task-roll-progress-bar {
+    height: 22px;
+}
+
+.task-roll-progress-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0%;
+    background: linear-gradient(90deg, #4f6f44 0%, #6d8d5f 100%);
+}
+
+.task-roll-confirm {
+    min-width: 180px;
+}
+
+@media (max-width: 640px) {
+    .task-roll-shell {
+        min-width: 320px;
+        max-width: calc(100vw - 20px);
+        width: calc(100vw - 20px);
+    }
+}
+
 @media (max-width: 640px) {
     .task-action-shell {
         min-width: 320px;
