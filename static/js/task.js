@@ -116,7 +116,7 @@ function showTaskRollModal(options) {
   const confirmButton = modal.querySelector('#taskRollConfirm');
 
   titleNode.textContent = title || 'Rolling New Task';
-  subtitleNode.textContent = subtitle || 'This could be your next grind.';
+  subtitleNode.textContent = subtitle || 'This could be your next grind!';
   confirmButton.disabled = true;
   confirmButton.textContent = 'Rolling...';
 
