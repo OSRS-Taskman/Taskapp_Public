@@ -9,6 +9,8 @@ def temple_player_data(username: str):
     player_data = requests.get(f'https://templeosrs.com/api/collection-log/player_collection_log.php?player={username}&categories=all&itemsonly&includenames=1&onlyitems=1').json()
     used_id = set()
     cleaned_player_data = list()
+    if not player_data.get('data'):
+        return cleaned_player_data
     for item in player_data['data']['items']:
         if item['id'] not in used_id:
             used_id.add(item['id'])
@@ -134,4 +136,4 @@ def check_logs(username: str, site_tasks: list["TaskData"], action: str):
 
 
 if __name__ == "__main__":
-    check_logs('Gerni Task', tasklists.list_for_tier('easy'), 'import')
+    check_logs('Gerni Task', tasklists.list_for_tier('easy'), 'check')

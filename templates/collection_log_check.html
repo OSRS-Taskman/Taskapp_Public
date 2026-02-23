@@ -1,6 +1,12 @@
 <div>
     <h3>Rank Up Results For: {{rs_username}}</h3>
 </div>
+{% if error %}
+<div class="rank-results-row">
+    <span>Response from TempleOSRS API: <p class="incomplete">{{error}}.</p></span>
+    
+<div>
+{% else %}
 <div class="rank-results-row">
     <p>Easy Tier:</p>
     {% if easy_check %}
@@ -61,3 +67,4 @@
     <p class="complete">COMPLETE</p>
     {% endif %}
 </div>
+{% endif %}

@@ -15,7 +15,7 @@ from task_database import (get_taskCurrent, generate_task, complete_task, get_ta
                            complete_task_unofficial_tier, get_user, get_leaderboard,
                            get_roll_candidates_for_tier)
 import send_grid_email
-from templesync import check_logs
+from templesync import check_logs, temple_player_data
 
 app = Flask(__name__)
 
@@ -481,6 +481,9 @@ def collection_log_check():
     form_data = request.form
     rs_username = form_data['username']
     lms_enabled = get_lms_status(session['username'])
+    if not temple_player_data(rs_username):
+        return render_template('collection_log_check.html', rs_username = rs_username,
+                               error = "Player has not synced their collecton log on TempleOSRS yet")
     easy_check = check_logs(rs_username, tasklists.list_for_tier('easy', lms_enabled), 'check')
     medium_check = check_logs(rs_username, tasklists.list_for_tier('medium', lms_enabled), 'check')
     hard_check = check_logs(rs_username, tasklists.list_for_tier('hard', lms_enabled), 'check')
