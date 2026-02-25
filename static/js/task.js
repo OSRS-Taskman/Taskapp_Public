@@ -483,6 +483,89 @@ function attachFallbackImage(imgElement, fallbackSrc) {
   };
 }
 
+const verificationItemNameCache = new Map();
+const verificationItemNameRequestCache = new Map();
+const runeliteItemIdNameCache = new Map();
+let runeliteItemIdNameLoadPromise = null;
+
+function toDisplayItemName(itemIdConstantName) {
+  return itemIdConstantName
+    .toLowerCase()
+    .split('_')
+    .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+    .join(' ')
+    .trim();
+}
+
+function loadRuneLiteItemIdNames() {
+  if (runeliteItemIdNameLoadPromise) {
+    return runeliteItemIdNameLoadPromise;
+  }
+
+  const rawItemIdFileUrl = 'https://raw.githubusercontent.com/runelite/runelite/master/runelite-api/src/main/java/net/runelite/api/ItemID.java';
+  const itemIdLinePattern = /^\s*public\s+static\s+final\s+int\s+([A-Z0-9_]+)\s*=\s*(\d+)\s*;\s*$/gm;
+
+  runeliteItemIdNameLoadPromise = fetch(rawItemIdFileUrl)
+    .then((response) => {
+      if (!response.ok) {
+        return '';
+      }
+      return response.text();
+    })
+    .then((source) => {
+      if (!source) {
+        return runeliteItemIdNameCache;
+      }
+
+      let match = itemIdLinePattern.exec(source);
+      while (match !== null) {
+        const constantName = match[1];
+        const parsedItemId = parseInt(match[2], 10);
+        if (!Number.isNaN(parsedItemId) && !runeliteItemIdNameCache.has(parsedItemId)) {
+          runeliteItemIdNameCache.set(parsedItemId, toDisplayItemName(constantName));
+        }
+        match = itemIdLinePattern.exec(source);
+      }
+
+      return runeliteItemIdNameCache;
+    })
+    .catch(() => runeliteItemIdNameCache);
+
+  return runeliteItemIdNameLoadPromise;
+}
+
+function formatVerificationItemTooltip(itemId, itemName, isRecorded) {
+  const actionHint = isRecorded ? 'click to mark incomplete' : 'click to mark complete';
+  const displayName = itemName || 'item';
+  return `${displayName}(${itemId}) - ${actionHint}`;
+}
+
+function fetchVerificationItemName(itemId) {
+  if (verificationItemNameCache.has(itemId)) {
+    return Promise.resolve(verificationItemNameCache.get(itemId));
+  }
+
+  if (verificationItemNameRequestCache.has(itemId)) {
+    return verificationItemNameRequestCache.get(itemId);
+  }
+
+  const itemNameRequest = loadRuneLiteItemIdNames()
+    .then((itemMap) => {
+      const itemName = itemMap.get(itemId) || null;
+      verificationItemNameCache.set(itemId, itemName);
+      verificationItemNameRequestCache.delete(itemId);
+      return itemName;
+    })
+    .catch(() => {
+      verificationItemNameCache.set(itemId, null);
+      verificationItemNameRequestCache.delete(itemId);
+      return null;
+    });
+
+  verificationItemNameRequestCache.set(itemId, itemNameRequest);
+  return itemNameRequest;
+}
+
 function openTaskActionModal(options) {
   const {
     actionLabel,
@@ -553,11 +636,17 @@ function openTaskActionModal(options) {
       image.width = 36;
       image.height = 32;
       image.loading = 'lazy';
-      image.title = isRecorded
-        ? `Item ID: ${itemId} (click to mark incomplete)`
-        : `Item ID: ${itemId} (click to mark complete)`;
+      image.title = formatVerificationItemTooltip(itemId, null, isRecorded);
       image.setAttribute('role', 'button');
       image.tabIndex = 0;
+
+      fetchVerificationItemName(itemId).then((itemName) => {
+        if (!image.isConnected) {
+          return;
+        }
+        image.title = formatVerificationItemTooltip(itemId, itemName, isRecorded);
+        image.alt = itemName ? `${itemName} (${itemId})` : `Item ${itemId}`;
+      });
 
       const toggleItem = () => {
         if (selectedItemIds.has(itemId)) {
