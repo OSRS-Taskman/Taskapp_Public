@@ -9,6 +9,26 @@ function isSpecialRollUser() {
   return SPECIAL_ROLL_USERNAMES.has(getCurrentUsername());
 }
 
+function isShaduKatUser() {
+  return getCurrentUsername() === 'shadukat';
+}
+
+function getCookieValue(name) {
+  const encodedName = `${encodeURIComponent(name)}=`;
+  const cookies = document.cookie ? document.cookie.split(';') : [];
+  for (let i = 0; i < cookies.length; i += 1) {
+    const cookie = cookies[i].trim();
+    if (cookie.indexOf(encodedName) === 0) {
+      return decodeURIComponent(cookie.substring(encodedName.length));
+    }
+  }
+  return null;
+}
+
+function shouldSkipRollAnimation() {
+  return getCookieValue('skip_roll_animation') === 'true';
+}
+
 function shuffleArray(items) {
   const cloned = items.slice();
   for (let i = cloned.length - 1; i > 0; i -= 1) {
@@ -109,6 +129,7 @@ function rollTaskModal(options) {
     finalName,
     finalImage,
     instant = false,
+    showSpecialMessage = false,
     candidates = []
   } = options;
 
@@ -142,7 +163,7 @@ function rollTaskModal(options) {
     }
 
     const finalImageSource = resolveTaskImageSource(finalImage);
-    specialNode.hidden = !instant;
+    specialNode.hidden = !showSpecialMessage;
 
     if (instant) {
       imageNode.src = finalImageSource;
@@ -184,7 +205,8 @@ $(document).on('click', '#start', function(){
     await rollTaskModal({
       finalName: data.name,
       finalImage: data.image,
-      instant: isSpecialRollUser(),
+      instant: isSpecialRollUser() || shouldSkipRollAnimation(),
+      showSpecialMessage: isShaduKatUser() && shouldSkipRollAnimation(),
       candidates: rollCandidates
     });
 
@@ -242,7 +264,8 @@ $(document).on('click', '#generate_unofficial', function(){
     await rollTaskModal({
       finalName: data.name,
       finalImage: data.image,
-      instant: isSpecialRollUser(),
+      instant: isSpecialRollUser() || shouldSkipRollAnimation(),
+      showSpecialMessage: isShaduKatUser() && shouldSkipRollAnimation(),
       candidates: rollCandidates.length > 0 ? rollCandidates : getOfficialRollCandidates()
     });
 

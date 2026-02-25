@@ -85,6 +85,11 @@ Profile
                             {% endif %}
                             <span class="slider round"></span>
                             </label>
+                                <p>Skip Roll Animation</p>
+                                <label class="switch">
+                                <input type="checkbox" id="skip_roll_animation">
+                                <span class="slider round"></span>
+                                </label>
                     </div>
                     <div class="warning-section">
                         <p id="warning"style="display: none;" class="incomplete">!!!YOU CANNOT RE-ENABLE OFFICIAL STATUS!!!</p>
@@ -232,7 +237,40 @@ $(document).ready(function(){
 </script>
 
 <script>
+function getCookieValue(name) {
+    const encodedName = `${encodeURIComponent(name)}=`;
+    const cookies = document.cookie ? document.cookie.split(';') : [];
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.indexOf(encodedName) === 0) {
+            return decodeURIComponent(cookie.substring(encodedName.length));
+        }
+    }
+    return null;
+}
+
+function setCookieValue(name, value, maxAgeSeconds) {
+    document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; path=/; max-age=${maxAgeSeconds}; SameSite=Lax`;
+}
+
     $(document).ready(function() {
+    const skipRollToggle = document.getElementById('skip_roll_animation');
+    if (skipRollToggle) {
+        const cookieValue = getCookieValue('skip_roll_animation');
+        skipRollToggle.checked = cookieValue === 'true';
+
+        skipRollToggle.addEventListener('change', function(e) {
+            const enabled = e.target.checked;
+            setCookieValue('skip_roll_animation', enabled ? 'true' : 'false', 31536000);
+            if (enabled) {
+                alert('Roll animation will now be skipped when generating tasks.');
+            }
+            else {
+                alert('Roll animation is now enabled when generating tasks.');
+            }
+        });
+    }
+
     
     $('#lms_status').on('change', function(e) {
         var lms_status = e.target.checked;
