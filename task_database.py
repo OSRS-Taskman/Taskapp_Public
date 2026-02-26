@@ -504,8 +504,14 @@ Returns:
 '''
 
 
-def complete_task_unofficial_tier(username: str, task_id: int, tier: str) -> dict:
-    __set_task_complete(username, tier, task_id, True)
+def complete_task_unofficial_tier(username: str,
+                                 task_id: int,
+                                 tier: str,
+                                 completed_at_iso: str | None = None,
+                                 completed_item_ids: list[int] | None = None) -> dict:
+    __set_task_complete(username, tier, task_id, True,
+                        completed_at_iso=completed_at_iso,
+                        completed_item_ids=completed_item_ids)
     __set_current_task(username, tier, task_id, False)
     return __get_firework_variables(username, tier)
 
@@ -530,7 +536,9 @@ Returns:
 '''
 
 
-def complete_task(username: str) -> dict:
+def complete_task(username: str,
+                  completed_at_iso: str | None = None,
+                  completed_item_ids: list[int] | None = None) -> dict:
     user = get_user(username)
     task_check = user.current_task()
     if task_check is None:
@@ -538,7 +546,9 @@ def complete_task(username: str) -> dict:
 
     tier = task_check[2]
     task_id = task_check[3]
-    __set_task_complete(username, tier, task_id, True)
+    __set_task_complete(username, tier, task_id, True,
+                        completed_at_iso=completed_at_iso,
+                        completed_item_ids=completed_item_ids)
     __set_current_task(username, tier, task_id, False)
 
     return __get_firework_variables(username, tier)
