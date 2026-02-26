@@ -1124,17 +1124,39 @@ $(document).ready(function(){
 $(document).ready(function(){
   $(document).on('click', '#importButton', function(){
     var input = document.getElementById('importInput');
+    var importButton = document.getElementById('importButton');
+    var overwriteTempleTimestamps = document.getElementById('overwriteTempleTimestamps');
     var username = input.value;
     var importConent = document.getElementById('importContent');
+
+    if (importButton) {
+      importButton.disabled = true;
+      importButton.textContent = 'Importing...';
+    }
+
+    var preferTaskappTimestamps = true;
+    if (overwriteTempleTimestamps) {
+      preferTaskappTimestamps = overwriteTempleTimestamps.checked;
+    }
 
     req = $.ajax({
       url : '/collectionlog_import/',
       type : 'POST',
-      data : {username : username}
+      data : {
+        username : username,
+        overwriteTempleTimestamps: preferTaskappTimestamps,
+      }
     });
 
     req.done(function(data) {
       $(importConent).html(data)
+    });
+
+    req.fail(function() {
+      if (importButton) {
+        importButton.disabled = false;
+        importButton.textContent = 'Import';
+      }
     });
   });
 });

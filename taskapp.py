@@ -567,6 +567,8 @@ def collection_log_check():
 def collection_log_import():
     form_data = request.form
     rs_username = form_data['username']
+    overwrite_temple_timestamps_raw = form_data.get('overwriteTempleTimestamps', 'true')
+    overwrite_temple_timestamps = str(overwrite_temple_timestamps_raw).lower() == 'true'
     easy_import_result = check_logs(rs_username, tasklists.list_for_tier('easy'), 'import-recorded')
     medium_import_result = check_logs(rs_username, tasklists.list_for_tier('medium'), 'import-recorded')
     hard_import_result = check_logs(rs_username, tasklists.list_for_tier('hard'), 'import-recorded')
@@ -587,6 +589,7 @@ def collection_log_import():
         all_tasks,
         form_data['username'],
         recorded_item_ids_by_tier,
+        overwrite_temple_timestamps,
     )
 
     return render_template('collection_log_import.html',

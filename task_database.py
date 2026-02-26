@@ -662,7 +662,8 @@ def manual_revert_tasks(username, tier, task_id):
 
 
 def update_imported_tasks(username: str, all_tasks: list, username2: str,
-                          recorded_item_ids_by_tier: dict | None = None):
+                          recorded_item_ids_by_tier: dict | None = None,
+                          overwrite_temple_timestamps: bool = True):
     coll = mydb['taskLists']
     include = {'easy', 'medium', 'hard', 'elite'}
     tasks_to_check = []
@@ -760,6 +761,40 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
     existing_recorded_medium = sanitize_recorded_map(diaries['tiers']['medium'].get('recordedItemIdsByTask', {}))
     existing_recorded_hard = sanitize_recorded_map(diaries['tiers']['hard'].get('recordedItemIdsByTask', {}))
     existing_recorded_elite = sanitize_recorded_map(diaries['tiers']['elite'].get('recordedItemIdsByTask', {}))
+
+    def existing_completed_date_map(completed_tasks):
+        output = {}
+        for entry in completed_tasks:
+            task_id = entry.get('id')
+            if not task_id:
+                continue
+            completed_date = entry.get('completedDate')
+            if completed_date is None:
+                continue
+            normalized_date = __datetime_to_iso(completed_date)
+            if normalized_date:
+                output[task_id] = normalized_date
+        return output
+
+    existing_completed_dates_easy = existing_completed_date_map(diaries['tiers']['easy'].get('completedTasks', []))
+    existing_completed_dates_medium = existing_completed_date_map(diaries['tiers']['medium'].get('completedTasks', []))
+    existing_completed_dates_hard = existing_completed_date_map(diaries['tiers']['hard'].get('completedTasks', []))
+    existing_completed_dates_elite = existing_completed_date_map(diaries['tiers']['elite'].get('completedTasks', []))
+
+    if overwrite_temple_timestamps:
+        tier_existing_dates = [
+            existing_completed_dates_easy,
+            existing_completed_dates_medium,
+            existing_completed_dates_hard,
+            existing_completed_dates_elite,
+        ]
+        for tier_tasks, tier_date_map in zip(all_tasks, tier_existing_dates):
+            for imported_task in tier_tasks:
+                task_id = imported_task.get('id')
+                if not task_id:
+                    continue
+                if task_id in tier_date_map:
+                    imported_task['completedDate'] = tier_date_map[task_id]
 
     imported_recorded_easy = sanitize_recorded_map(recorded_item_ids_by_tier.get('easy', {}))
     imported_recorded_medium = sanitize_recorded_map(recorded_item_ids_by_tier.get('medium', {}))
