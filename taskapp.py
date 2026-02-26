@@ -16,6 +16,7 @@ from task_database import (get_taskCurrent, generate_task, complete_task, get_ta
                            get_roll_candidates_for_tier)
 import send_grid_email
 from templesync import check_logs, temple_player_data
+from task_types import CollectionLogVerificationData
 
 app = Flask(__name__)
 
@@ -113,6 +114,35 @@ class BasePageInfo:
         email_verify = task_login.email_verify(username)
         self.email_bool = email_verify[0]
         self.email_val = email_verify[1]
+
+
+def get_related_completed_item_ids_for_task(user, tier: str, task_id: str) -> list[int]:
+    tier_tasks = tasklists.list_for_tier(tier, user.lms_enabled)
+    tasks_by_id = {task.id: task for task in tier_tasks}
+    target_task = tasks_by_id.get(task_id)
+    if target_task is None:
+        return []
+
+    task_list = user.get_task_list(tier)
+    recorded_items_map = task_list.recorded_item_ids_by_task or {}
+    related_ids = set()
+
+    for completed_task in task_list.completed_tasks:
+        completed_task_data = tasks_by_id.get(completed_task.id)
+        if completed_task_data is None or completed_task_data.name != target_task.name:
+            continue
+
+        item_ids = recorded_items_map.get(completed_task.id, [])
+        if not item_ids and getattr(completed_task, 'completed_item_ids', None):
+            item_ids = completed_task.completed_item_ids
+
+        for item_id in item_ids:
+            try:
+                related_ids.add(int(item_id))
+            except (TypeError, ValueError):
+                continue
+
+    return sorted(related_ids)
 
 
 # Converts dict from users task data to a list of user data represented as another list.
@@ -437,12 +467,27 @@ def dashboard():
     if user_info.official:
         current_task = get_taskCurrent(username)
         if current_task:
-            task, image, _, _, tip, link, _ = current_task
+            task, image, task_tier, task_id, tip, link, _ = current_task
+            verification_item_ids = []
+            completed_item_ids = []
+
+            tier_tasks = tasklists.list_for_tier(task_tier, user_info.user.lms_enabled)
+            current_task_data = next((entry for entry in tier_tasks if entry.id == task_id), None)
+            if current_task_data and isinstance(current_task_data.verification, CollectionLogVerificationData):
+                verification_item_ids = current_task_data.verification.item_ids
+
+            recorded_items_map = user_info.user.get_task_list(task_tier).recorded_item_ids_by_task or {}
+            completed_item_ids = recorded_items_map.get(task_id, [])
+            related_completed_item_ids = get_related_completed_item_ids_for_task(user_info.user, task_tier, task_id)
+
             context.update({
                 'task': task,
                 'image': image,
                 'tip': tip,
-                'link': link
+                'link': link,
+                'verification_item_ids': verification_item_ids,
+                'completed_item_ids': completed_item_ids,
+                'related_completed_item_ids': related_completed_item_ids,
             })
             return render_template('dashboard_official.html', **context)
 
@@ -452,6 +497,9 @@ def dashboard():
                 'image': None,
                 'tip': None,
                 'link': None,
+                'verification_item_ids': [],
+                'completed_item_ids': [],
+                'related_completed_item_ids': [],
                 'easy_first': easy_first,
                 'medium_first': medium_first,
                 'hard_first': hard_first,
@@ -464,13 +512,31 @@ def dashboard():
         for tier, task_type in [('easy', 'easyTasks'), ('medium', 'mediumTasks'), ('hard', 'hardTasks'), ('elite', 'eliteTasks'), ('master', 'masterTasks')]:
             current_task = get_taskCurrent_tier(username, task_type)
             if current_task:
-                context[f'task_{tier}'], context[f'image_{tier}'], _, _, context[f'tip_{tier}'], context[f'link_{tier}'], _ = current_task
+                context[f'task_{tier}'], context[f'image_{tier}'], _, task_id, context[f'tip_{tier}'], context[f'link_{tier}'], _ = current_task
+
+                verification_item_ids = []
+                completed_item_ids = []
+                tier_tasks = tasklists.list_for_tier(task_type, user_info.user.lms_enabled)
+                current_task_data = next((entry for entry in tier_tasks if entry.id == task_id), None)
+                if current_task_data and isinstance(current_task_data.verification, CollectionLogVerificationData):
+                    verification_item_ids = current_task_data.verification.item_ids
+
+                recorded_items_map = user_info.user.get_task_list(task_type).recorded_item_ids_by_task or {}
+                completed_item_ids = recorded_items_map.get(task_id, [])
+                related_completed_item_ids = get_related_completed_item_ids_for_task(user_info.user, task_type, task_id)
+
+                context[f'verification_item_ids_{tier}'] = verification_item_ids
+                context[f'completed_item_ids_{tier}'] = completed_item_ids
+                context[f'related_completed_item_ids_{tier}'] = related_completed_item_ids
             else:
                 context.update({
                     f'task_{tier}': '',
                     f'image_{tier}': None,
                     f'tip_{tier}': None,
-                    f'link_{tier}': None
+                    f'link_{tier}': None,
+                    f'verification_item_ids_{tier}': [],
+                    f'completed_item_ids_{tier}': [],
+                    f'related_completed_item_ids_{tier}': [],
                 })
         return render_template('dashboard_unofficial_v2.html', **context)
 
@@ -535,8 +601,11 @@ def collection_log_import():
 @login_required
 def generate_button():
     username = session['username']
+    user = get_user(username)
     task = generate_task(username)
     current_task = get_taskCurrent(username)
+    verification_item_ids = []
+    related_completed_item_ids = []
 
     if current_task is not None:
         task_tier = current_task[2]
@@ -544,12 +613,20 @@ def generate_button():
     else:
         roll_candidates = []
 
+    if task and isinstance(task.verification, CollectionLogVerificationData):
+        verification_item_ids = task.verification.item_ids
+    if task and current_task is not None:
+        related_completed_item_ids = get_related_completed_item_ids_for_task(user, current_task[2], task.id)
+
     data = {
         "name" : task.name,
         "image" : task.image_link,
         "tip" : task.tip,
         "link" : task.wiki_link,
         "rollCandidates": roll_candidates,
+        "verificationItemIds": verification_item_ids,
+        "completedItemIds": [],
+        "relatedCompletedItemIds": related_completed_item_ids,
     }
     return data
 
@@ -559,7 +636,23 @@ def complete_button():
     username = session['username']
     current_task = get_taskCurrent(username)
     if current_task is not None:
-        query_params = complete_task(username)
+        completed_item_ids_raw = request.form.get('completedItemIds')
+        completed_item_ids = []
+        if completed_item_ids_raw:
+            try:
+                parsed_ids = json.loads(completed_item_ids_raw)
+                if isinstance(parsed_ids, list):
+                    completed_item_ids = parsed_ids
+            except (TypeError, ValueError, json.JSONDecodeError):
+                completed_item_ids = []
+
+        completed_at_iso = request.form.get('completedAtISO')
+
+        query_params = complete_task(
+            username,
+            completed_at_iso=completed_at_iso,
+            completed_item_ids=completed_item_ids,
+        )
         return redirect(url_for('dashboard', **query_params))
     return redirect(url_for('dashboard'))
 
@@ -568,16 +661,25 @@ def complete_button():
 @login_required
 def generate_unofficial():
     username = session['username']
+    user = get_user(username)
     tier = request.form["tier"]
     roll_candidates = get_roll_candidates_for_tier(username, tier, 10)
     task = generate_task_for_tier(username, tier)
+    verification_item_ids = []
+    related_completed_item_ids = []
     if task:
+        if isinstance(task.verification, CollectionLogVerificationData):
+            verification_item_ids = task.verification.item_ids
+        related_completed_item_ids = get_related_completed_item_ids_for_task(user, tier, task.id)
         data = {
             "name" : task.name,
             "image" : task.image_link,
             "tip" : task.tip,
             "link" : task.wiki_link,
             "rollCandidates": roll_candidates,
+            "verificationItemIds": verification_item_ids,
+            "completedItemIds": [],
+            "relatedCompletedItemIds": related_completed_item_ids,
         }
         return data
     tier = tier.replace('Tasks', '')
@@ -586,6 +688,9 @@ def generate_unofficial():
             "tip" : "Generate a Task!",
             "link" : "#",
             "rollCandidates": roll_candidates,
+            "verificationItemIds": [],
+            "completedItemIds": [],
+                "relatedCompletedItemIds": [],
             }
     return data
 
@@ -597,6 +702,17 @@ def complete_unofficial():
     username = session['username']
     tier = request.form['tier']
     current_task = get_taskCurrent_tier(username, tier)
+    completed_item_ids_raw = request.form.get('completedItemIds')
+    completed_item_ids = []
+    if completed_item_ids_raw:
+        try:
+            parsed_ids = json.loads(completed_item_ids_raw)
+            if isinstance(parsed_ids, list):
+                completed_item_ids = parsed_ids
+        except (TypeError, ValueError, json.JSONDecodeError):
+            completed_item_ids = []
+
+    completed_at_iso = request.form.get('completedAtISO')
     progress = get_task_progress(username)
     data = {
             'easy': progress['easy']['percent_complete'],
@@ -610,7 +726,13 @@ def complete_unofficial():
             }
     if current_task is not None:
         task_id = current_task[3]
-        query_params = complete_task_unofficial_tier(username, task_id, tier)
+        query_params = complete_task_unofficial_tier(
+            username,
+            task_id,
+            tier,
+            completed_at_iso=completed_at_iso,
+            completed_item_ids=completed_item_ids,
+        )
         progress = get_task_progress(username)
         data = {
             'easy': progress['easy']['percent_complete'],

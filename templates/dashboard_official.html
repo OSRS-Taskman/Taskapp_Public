@@ -49,7 +49,14 @@
         {% if task %}
         <div class="button-section">
             <button id="start" class="button-style" disabled><img class="responsive-image" src="/static/generate_task_button.png" alt=""></button>
-            <button id="complete" class="button-style"  ><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
+            <button id="complete" class="button-style"
+                    data-task-name="{{task}}"
+                    data-task-tip="{{tip or ''}}"
+                    data-task-wiki-link="{{link or '#'}}"
+                    data-verification-item-ids="{{verification_item_ids|join(',')}}"
+                    data-completed-item-ids="{{completed_item_ids|join(',')}}"
+                    data-related-completed-item-ids="{{related_completed_item_ids|join(',')}}"
+            ><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
         </div>
         {% else %}
         <div class="button-section">
@@ -59,6 +66,32 @@
         {% endif %}
     </div>
 </div>
+
+<dialog id="taskActionModal" class="rsText task-action-modal">
+    <div class="rect task-action-shell">
+        <div class="task-action-header">
+            <button id="taskActionBackButton" class="button-style" type="button">Back</button>
+            <h3 id="taskActionModalTitle" class="task-action-title">Task</h3>
+            <a id="taskActionWikiButton" class="button-style task-action-wiki" href="#" target="_blank" rel="noopener noreferrer">Wiki</a>
+        </div>
+        <hr class="task-action-divider">
+        <p id="taskActionTip" class="task-action-tip"></p>
+        <div id="taskActionProgressWrap" class="task-action-progress-wrap">
+            <div class="task-action-progress-bar">
+                <div id="taskActionProgressFill" class="task-action-progress-fill"></div>
+                <div id="taskActionProgressText" class="task-action-progress-text"></div>
+            </div>
+        </div>
+        <div class="task-action-time">
+            <label class="task-action-time-label" for="taskActionTimeInput">Time</label>
+            <input id="taskActionTimeInput" class="task-action-time-input" type="datetime-local">
+        </div>
+        <div id="taskActionModalItems" class="task-action-items"></div>
+        <div class="task-action-footer">
+            <button id="taskActionConfirmButton" class="button-style" type="button">Mark Complete</button>
+        </div>
+    </div>
+</dialog>
 
 
 

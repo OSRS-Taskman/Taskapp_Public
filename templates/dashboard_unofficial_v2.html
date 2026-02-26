@@ -95,7 +95,14 @@
                     <hr>
                     <div class="button-section">
                         <button id="generate_unofficial" class="button-style" name="easy"><img class="responsive-image" src="/static/generate_task_button.png" alt=""></button>
-                        <button id="complete_unofficial" class="button-style" name="easy"><img class="responsive-image" src="/static/complete_task_button.png" name="easy" alt=""></button>
+                        <button id="complete_unofficial" class="button-style" name="easy"
+                                data-task-name="{{task_easy or ''}}"
+                                data-task-tip="{{tip_easy or ''}}"
+                                data-task-wiki-link="{{link_easy or '#'}}"
+                                data-verification-item-ids="{{verification_item_ids_easy|join(',')}}"
+                                data-completed-item-ids="{{completed_item_ids_easy|join(',')}}"
+                            data-related-completed-item-ids="{{related_completed_item_ids_easy|join(',')}}"
+                        ><img class="responsive-image" src="/static/complete_task_button.png" name="easy" alt=""></button>
                     </div>
                 </div>
 
@@ -122,7 +129,14 @@
                     <hr>
                     <div class="button-section">
                         <button id="generate_unofficial" class="button-style" name="medium"><img class="responsive-image" src="/static/generate_task_button.png" alt=""></button>
-                        <button id="complete_unofficial" class="button-style" name="medium"><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
+                        <button id="complete_unofficial" class="button-style" name="medium"
+                                data-task-name="{{task_medium or ''}}"
+                                data-task-tip="{{tip_medium or ''}}"
+                                data-task-wiki-link="{{link_medium or '#'}}"
+                                data-verification-item-ids="{{verification_item_ids_medium|join(',')}}"
+                                data-completed-item-ids="{{completed_item_ids_medium|join(',')}}"
+                            data-related-completed-item-ids="{{related_completed_item_ids_medium|join(',')}}"
+                        ><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
                     </div>
                 </div>
 
@@ -148,7 +162,14 @@
                     <hr>
                     <div class="button-section">
                         <button id="generate_unofficial" class="button-style" name="hard"><img class="responsive-image" src="/static/generate_task_button.png" alt=""></button>
-                        <button id="complete_unofficial" class="button-style" name="hard"><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
+                        <button id="complete_unofficial" class="button-style" name="hard"
+                                data-task-name="{{task_hard or ''}}"
+                                data-task-tip="{{tip_hard or ''}}"
+                                data-task-wiki-link="{{link_hard or '#'}}"
+                                data-verification-item-ids="{{verification_item_ids_hard|join(',')}}"
+                                data-completed-item-ids="{{completed_item_ids_hard|join(',')}}"
+                            data-related-completed-item-ids="{{related_completed_item_ids_hard|join(',')}}"
+                        ><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
                     </div>
                 </div>
 
@@ -174,7 +195,14 @@
                     <hr>
                     <div class="button-section">
                         <button id="generate_unofficial" class="button-style" name="elite"><img class="responsive-image" src="/static/generate_task_button.png" alt=""></button>
-                        <button id="complete_unofficial" class="button-style" name="elite"><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
+                        <button id="complete_unofficial" class="button-style" name="elite"
+                                data-task-name="{{task_elite or ''}}"
+                                data-task-tip="{{tip_elite or ''}}"
+                                data-task-wiki-link="{{link_elite or '#'}}"
+                                data-verification-item-ids="{{verification_item_ids_elite|join(',')}}"
+                                data-completed-item-ids="{{completed_item_ids_elite|join(',')}}"
+                            data-related-completed-item-ids="{{related_completed_item_ids_elite|join(',')}}"
+                        ><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
                     </div>
                 </div>
 
@@ -199,13 +227,46 @@
                     <hr>
                     <div class="button-section">
                         <button id="generate_unofficial" class="button-style" name="master"><img class="responsive-image" src="/static/generate_task_button.png" alt=""></button>
-                        <button id="complete_unofficial" class="button-style" name="master"><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
+                        <button id="complete_unofficial" class="button-style" name="master"
+                                data-task-name="{{task_master or ''}}"
+                                data-task-tip="{{tip_master or ''}}"
+                                data-task-wiki-link="{{link_master or '#'}}"
+                                data-verification-item-ids="{{verification_item_ids_master|join(',')}}"
+                                data-completed-item-ids="{{completed_item_ids_master|join(',')}}"
+                            data-related-completed-item-ids="{{related_completed_item_ids_master|join(',')}}"
+                        ><img class="responsive-image" src="/static/complete_task_button.png" alt=""></button>
                     </div>
                 </div>
 
             </div>
         </div>
      </div>
+
+<dialog id="taskActionModal" class="rsText task-action-modal">
+    <div class="rect task-action-shell">
+        <div class="task-action-header">
+            <button id="taskActionBackButton" class="button-style" type="button">Back</button>
+            <h3 id="taskActionModalTitle" class="task-action-title">Task</h3>
+            <a id="taskActionWikiButton" class="button-style task-action-wiki" href="#" target="_blank" rel="noopener noreferrer">Wiki</a>
+        </div>
+        <hr class="task-action-divider">
+        <p id="taskActionTip" class="task-action-tip"></p>
+        <div id="taskActionProgressWrap" class="task-action-progress-wrap">
+            <div class="task-action-progress-bar">
+                <div id="taskActionProgressFill" class="task-action-progress-fill"></div>
+                <div id="taskActionProgressText" class="task-action-progress-text"></div>
+            </div>
+        </div>
+        <div class="task-action-time">
+            <label class="task-action-time-label" for="taskActionTimeInput">Time</label>
+            <input id="taskActionTimeInput" class="task-action-time-input" type="datetime-local">
+        </div>
+        <div id="taskActionModalItems" class="task-action-items"></div>
+        <div class="task-action-footer">
+            <button id="taskActionConfirmButton" class="button-style" type="button">Mark Complete</button>
+        </div>
+    </div>
+</dialog>
 
 <script>
     function openTier(event, tier) {

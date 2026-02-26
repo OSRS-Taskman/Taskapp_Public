@@ -213,24 +213,81 @@ $(document).on('click', '#start', function(){
     const message = document.getElementById("message_target");
     const image = document.getElementById("image_target");
     const imageLink = document.getElementById("taskImage");
+    const completeButton = document.getElementById("complete");
     imageLink.href = data.link;
     imageLink.setAttribute('data-tip', data.tip);
     message.innerHTML = data.name;
     image.src = resolveTaskImageSource(data.image);
     document.getElementById("start").disabled = true;
     document.getElementById("complete").disabled = false;
+
+    if (completeButton) {
+      const verificationItemIds = Array.isArray(data.verificationItemIds) ? data.verificationItemIds : [];
+      const completedItemIds = Array.isArray(data.completedItemIds) ? data.completedItemIds : [];
+      const relatedCompletedItemIds = Array.isArray(data.relatedCompletedItemIds) ? data.relatedCompletedItemIds : [];
+      completeButton.setAttribute('data-task-name', data.name || '');
+      completeButton.setAttribute('data-task-tip', data.tip || '');
+      completeButton.setAttribute('data-task-wiki-link', data.link || '#');
+      completeButton.setAttribute('data-verification-item-ids', verificationItemIds.join(','));
+      completeButton.setAttribute('data-completed-item-ids', completedItemIds.join(','));
+      completeButton.setAttribute('data-related-completed-item-ids', relatedCompletedItemIds.join(','));
+    }
   });
 });
 
 $(document).on('click', '#complete', function(){
-  req = $.ajax({
-    url : '/complete/',
-    type : 'POST'
+  const completeButton = this;
+  const taskName = completeButton.getAttribute('data-task-name') || '';
+  const taskTip = completeButton.getAttribute('data-task-tip') || '';
+  const taskWikiLink = completeButton.getAttribute('data-task-wiki-link') || '#';
 
-  });
-  req.done(function(data){
-    location.reload();
-  })
+  const parseItemIds = (rawValue) => {
+    if (!rawValue) {
+      return [];
+    }
+    return rawValue
+      .split(',')
+      .map((value) => parseInt(value.trim(), 10))
+      .filter((value) => !Number.isNaN(value));
+  };
+
+  const verificationItemIds = parseItemIds(completeButton.getAttribute('data-verification-item-ids'));
+  const completedItemIds = parseItemIds(completeButton.getAttribute('data-completed-item-ids'));
+  const relatedCompletedItemIds = parseItemIds(completeButton.getAttribute('data-related-completed-item-ids'));
+
+  const submitComplete = (selectedCompletedAtISO, selectedItemIds) => {
+    req = $.ajax({
+      url : '/complete/',
+      type : 'POST',
+      data : {
+        completedAtISO: selectedCompletedAtISO,
+        completedItemIds: JSON.stringify(selectedItemIds || []),
+      }
+    });
+    req.done(function(){
+      location.reload();
+    });
+  };
+
+  if (document.getElementById('taskActionModal') && typeof openTaskActionModal === 'function') {
+    openTaskActionModal({
+      actionLabel: 'Mark Complete',
+      taskName: taskName,
+      taskTip: taskTip,
+      taskWikiLink: taskWikiLink,
+      itemIds: verificationItemIds,
+      recordedItemIds: completedItemIds,
+      relatedCompletedItemIds: relatedCompletedItemIds,
+      currentCompletedAtISO: null,
+      allowTimeEdit: true,
+      onConfirm: function(selectedCompletedAtISO, selectedItemIds) {
+        submitComplete(selectedCompletedAtISO, selectedItemIds);
+      }
+    });
+    return;
+  }
+
+  submitComplete(null, []);
 });
 
 
@@ -272,6 +329,7 @@ $(document).on('click', '#generate_unofficial', function(){
     const task = document.getElementById(tier + "_task");
     const image = document.getElementById(tier + "_image");
     const imagePreview = document.getElementById(tier + "_image_preview");
+    const completeButton = document.querySelector(`#complete_unofficial[name="${tier}"]`);
     var imagePlaceholder = document.getElementById(tier + "_placeholder");
     if (!imagePlaceholder){
        imagePlaceholder = document.getElementById(tier + '_imageTask')
@@ -283,20 +341,48 @@ $(document).on('click', '#generate_unofficial', function(){
     const resolvedImageSource = resolveTaskImageSource(data.image);
     image.src = resolvedImageSource;
     imagePreview.src = resolvedImageSource;
+
+    if (completeButton) {
+      const verificationItemIds = Array.isArray(data.verificationItemIds) ? data.verificationItemIds : [];
+      const completedItemIds = Array.isArray(data.completedItemIds) ? data.completedItemIds : [];
+      const relatedCompletedItemIds = Array.isArray(data.relatedCompletedItemIds) ? data.relatedCompletedItemIds : [];
+      completeButton.setAttribute('data-task-name', data.name || '');
+      completeButton.setAttribute('data-task-tip', data.tip || '');
+      completeButton.setAttribute('data-task-wiki-link', data.link || '#');
+      completeButton.setAttribute('data-verification-item-ids', verificationItemIds.join(','));
+      completeButton.setAttribute('data-completed-item-ids', completedItemIds.join(','));
+      completeButton.setAttribute('data-related-completed-item-ids', relatedCompletedItemIds.join(','));
+    }
   });
 });
 
 
 $(document).on('click', '#complete_unofficial', function(){
   $('form').submit(false);
-  tier = this.name
+  const tier = this.name;
+  const completeButton = this;
 
-  req = $.ajax({
-    url : '/complete_unofficial/',
-    type : 'POST',
-    data : {tier : tier + 'Tasks'}
-  });
-  req.done(function(data){
+  const parseItemIds = (rawValue) => {
+    if (!rawValue) {
+      return [];
+    }
+    return rawValue
+      .split(',')
+      .map((value) => parseInt(value.trim(), 10))
+      .filter((value) => !Number.isNaN(value));
+  };
+
+  const submitUnofficialComplete = (selectedCompletedAtISO, selectedItemIds) => {
+    req = $.ajax({
+      url : '/complete_unofficial/',
+      type : 'POST',
+      data : {
+        tier : tier + 'Tasks',
+        completedAtISO: selectedCompletedAtISO,
+        completedItemIds: JSON.stringify(selectedItemIds || []),
+      }
+    });
+    req.done(function(data){
     const updatePercent = document.getElementById(tier + "Percent")
     const task = document.getElementById(tier + "_task");
     const image = document.getElementById(tier + "_image");
@@ -312,7 +398,42 @@ $(document).on('click', '#complete_unofficial', function(){
     image.src = "/static/assets/Cake_of_guidance_detail.png";
     imagePreview.src = "/static/assets/Cake_of_guidance_detail.png";
     updatePercent.innerHTML = data[tier] + '%'
+
+    completeButton.setAttribute('data-task-name', '');
+    completeButton.setAttribute('data-task-tip', '');
+    completeButton.setAttribute('data-task-wiki-link', '#');
+    completeButton.setAttribute('data-verification-item-ids', '');
+    completeButton.setAttribute('data-completed-item-ids', '');
+    completeButton.setAttribute('data-related-completed-item-ids', '');
   });
+  };
+
+  if (document.getElementById('taskActionModal') && typeof openTaskActionModal === 'function') {
+    const taskName = completeButton.getAttribute('data-task-name') || '';
+    const taskTip = completeButton.getAttribute('data-task-tip') || '';
+    const taskWikiLink = completeButton.getAttribute('data-task-wiki-link') || '#';
+    const verificationItemIds = parseItemIds(completeButton.getAttribute('data-verification-item-ids'));
+    const completedItemIds = parseItemIds(completeButton.getAttribute('data-completed-item-ids'));
+    const relatedCompletedItemIds = parseItemIds(completeButton.getAttribute('data-related-completed-item-ids'));
+
+    openTaskActionModal({
+      actionLabel: 'Mark Complete',
+      taskName: taskName,
+      taskTip: taskTip,
+      taskWikiLink: taskWikiLink,
+      itemIds: verificationItemIds,
+      recordedItemIds: completedItemIds,
+      relatedCompletedItemIds: relatedCompletedItemIds,
+      currentCompletedAtISO: null,
+      allowTimeEdit: true,
+      onConfirm: function(selectedCompletedAtISO, selectedItemIds) {
+        submitUnofficialComplete(selectedCompletedAtISO, selectedItemIds);
+      }
+    });
+    return;
+  }
+
+  submitUnofficialComplete(null, []);
 });
 
 $(document).on('click', '#easy_complete', function(){
@@ -446,6 +567,27 @@ function getCompletedItemIds(elementTarget) {
 function getTaskMetaValue(elementTarget, selector) {
   const node = elementTarget.querySelector(selector);
   return node ? node.value : '';
+}
+
+function getRelatedCompletedItemIds(elementTarget, taskName) {
+  if (!taskName) {
+    return [];
+  }
+
+  const allCompletedTaskNodes = document.querySelectorAll('.content-container.revertButton');
+  const aggregatedIds = new Set();
+
+  allCompletedTaskNodes.forEach((taskNode) => {
+    const taskNameNode = taskNode.querySelector('.task-name');
+    if (!taskNameNode || taskNameNode.value !== taskName) {
+      return;
+    }
+
+    const itemIds = getCompletedItemIds(taskNode);
+    itemIds.forEach((itemId) => aggregatedIds.add(itemId));
+  });
+
+  return Array.from(aggregatedIds);
 }
 
 function formatUserDateTime(value) {
@@ -592,14 +734,17 @@ function fetchVerificationItemName(itemId) {
 function openTaskActionModal(options) {
   const {
     actionLabel,
+    secondaryActionLabel,
     taskName,
     taskTip,
     taskWikiLink,
     itemIds,
     recordedItemIds,
+    relatedCompletedItemIds,
     currentCompletedAtISO,
     allowTimeEdit,
     onConfirm,
+    onSecondary,
   } = options;
 
   const modal = document.getElementById('taskActionModal');
@@ -612,6 +757,7 @@ function openTaskActionModal(options) {
   const timeInput = document.getElementById('taskActionTimeInput');
   const confirmButton = document.getElementById('taskActionConfirmButton');
   const backButton = document.getElementById('taskActionBackButton');
+  const footer = confirmButton ? confirmButton.parentElement : null;
 
   if (!modal || !modalTitle || !modalTip || !wikiButton || !progressFill || !progressText || !itemContainer || !timeInput || !confirmButton || !backButton) {
     onConfirm();
@@ -622,6 +768,25 @@ function openTaskActionModal(options) {
   modalTip.textContent = taskTip || '';
   wikiButton.href = taskWikiLink || '#';
   confirmButton.textContent = actionLabel;
+
+  if (footer) {
+    const existingSecondaryButton = document.getElementById('taskActionSecondaryButton');
+    if (existingSecondaryButton) {
+      existingSecondaryButton.remove();
+    }
+    if (secondaryActionLabel && typeof onSecondary === 'function') {
+      const secondaryButton = document.createElement('button');
+      secondaryButton.id = 'taskActionSecondaryButton';
+      secondaryButton.className = 'button-style';
+      secondaryButton.type = 'button';
+      secondaryButton.textContent = secondaryActionLabel;
+      secondaryButton.onclick = () => {
+        closeModal();
+        onSecondary();
+      };
+      footer.appendChild(secondaryButton);
+    }
+  }
 
   progressFill.style.width = '100%';
   progressText.textContent = 'Applicable Items';
@@ -635,6 +800,9 @@ function openTaskActionModal(options) {
     .map((value) => parseInt(value, 10))
     .filter((value) => !Number.isNaN(value))));
   const selectedItemIds = new Set((recordedItemIds || [])
+    .map((value) => parseInt(value, 10))
+    .filter((value) => !Number.isNaN(value) && normalizedItemIds.includes(value)));
+  const relatedCompletedIds = new Set((relatedCompletedItemIds || [])
     .map((value) => parseInt(value, 10))
     .filter((value) => !Number.isNaN(value) && normalizedItemIds.includes(value)));
 
@@ -651,8 +819,10 @@ function openTaskActionModal(options) {
 
     normalizedItemIds.forEach((itemId) => {
       const isRecorded = selectedItemIds.has(itemId);
+      const isRelatedRecorded = relatedCompletedIds.has(itemId);
+      const isObtained = isRecorded || isRelatedRecorded;
       const image = document.createElement('img');
-      image.className = `task-action-item ${isRecorded ? 'task-action-item-active' : 'task-action-item-muted'}`;
+      image.className = `task-action-item ${isObtained ? 'task-action-item-active' : 'task-action-item-muted'} ${isRecorded ? 'task-action-item-selected' : ''}`;
       attachFallbackImage(image, '/static/clog.png');
       image.src = `https://static.runelite.net/cache/item/icon/${itemId}.png`;
       image.alt = `Item ${itemId}`;
@@ -734,6 +904,7 @@ $(document).ready(function(){
     const verificationItemIds = getVerificationItemIds(elementTarget);
     const completedItemIds = getCompletedItemIds(elementTarget);
     const taskName = getTaskMetaValue(elementTarget, '.task-name');
+    const relatedCompletedItemIds = getRelatedCompletedItemIds(elementTarget, taskName);
     const taskTip = getTaskMetaValue(elementTarget, '.task-tip');
     const taskWikiLink = getTaskMetaValue(elementTarget, '.task-wiki-link');
     const timestampNode = elementTarget.querySelector('.task-timestamp');
@@ -746,6 +917,7 @@ $(document).ready(function(){
       taskWikiLink: taskWikiLink,
       itemIds: verificationItemIds,
       recordedItemIds: completedItemIds,
+      relatedCompletedItemIds: relatedCompletedItemIds,
       currentCompletedAtISO: currentCompletedAtISO,
       allowTimeEdit: true,
       onConfirm: function(selectedCompletedAtISO, selectedItemIds) {
@@ -816,21 +988,74 @@ $(document).ready(function(){
     const verificationItemIds = getVerificationItemIds(elementTarget);
     const completedItemIds = getCompletedItemIds(elementTarget);
     const taskName = getTaskMetaValue(elementTarget, '.task-name');
+    const relatedCompletedItemIds = getRelatedCompletedItemIds(elementTarget, taskName);
     const taskTip = getTaskMetaValue(elementTarget, '.task-tip');
     const taskWikiLink = getTaskMetaValue(elementTarget, '.task-wiki-link');
     const timestampNode = elementTarget.querySelector('.task-timestamp');
     const currentCompletedAtISO = timestampNode ? timestampNode.getAttribute('data-completed-at') : null;
 
     openTaskActionModal({
-      actionLabel: 'Mark Incomplete',
+      actionLabel: 'Update Completion',
+      secondaryActionLabel: 'Mark Incomplete',
       taskName: taskName,
       taskTip: taskTip,
       taskWikiLink: taskWikiLink,
       itemIds: verificationItemIds,
       recordedItemIds: completedItemIds,
+      relatedCompletedItemIds: relatedCompletedItemIds,
       currentCompletedAtISO: currentCompletedAtISO,
-      allowTimeEdit: false,
-      onConfirm: function() {
+      allowTimeEdit: true,
+      onConfirm: function(selectedCompletedAtISO, selectedItemIds) {
+      $('form').submit(false);
+      req = $.ajax({
+        url :  '/update_completed/',
+        type : 'POST',
+        data : {
+          id : elementTarget.id,
+          tier : tier,
+          completedAtISO: selectedCompletedAtISO,
+          completedItemIds: JSON.stringify(selectedItemIds || []),
+        }
+      });
+
+      req.done(function(data){
+        $(elementTarget).fadeOut(1000).fadeIn(1000);
+        $(elementTarget).removeClass('updateButton').addClass('revertButton');
+        $(parent).removeClass('incomplete-hover').addClass('complete-hover');
+        parent.setAttribute('data-tooltip', 'Mark Incomplete');
+        const taskTextNodes = elementTarget.getElementsByTagName('p');
+        if (taskTextNodes.length > 1) {
+          taskTextNodes[1].textContent = formatUserDateTime(data.completedAtISO);
+          taskTextNodes[1].setAttribute('data-completed-at', data.completedAtISO || '');
+        }
+        const completedIdsNode = elementTarget.querySelector('.completed-item-ids');
+        if (completedIdsNode) {
+          const returnedIds = Array.isArray(data.completedItemIds) ? data.completedItemIds : [];
+          completedIdsNode.value = returnedIds.join(',');
+        }
+        if (tier === 'bossPets' || tier === 'skillPets' || tier === 'otherPets'){
+          updatePercent.innerHTML = data["allPets"] + '%';
+        }
+        else {
+          updatePercent.innerHTML = data[tier] + '%';
+        }
+
+        for (const child of elementTarget.children) {
+          if (child.tagName === 'DIV') {
+            $(child).addClass('square-complete');
+            $(child).removeClass('square-incomplete');
+          }
+
+          if (child.tagName === 'P'){
+            $(child).addClass('complete');
+            $(child).removeClass('incomplete');
+          }
+        }
+
+      });
+      }
+      ,
+      onSecondary: function() {
       $('form').submit(false);
       req = $.ajax({
         url :  '/revert_completed/',
@@ -848,11 +1073,14 @@ $(document).ready(function(){
           taskTextNodes[1].textContent = '--/--/---- --:--';
           taskTextNodes[1].setAttribute('data-completed-at', '');
         }
+        const completedIdsNode = elementTarget.querySelector('.completed-item-ids');
+        if (completedIdsNode) {
+          completedIdsNode.value = '';
+        }
         if (tier === 'bossPets' || tier === 'skillPets' || tier === 'otherPets'){
           updatePercent.innerHTML = data["allPets"] + '%';
         }
         else {
-          console.log(tier)
           updatePercent.innerHTML = data[tier] + '%';
         }
 
