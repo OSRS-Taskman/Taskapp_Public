@@ -564,6 +564,17 @@ function getCompletedItemIds(elementTarget) {
     .filter((value) => !Number.isNaN(value));
 }
 
+function getSelectedItemIds(elementTarget) {
+  const hiddenInput = elementTarget.querySelector('.selected-item-ids');
+  if (!hiddenInput || !hiddenInput.value) {
+    return [];
+  }
+  return hiddenInput.value
+    .split(',')
+    .map((value) => parseInt(value.trim(), 10))
+    .filter((value) => !Number.isNaN(value));
+}
+
 function getTaskMetaValue(elementTarget, selector) {
   const node = elementTarget.querySelector(selector);
   return node ? node.value : '';
@@ -574,17 +585,26 @@ function getRelatedCompletedItemIds(elementTarget, taskName) {
     return [];
   }
 
-  const allCompletedTaskNodes = document.querySelectorAll('.content-container.revertButton');
-  const aggregatedIds = new Set();
+  const currentTaskRecordedIds = new Set(getSelectedItemIds(elementTarget));
+  const allTaskNodes = document.querySelectorAll('.content-container');
+  const aggregatedIds = new Set(getCompletedItemIds(elementTarget));
 
-  allCompletedTaskNodes.forEach((taskNode) => {
+  allTaskNodes.forEach((taskNode) => {
+    if (taskNode === elementTarget) {
+      return;
+    }
+
     const taskNameNode = taskNode.querySelector('.task-name');
     if (!taskNameNode || taskNameNode.value !== taskName) {
       return;
     }
 
     const itemIds = getCompletedItemIds(taskNode);
-    itemIds.forEach((itemId) => aggregatedIds.add(itemId));
+    itemIds.forEach((itemId) => {
+      if (!currentTaskRecordedIds.has(itemId)) {
+        aggregatedIds.add(itemId);
+      }
+    });
   });
 
   return Array.from(aggregatedIds);
@@ -820,9 +840,10 @@ function openTaskActionModal(options) {
     normalizedItemIds.forEach((itemId) => {
       const isRecorded = selectedItemIds.has(itemId);
       const isRelatedRecorded = relatedCompletedIds.has(itemId);
-      const isObtained = isRecorded || isRelatedRecorded;
+      const isRelatedOnly = !isRecorded && isRelatedRecorded;
+      const isObtained = isRecorded || isRelatedOnly;
       const image = document.createElement('img');
-      image.className = `task-action-item ${isObtained ? 'task-action-item-active' : 'task-action-item-muted'} ${isRecorded ? 'task-action-item-selected' : ''}`;
+      image.className = `task-action-item ${isObtained ? '' : 'task-action-item-muted'} ${isRelatedOnly ? 'task-action-item-active' : ''} ${isRecorded ? 'task-action-item-selected' : ''}`;
       attachFallbackImage(image, '/static/clog.png');
       image.src = `https://static.runelite.net/cache/item/icon/${itemId}.png`;
       image.alt = `Item ${itemId}`;
@@ -902,7 +923,7 @@ $(document).ready(function(){
     var elementTarget = this;
     var parent = elementTarget.parentElement;
     const verificationItemIds = getVerificationItemIds(elementTarget);
-    const completedItemIds = getCompletedItemIds(elementTarget);
+    const completedItemIds = getSelectedItemIds(elementTarget);
     const taskName = getTaskMetaValue(elementTarget, '.task-name');
     const relatedCompletedItemIds = getRelatedCompletedItemIds(elementTarget, taskName);
     const taskTip = getTaskMetaValue(elementTarget, '.task-tip');
@@ -943,10 +964,17 @@ $(document).ready(function(){
           taskTextNodes[1].textContent = formatUserDateTime(data.completedAtISO);
           taskTextNodes[1].setAttribute('data-completed-at', data.completedAtISO || '');
         }
-        const completedIdsNode = elementTarget.querySelector('.completed-item-ids');
-        if (completedIdsNode) {
+        const selectedIdsNode = elementTarget.querySelector('.selected-item-ids');
+        if (selectedIdsNode) {
           const returnedIds = Array.isArray(data.completedItemIds) ? data.completedItemIds : [];
-          completedIdsNode.value = returnedIds.join(',');
+          selectedIdsNode.value = returnedIds.join(',');
+        }
+        const relatedIdsNode = elementTarget.querySelector('.completed-item-ids');
+        if (relatedIdsNode) {
+          const existingRelatedIds = getCompletedItemIds(elementTarget);
+          const returnedIds = Array.isArray(data.completedItemIds) ? data.completedItemIds : [];
+          const mergedIds = Array.from(new Set(existingRelatedIds.concat(returnedIds))).sort((a, b) => a - b);
+          relatedIdsNode.value = mergedIds.join(',');
         }
         if (tier === 'bossPets' || tier === 'skillPets' || tier === 'otherPets'){
           updatePercent.innerHTML = data["allPets"] + '%';
@@ -986,7 +1014,7 @@ $(document).ready(function(){
     var elementTarget = this;
     var parent = elementTarget.parentElement;
     const verificationItemIds = getVerificationItemIds(elementTarget);
-    const completedItemIds = getCompletedItemIds(elementTarget);
+    const completedItemIds = getSelectedItemIds(elementTarget);
     const taskName = getTaskMetaValue(elementTarget, '.task-name');
     const relatedCompletedItemIds = getRelatedCompletedItemIds(elementTarget, taskName);
     const taskTip = getTaskMetaValue(elementTarget, '.task-tip');
@@ -1028,10 +1056,10 @@ $(document).ready(function(){
           taskTextNodes[1].textContent = formatUserDateTime(data.completedAtISO);
           taskTextNodes[1].setAttribute('data-completed-at', data.completedAtISO || '');
         }
-        const completedIdsNode = elementTarget.querySelector('.completed-item-ids');
-        if (completedIdsNode) {
+        const selectedIdsNode = elementTarget.querySelector('.selected-item-ids');
+        if (selectedIdsNode) {
           const returnedIds = Array.isArray(data.completedItemIds) ? data.completedItemIds : [];
-          completedIdsNode.value = returnedIds.join(',');
+          selectedIdsNode.value = returnedIds.join(',');
         }
         if (tier === 'bossPets' || tier === 'skillPets' || tier === 'otherPets'){
           updatePercent.innerHTML = data["allPets"] + '%';
@@ -1073,9 +1101,9 @@ $(document).ready(function(){
           taskTextNodes[1].textContent = '--/--/---- --:--';
           taskTextNodes[1].setAttribute('data-completed-at', '');
         }
-        const completedIdsNode = elementTarget.querySelector('.completed-item-ids');
-        if (completedIdsNode) {
-          completedIdsNode.value = '';
+        const selectedIdsNode = elementTarget.querySelector('.selected-item-ids');
+        if (selectedIdsNode) {
+          selectedIdsNode.value = '';
         }
         if (tier === 'bossPets' || tier === 'skillPets' || tier === 'otherPets'){
           updatePercent.innerHTML = data["allPets"] + '%';

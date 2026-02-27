@@ -47,7 +47,8 @@
                                             {% if task.verification_item_ids %}
                                             <input type="hidden" class="verification-item-ids" value="{{task.verification_item_ids|join(',')}}">
                                             {% endif %}
-                                            <input type="hidden" class="completed-item-ids" value="{{task.completed_item_ids|join(',')}}">
+                                            <input type="hidden" class="completed-item-ids" value="{{task.related_item_ids|join(',')}}">
+                                            <input type="hidden" class="selected-item-ids" value="{{task.completed_item_ids|join(',')}}">
                                             <input type="hidden" class="task-tip" value="{{task.tip or ''}}">
                                             <input type="hidden" class="task-name" value="{{task.name}}">
                                             <input type="hidden" class="task-wiki-link" value="{{task.wiki_link}}">
@@ -110,7 +111,8 @@
                                 {% if task.verification_item_ids %}
                                 <input type="hidden" class="verification-item-ids" value="{{task.verification_item_ids|join(',')}}">
                                 {% endif %}
-                                <input type="hidden" class="completed-item-ids" value="{{task.completed_item_ids|join(',')}}">
+                                <input type="hidden" class="completed-item-ids" value="{{task.related_item_ids|join(',')}}">
+                                <input type="hidden" class="selected-item-ids" value="{{task.completed_item_ids|join(',')}}">
                                 <input type="hidden" class="task-tip" value="{{task.tip or ''}}">
                                 <input type="hidden" class="task-name" value="{{task.name}}">
                                 <input type="hidden" class="task-wiki-link" value="{{task.wiki_link}}">

@@ -796,6 +796,10 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
                 if task_id in tier_date_map:
                     imported_task['completedDate'] = tier_date_map[task_id]
 
+    for tier_tasks in all_tasks:
+        for imported_task in tier_tasks:
+            imported_task['completedItemIds'] = []
+
     imported_recorded_easy = sanitize_recorded_map(recorded_item_ids_by_tier.get('easy', {}))
     imported_recorded_medium = sanitize_recorded_map(recorded_item_ids_by_tier.get('medium', {}))
     imported_recorded_hard = sanitize_recorded_map(recorded_item_ids_by_tier.get('hard', {}))

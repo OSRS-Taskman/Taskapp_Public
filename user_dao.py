@@ -138,7 +138,8 @@ class UserDatabaseObject:
         def page_task(task: TaskData):
             completed_task = completed_task_lookup.get(task.id)
             completed_date = completed_task.completed_date if completed_task is not None else None
-            completed_item_ids = recorded_item_ids_by_task.get(task.id, [])
+            related_item_ids = recorded_item_ids_by_task.get(task.id, [])
+            completed_item_ids = []
             if completed_task is not None and completed_task.completed_item_ids:
                 completed_item_ids = completed_task.completed_item_ids
             verification_item_ids = []
@@ -153,9 +154,39 @@ class UserDatabaseObject:
                             completed_date_iso=completed_date_to_iso(completed_date),
                             verification_item_ids=verification_item_ids,
                             verification_required_count=verification_required_count,
+                            related_item_ids=related_item_ids,
                             completed_item_ids=completed_item_ids)
 
-        return list(map(page_task, tasklists.list_for_tier(tier, self.lms_enabled)))
+        tier_tasks = list(map(page_task, tasklists.list_for_tier(tier, self.lms_enabled)))
+
+        tasks_by_name: dict[str, list[PageTask]] = {}
+        ordered_names: list[str] = []
+        for task in tier_tasks:
+            if task.name not in tasks_by_name:
+                tasks_by_name[task.name] = []
+                ordered_names.append(task.name)
+            tasks_by_name[task.name].append(task)
+
+        def status_sort_key(task: PageTask, has_current_for_name: bool) -> int:
+            if has_current_for_name:
+                if task.is_current:
+                    return 0
+                if task.is_completed:
+                    return 1
+                return 2
+
+            if task.is_completed:
+                return 0
+            return 1
+
+        ordered_tasks: list[PageTask] = []
+        for task_name in ordered_names:
+            grouped_tasks = tasks_by_name[task_name]
+            has_current_for_name = any(task.is_current for task in grouped_tasks)
+            grouped_tasks = sorted(grouped_tasks, key=lambda task: status_sort_key(task, has_current_for_name))
+            ordered_tasks.extend(grouped_tasks)
+
+        return ordered_tasks
 
 
 def task_info_for_id(task_list: list[TaskData], task_id: str) -> tasklists.TaskData:
