@@ -56,6 +56,7 @@ class PageTask:
                  completed_date = None, completed_date_iso: str = None,
                  verification_item_ids: list[int] = None,
                  verification_required_count: int = None,
+                 related_item_ids: list[int] = None,
                  completed_item_ids: list[int] = None):
         self.name = task_data.name
         self.is_completed = is_completed
@@ -68,6 +69,7 @@ class PageTask:
         self.completed_date_iso = completed_date_iso
         self.verification_item_ids = verification_item_ids or []
         self.verification_required_count = verification_required_count
+        self.related_item_ids = related_item_ids or []
         self.completed_item_ids = completed_item_ids or []
 
 @dataclass
