@@ -42,7 +42,7 @@ def temple_player_data(username: str):
 #     return completed_tasks
 
 
-def check_logs(username: str, site_tasks: list["TaskData"], action: str):
+def import_logs(username: str, site_tasks: list["TaskData"], action: str):
     def find_by_id(items, target_id):
         return [item for item in items if int(item['id']) == target_id]
     def parse_completed_date(value):
@@ -135,5 +135,42 @@ def check_logs(username: str, site_tasks: list["TaskData"], action: str):
         return format_completed_tasks(completed_tasks)
 
 
+def check_logs(username: str, site_tasks: list["TaskData"], action: str):
+    def find_by_id(items, target_id):
+        return [item for item in items if int(item['id']) == target_id]
+    def format_completed_tasks(completed_tasks: set):
+        formatted_tasks = []
+        for task_id in completed_tasks:
+            formatted_tasks.append({
+                'id' : task_id
+            })
+        return formatted_tasks
+
+    cleaned_player_data = temple_player_data(username)
+    missing_tasks = list()
+    completed_tasks = set()
+    for task in site_tasks:
+        verification_data = task.verification
+        if not isinstance(verification_data, CollectionLogVerificationData):
+            continue
+
+        log_count = 0
+        for item_id in verification_data.item_ids:
+            # print(f"Checking item: {item['name']} with ID: {item['id']}")
+            if find_by_id(cleaned_player_data, item_id):
+                log_count += 1
+
+        if log_count >= verification_data.count:
+            completed_tasks.add(task.id)
+        else:
+            missing_tasks.append(task.name)
+
+    if action == 'check':
+        return missing_tasks
+    else:
+        sorted_completed_tasks = sorted(completed_tasks)
+        # print(sorted_completed_tasks)
+        return format_completed_tasks(sorted_completed_tasks)
+
 if __name__ == "__main__":
-    check_logs('Gerni Task', tasklists.list_for_tier('easy'), 'check')
+    print(check_logs('Gerni Task', tasklists.list_for_tier('elite'), 'check'))

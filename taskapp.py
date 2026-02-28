@@ -15,7 +15,7 @@ from task_database import (get_taskCurrent, generate_task, complete_task, get_ta
                            complete_task_unofficial_tier, get_user, get_leaderboard,
                            get_roll_candidates_for_tier)
 import send_grid_email
-from templesync import check_logs, temple_player_data
+from templesync import check_logs, temple_player_data, import_logs
 from task_types import CollectionLogVerificationData
 
 app = Flask(__name__)
@@ -569,10 +569,10 @@ def collection_log_import():
     rs_username = form_data['username']
     overwrite_temple_timestamps_raw = form_data.get('overwriteTempleTimestamps', 'true')
     overwrite_temple_timestamps = str(overwrite_temple_timestamps_raw).lower() == 'true'
-    easy_import_result = check_logs(rs_username, tasklists.list_for_tier('easy'), 'import-recorded')
-    medium_import_result = check_logs(rs_username, tasklists.list_for_tier('medium'), 'import-recorded')
-    hard_import_result = check_logs(rs_username, tasklists.list_for_tier('hard'), 'import-recorded')
-    elite_import_result = check_logs(rs_username, tasklists.list_for_tier('elite'), 'import-recorded')
+    easy_import_result = import_logs(rs_username, tasklists.list_for_tier('easy'), 'import-recorded')
+    medium_import_result = import_logs(rs_username, tasklists.list_for_tier('medium'), 'import-recorded')
+    hard_import_result = import_logs(rs_username, tasklists.list_for_tier('hard'), 'import-recorded')
+    elite_import_result = import_logs(rs_username, tasklists.list_for_tier('elite'), 'import-recorded')
     easy_import = easy_import_result.get('completedTasks', [])
     medium_import = medium_import_result.get('completedTasks', [])
     hard_import = hard_import_result.get('completedTasks', [])
