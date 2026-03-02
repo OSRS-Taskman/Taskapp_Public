@@ -573,16 +573,22 @@ def collection_log_import():
     medium_import_result = import_logs(rs_username, tasklists.list_for_tier('medium'), 'import-recorded')
     hard_import_result = import_logs(rs_username, tasklists.list_for_tier('hard'), 'import-recorded')
     elite_import_result = import_logs(rs_username, tasklists.list_for_tier('elite'), 'import-recorded')
+    master_import_result = import_logs(rs_username, tasklists.list_for_tier('master'), 'import-recorded')
+    pets_import_result = import_logs(rs_username, tasklists.list_for_tier('pets'), 'import-recorded')
     easy_import = easy_import_result.get('completedTasks', [])
     medium_import = medium_import_result.get('completedTasks', [])
     hard_import = hard_import_result.get('completedTasks', [])
     elite_import = elite_import_result.get('completedTasks', [])
-    all_tasks = [easy_import, medium_import, hard_import, elite_import]
+    master_import = master_import_result.get('completedTasks', [])
+    pets_import = pets_import_result.get('completedTasks', [])
+    all_tasks = [easy_import, medium_import, hard_import, elite_import, master_import, pets_import]
     recorded_item_ids_by_tier = {
         'easy': easy_import_result.get('recordedItemIdsByTask', {}),
         'medium': medium_import_result.get('recordedItemIdsByTask', {}),
         'hard': hard_import_result.get('recordedItemIdsByTask', {}),
         'elite': elite_import_result.get('recordedItemIdsByTask', {}),
+        'master': master_import_result.get('recordedItemIdsByTask', {}),
+        'pets': pets_import_result.get('recordedItemIdsByTask', {}),
     }
     update = update_imported_tasks(
         session['username'],
@@ -597,7 +603,9 @@ def collection_log_import():
                             easy = len(easy_import),
                             medium = len(medium_import),
                             hard = len(hard_import),
-                            elite = len(elite_import))
+                            elite = len(elite_import),
+                            master = len(master_import),
+                            pets = len(pets_import))
 
 # AJAX route for generating a task.
 @app.route('/generate/', methods=['POST'])

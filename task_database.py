@@ -94,15 +94,17 @@ def add_task_account(username, is_official, lms_enabled):
         "username": str(username),
         "isOfficial": bool(is_official),
         "lmsEnabled": bool(lms_enabled),
+        "completedTasks": [],
+        "recordedItemIdsByTask": {},
         'tiers': {
-            'easy': {"completedTasks" : []},
-            'medium': {"completedTasks" : []},
-            'hard': {"completedTasks" : []},
-            'elite': {"completedTasks" : []},
-            'master' : {"completedTasks" : []},
-            'passive': {"completedTasks" : []},
-            'extra': {"completedTasks" : []},
-            'pets': {"completedTasks" : []},
+            'easy': {},
+            'medium': {},
+            'hard': {},
+            'elite': {},
+            'master' : {},
+            'passive': {},
+            'extra': {},
+            'pets': {},
         }
     })
 
@@ -280,7 +282,6 @@ def __set_task_complete(username: str, tier: str, task_id: str, complete: bool,
                         completed_at_iso: str | None = None,
                         completed_item_ids: list[int] | None = None):
     task_coll = mydb['taskLists']
-    cleaned_tier = tier.replace("Tasks", "")
     if complete:
         completed_date = __parse_completed_iso(completed_at_iso) or datetime.now(timezone.utc)
         safe_completed_item_ids = __sanitize_item_ids(completed_item_ids)
@@ -288,7 +289,7 @@ def __set_task_complete(username: str, tier: str, task_id: str, complete: bool,
             {"username": username},
             {
                 "$pull": {
-                    f"tiers.{cleaned_tier}.completedTasks": {
+                    "completedTasks": {
                         "id": task_id
                     }
                 }
@@ -298,10 +299,10 @@ def __set_task_complete(username: str, tier: str, task_id: str, complete: bool,
             {"username": username},
             {
                 "$push": {
-                    f"tiers.{cleaned_tier}.completedTasks": {
+                    "completedTasks": {
                         "id": task_id,
                         "completedDate": completed_date,
-                        "completedItemIds": safe_completed_item_ids
+                        "retainedItemIds": safe_completed_item_ids
                     }
                 }
             }
@@ -310,7 +311,7 @@ def __set_task_complete(username: str, tier: str, task_id: str, complete: bool,
             {"username": username},
             {
                 "$set": {
-                    f"tiers.{cleaned_tier}.recordedItemIdsByTask.{task_id}": safe_completed_item_ids
+                    f"recordedItemIdsByTask.{task_id}": safe_completed_item_ids
                 }
             }
         )
@@ -322,7 +323,7 @@ def __set_task_complete(username: str, tier: str, task_id: str, complete: bool,
             },
             {
                 "$pull" : {
-                    f"tiers.{cleaned_tier}.completedTasks" : {"id" : task_id}
+                    "completedTasks" : {"id" : task_id}
                 }
             })
     return None, []
@@ -742,6 +743,8 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
 
     diaries = coll.find_one({'username': username}, {
         '_id': 0,
+        'completedTasks': 1,
+        'recordedItemIdsByTask': 1,
         'tiers.easy.completedTasks': 1,
         'tiers.medium.completedTasks': 1,
         'tiers.hard.completedTasks': 1,
@@ -752,21 +755,73 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
         'tiers.elite.recordedItemIdsByTask': 1,
     })
 
+    if not diaries:
+        return
+
     def sanitize_recorded_map(value):
         if not isinstance(value, dict):
             return {}
         return {str(task_id): __sanitize_item_ids(item_ids) for task_id, item_ids in value.items()}
 
-    existing_recorded_easy = sanitize_recorded_map(diaries['tiers']['easy'].get('recordedItemIdsByTask', {}))
-    existing_recorded_medium = sanitize_recorded_map(diaries['tiers']['medium'].get('recordedItemIdsByTask', {}))
-    existing_recorded_hard = sanitize_recorded_map(diaries['tiers']['hard'].get('recordedItemIdsByTask', {}))
-    existing_recorded_elite = sanitize_recorded_map(diaries['tiers']['elite'].get('recordedItemIdsByTask', {}))
+    tiers_data = diaries.get('tiers', {}) if isinstance(diaries.get('tiers', {}), dict) else {}
 
-    def existing_completed_date_map(completed_tasks):
-        output = {}
-        for entry in completed_tasks:
+    existing_root_recorded = sanitize_recorded_map(diaries.get('recordedItemIdsByTask', {}))
+
+    existing_recorded_easy = sanitize_recorded_map(tiers_data.get('easy', {}).get('recordedItemIdsByTask', {}))
+    existing_recorded_medium = sanitize_recorded_map(tiers_data.get('medium', {}).get('recordedItemIdsByTask', {}))
+    existing_recorded_hard = sanitize_recorded_map(tiers_data.get('hard', {}).get('recordedItemIdsByTask', {}))
+    existing_recorded_elite = sanitize_recorded_map(tiers_data.get('elite', {}).get('recordedItemIdsByTask', {}))
+    if not existing_root_recorded:
+        existing_root_recorded = {
+            **existing_recorded_easy,
+            **existing_recorded_medium,
+            **existing_recorded_hard,
+            **existing_recorded_elite,
+        }
+
+    lms_enabled = get_user(username).lms_enabled
+    tier_task_ids = {
+        'easy': {task.id for task in tasklists.list_for_tier('easy', lms_enabled)},
+        'medium': {task.id for task in tasklists.list_for_tier('medium', lms_enabled)},
+        'hard': {task.id for task in tasklists.list_for_tier('hard', lms_enabled)},
+        'elite': {task.id for task in tasklists.list_for_tier('elite', lms_enabled)},
+    }
+
+    def normalize_completed_entries(value):
+        if not isinstance(value, list):
+            return []
+        output = []
+        for entry in value:
+            if not isinstance(entry, dict):
+                continue
             task_id = entry.get('id')
             if not task_id:
+                continue
+            retained_item_ids = entry.get('retainedItemIds')
+            if retained_item_ids is None:
+                retained_item_ids = entry.get('completedItemIds', [])
+            output.append({
+                'id': str(task_id),
+                'completedDate': entry.get('completedDate'),
+                'retainedItemIds': __sanitize_item_ids(retained_item_ids),
+            })
+        return output
+
+    existing_root_completed = normalize_completed_entries(diaries.get('completedTasks', []))
+    if not existing_root_completed:
+        existing_root_completed = (
+            normalize_completed_entries(tiers_data.get('easy', {}).get('completedTasks', [])) +
+            normalize_completed_entries(tiers_data.get('medium', {}).get('completedTasks', [])) +
+            normalize_completed_entries(tiers_data.get('hard', {}).get('completedTasks', [])) +
+            normalize_completed_entries(tiers_data.get('elite', {}).get('completedTasks', []))
+        )
+
+    def existing_completed_date_map(tier_name):
+        output = {}
+        valid_ids = tier_task_ids[tier_name]
+        for entry in existing_root_completed:
+            task_id = entry.get('id')
+            if not task_id or task_id not in valid_ids:
                 continue
             completed_date = entry.get('completedDate')
             if completed_date is None:
@@ -776,10 +831,10 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
                 output[task_id] = normalized_date
         return output
 
-    existing_completed_dates_easy = existing_completed_date_map(diaries['tiers']['easy'].get('completedTasks', []))
-    existing_completed_dates_medium = existing_completed_date_map(diaries['tiers']['medium'].get('completedTasks', []))
-    existing_completed_dates_hard = existing_completed_date_map(diaries['tiers']['hard'].get('completedTasks', []))
-    existing_completed_dates_elite = existing_completed_date_map(diaries['tiers']['elite'].get('completedTasks', []))
+    existing_completed_dates_easy = existing_completed_date_map('easy')
+    existing_completed_dates_medium = existing_completed_date_map('medium')
+    existing_completed_dates_hard = existing_completed_date_map('hard')
+    existing_completed_dates_elite = existing_completed_date_map('elite')
 
     if overwrite_temple_timestamps:
         tier_existing_dates = [
@@ -805,36 +860,50 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
     imported_recorded_hard = sanitize_recorded_map(recorded_item_ids_by_tier.get('hard', {}))
     imported_recorded_elite = sanitize_recorded_map(recorded_item_ids_by_tier.get('elite', {}))
 
-    merged_recorded_easy = {**existing_recorded_easy, **imported_recorded_easy}
-    merged_recorded_medium = {**existing_recorded_medium, **imported_recorded_medium}
-    merged_recorded_hard = {**existing_recorded_hard, **imported_recorded_hard}
-    merged_recorded_elite = {**existing_recorded_elite, **imported_recorded_elite}
+    merged_root_recorded = {
+        **existing_root_recorded,
+        **imported_recorded_easy,
+        **imported_recorded_medium,
+        **imported_recorded_hard,
+        **imported_recorded_elite,
+    }
+
+    imported_root_completed = []
+    for tier_tasks in all_tasks:
+        for imported_task in tier_tasks:
+            task_id = imported_task.get('id')
+            if not task_id:
+                continue
+            imported_root_completed.append({
+                'id': str(task_id),
+                'completedDate': imported_task.get('completedDate'),
+                'retainedItemIds': [],
+            })
+
+    import_tier_task_ids = set().union(
+        tier_task_ids['easy'],
+        tier_task_ids['medium'],
+        tier_task_ids['hard'],
+        tier_task_ids['elite'],
+    )
+
+    preserved_non_import_entries = []
+    for entry in existing_root_completed:
+        if entry['id'] not in import_tier_task_ids:
+            preserved_non_import_entries.append(entry)
+
+    merged_root_completed = preserved_non_import_entries + imported_root_completed
 
     coll.update_one({'username': username}, {
         '$set': {
-            'tiers.easy.completedTasks': [],
-            'tiers.medium.completedTasks': [],
-            'tiers.hard.completedTasks': [],
-            'tiers.elite.completedTasks': [],
-        }
-    })
-
-    coll.update_one({'username': username}, {
-        '$set': {
-            'tiers.easy.completedTasks': all_tasks[0],
-            'tiers.medium.completedTasks': all_tasks[1],
-            'tiers.hard.completedTasks': all_tasks[2],
-            'tiers.elite.completedTasks': all_tasks[3],
-            'tiers.easy.recordedItemIdsByTask': merged_recorded_easy,
-            'tiers.medium.recordedItemIdsByTask': merged_recorded_medium,
-            'tiers.hard.recordedItemIdsByTask': merged_recorded_hard,
-            'tiers.elite.recordedItemIdsByTask': merged_recorded_elite,
+            'completedTasks': merged_root_completed,
+            'recordedItemIdsByTask': merged_root_recorded,
         }
     })
 
     coll.update_one({'username': username}, {'$set': {'ign': username2}})
 
-    for diary in diaries['tiers']['easy']['completedTasks']:
+    for diary in existing_root_completed:
         if diary['id'] in easy_diaries:
             __set_task_complete(
                 username,
@@ -842,10 +911,10 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
                 diary['id'],
                 True,
                 __datetime_to_iso(diary.get('completedDate')),
-                diary.get('completedItemIds', []),
+                diary.get('retainedItemIds', []),
             )
 
-    for diary in diaries['tiers']['medium']['completedTasks']:
+    for diary in existing_root_completed:
         if diary['id'] in medium_diaries:
             __set_task_complete(
                 username,
@@ -853,10 +922,10 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
                 diary['id'],
                 True,
                 __datetime_to_iso(diary.get('completedDate')),
-                diary.get('completedItemIds', []),
+                diary.get('retainedItemIds', []),
             )
 
-    for diary in diaries['tiers']['hard']['completedTasks']:
+    for diary in existing_root_completed:
         if diary['id'] in hard_diaries:
             __set_task_complete(
                 username,
@@ -864,10 +933,10 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
                 diary['id'],
                 True,
                 __datetime_to_iso(diary.get('completedDate')),
-                diary.get('completedItemIds', []),
+                diary.get('retainedItemIds', []),
             )
 
-    for diary in diaries['tiers']['elite']['completedTasks']:
+    for diary in existing_root_completed:
         if diary['id'] in elite_diaries:
             __set_task_complete(
                 username,
@@ -875,7 +944,7 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
                 diary['id'],
                 True,
                 __datetime_to_iso(diary.get('completedDate')),
-                diary.get('completedItemIds', []),
+                diary.get('retainedItemIds', []),
             )
 
 
