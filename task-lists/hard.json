@@ -484,9 +484,9 @@
 			}
 		},
 		{
-			"id": "7b7cdd22-a115-4291-bdbc-fa6a04bd1bdf",
+			"id": "b890a852-597e-4cb1-9bee-0d472977278a",
 			"name": "Get a new boss pet",
-			"tip": "Can be obtained rarely, from any boss. Advised to go for the Chaos Elemental Pet as the drop rate is much lowered compared to the other bosses.",
+			"tip": "If doing this task actively, you must go first for Beef and then Pet chaos elemental. After you have both, you can pick the boss you prefer.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Pet",
 			"imageLink": "https://oldschool.runescape.wiki/images/f/f4/Olmlet.png",
 			"displayItemId": 20851,
@@ -497,9 +497,9 @@
 					12653, 12655, 12816, 12921, 13177, 13178, 13179, 13181, 13225, 13247, 13262,
 					20851, 21273, 21291, 21748, 21992, 22473, 22746, 23495, 23757, 24491, 26348,
 					27352, 27590, 28246, 28248, 28250, 28252, 28801, 28960, 29836, 30152, 30154,
-					30622, 30888, 31130, 31285
+					30622, 30888, 31130, 31285, 33124
 				],
-				"count": 1
+				"count": 2
 			}
 		},
 		{

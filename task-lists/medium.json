@@ -2865,6 +2865,25 @@
 				"itemIds": [ 33074 ],
 				"count": 1
 			}
+		},
+		{
+			"id": "7b7cdd22-a115-4291-bdbc-fa6a04bd1bdf",
+			"name": "Get a new boss pet",
+			"tip": "If doing this task actively, you must go first for Beef.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Pet",
+			"imageLink": "https://oldschool.runescape.wiki/images/f/f4/Olmlet.png",
+			"displayItemId": 20851,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					11995, 12643, 12644, 12645, 12646, 12647, 12648, 12649, 12650, 12651, 12652,
+					12653, 12655, 12816, 12921, 13177, 13178, 13179, 13181, 13225, 13247, 13262,
+					20851, 21273, 21291, 21748, 21992, 22473, 22746, 23495, 23757, 24491, 26348,
+					27352, 27590, 28246, 28248, 28250, 28252, 28801, 28960, 29836, 30152, 30154,
+					30622, 30888, 31130, 31285, 33124
+				],
+				"count": 1
+			}
 		}
 	]
 }

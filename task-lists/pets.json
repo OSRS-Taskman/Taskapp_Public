@@ -810,13 +810,26 @@
 		{
 			"id": "fea72f44-d76b-412e-a5dc-c4688aa9f6d4",
 			"name": "Soup",
-			"tip": "Can be obtained while training Sailing",
+			"tip": "Can be obtained while training Sailing.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Soup",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Soup_detail.png/320px-Soup_detail.png",
 			"displayItemId": 31283,
 			"verification": {
 				"method": "collection-log",
 				"itemIds": [ 31283 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "1dd7faa7-39b4-440b-86c6-6025566642c3",
+			"name": "Beef",
+			"tip": "Can be obtained by defeating Brutus.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Beef",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Beef_detail.png/320px-Beef_detail.png",
+			"displayItemId": 33124,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 33124 ],
 				"count": 1
 			}
 		}
