@@ -212,38 +212,79 @@ Returns:
 
 def convert_database_user(user_data: dict) -> UserDatabaseObject:
     tiers = user_data['tiers']
+    lms_enabled = user_data.get('lmsEnabled', False)
+
+    def to_item_ids(value) -> list[int]:
+        if not isinstance(value, list):
+            return []
+        output = []
+        for item in value:
+            try:
+                output.append(int(item))
+            except (TypeError, ValueError):
+                continue
+        return output
+
+    def normalize_completed_task(value: dict) -> UserCompletedTask | None:
+        if not isinstance(value, dict):
+            return None
+        task_id = value.get('id')
+        if not task_id:
+            return None
+        retained_item_ids = value.get('retainedItemIds')
+        if retained_item_ids is None:
+            retained_item_ids = value.get('completedItemIds', [])
+        return UserCompletedTask(
+            id=str(task_id),
+            assigned_date=value.get('assignedDate'),
+            completed_date=value.get('completedDate'),
+            completed_item_ids=to_item_ids(retained_item_ids),
+        )
+
+    root_completed_tasks: list[UserCompletedTask] = []
+    for entry in user_data.get('completedTasks', []):
+        normalized = normalize_completed_task(entry)
+        if normalized is not None:
+            root_completed_tasks.append(normalized)
+
+    root_recorded_item_ids_by_task: dict[str, list[int]] = {}
+    raw_root_recorded_map = user_data.get('recordedItemIdsByTask', {})
+    if isinstance(raw_root_recorded_map, dict):
+        for task_id, item_ids in raw_root_recorded_map.items():
+            root_recorded_item_ids_by_task[str(task_id)] = to_item_ids(item_ids)
 
     def convert_database_tier(tier: str) -> UserTaskList:
-        data = tiers[tier]
+        data = tiers.get(tier, {})
+        if not isinstance(data, dict):
+            data = {}
         completed_tasks: list[UserCompletedTask] = []
         recorded_item_ids_by_task: dict[str, list[int]] = {}
-        if data:
-            def to_item_ids(value) -> list[int]:
-                if not isinstance(value, list):
-                    return []
-                output = []
-                for item in value:
-                    try:
-                        output.append(int(item))
-                    except (TypeError, ValueError):
-                        continue
-                return output
 
+        all_current_tier_ids = set(map(lambda x: x.id, tasklists.list_for_tier(tier, lms_enabled)))
+
+        if root_recorded_item_ids_by_task:
+            recorded_item_ids_by_task = {
+                task_id: item_ids
+                for task_id, item_ids in root_recorded_item_ids_by_task.items()
+                if task_id in all_current_tier_ids
+            }
+        else:
             raw_recorded_map = data.get('recordedItemIdsByTask', {})
             if isinstance(raw_recorded_map, dict):
                 for task_id, item_ids in raw_recorded_map.items():
-                    recorded_item_ids_by_task[str(task_id)] = to_item_ids(item_ids)
+                    task_id_str = str(task_id)
+                    if task_id_str in all_current_tier_ids:
+                        recorded_item_ids_by_task[task_id_str] = to_item_ids(item_ids)
 
-            completed_tasks = list(map(lambda x: UserCompletedTask(
-                id=x['id'],
-                assigned_date=x.get('assignedDate'),
-                completed_date=x.get('completedDate'),
-                completed_item_ids=to_item_ids(x.get('completedItemIds', []))),
-                data['completedTasks']))
-            # Filter tasks that have been removed from tasklist
-            all_current_tier_ids = list(map(lambda x: x.id, tasklists.list_for_tier(tier)))
-            completed_tasks = list(filter(lambda x: x.id in all_current_tier_ids, completed_tasks))
-            # print(completed_tasks)
+        if root_completed_tasks:
+            completed_tasks = [task for task in root_completed_tasks if task.id in all_current_tier_ids]
+        else:
+            for entry in data.get('completedTasks', []):
+                normalized = normalize_completed_task(entry)
+                if normalized is not None:
+                    completed_tasks.append(normalized)
+            completed_tasks = [task for task in completed_tasks if task.id in all_current_tier_ids]
+        # print(completed_tasks)
         current = data.get('currentTask', None)
         if current:
             current = UserCurrentTask(id=current['id'])
