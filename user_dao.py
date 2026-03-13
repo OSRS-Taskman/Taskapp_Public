@@ -1,7 +1,7 @@
 from math import floor
 import tasklists
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from bson.objectid import ObjectId
 from task_types import UserTaskList, TierProgress, UserCompletedTask, UserCurrentTask, TaskData, PageTask, CollectionLogVerificationData
 
@@ -116,6 +116,8 @@ class UserDatabaseObject:
             if value is None:
                 return None
             if isinstance(value, datetime):
+                if value.tzinfo is None:
+                    value = value.replace(tzinfo=timezone.utc)
                 return value.isoformat()
             if isinstance(value, str):
                 parsed = None
@@ -124,6 +126,8 @@ class UserDatabaseObject:
                 except ValueError:
                     pass
                 if parsed is not None:
+                    if parsed.tzinfo is None:
+                        parsed = parsed.replace(tzinfo=timezone.utc)
                     return parsed.isoformat()
                 return value
             return str(value)
