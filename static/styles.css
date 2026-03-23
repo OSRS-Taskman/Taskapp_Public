@@ -645,7 +645,6 @@ hr {
 }
 
 .task-action-items {
-    min-height: 300px;
     overflow: visible;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
@@ -780,10 +779,6 @@ hr {
         max-width: calc(100vw - 20px);
         width: calc(100vw - 20px);
         min-height: 460px;
-    }
-
-    .task-action-items {
-        min-height: 240px;
     }
 
     .task-roll-shell {
