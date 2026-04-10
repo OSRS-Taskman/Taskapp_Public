@@ -1407,32 +1407,6 @@
 			}
 		},
 		{
-			"id": "8ed2b59b-a1a2-43e8-b7ce-383761e80f9e",
-			"name": "Get an Infinity top",
-			"tip": "Can be purchased as a reward from the Mage Mage Training Arena minigame.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Mage_Training_Arena",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Infinity_top_detail.png/320px-Infinity_top_detail.png",
-			"displayItemId": 6916,
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [ 6916 ],
-				"count": 1
-			}
-		},
-		{
-			"id": "bad8e134-9327-4840-aeab-466891734411",
-			"name": "Get Infinity bottoms",
-			"tip": "Can be purchased as a reward from the Mage Mage Training Arena minigame.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Mage_Training_Arena",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Infinity_bottoms_detail.png/320px-Infinity_bottoms_detail.png",
-			"displayItemId": 6924,
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [ 6924 ],
-				"count": 1
-			}
-		},
-		{
 			"id": "bed895eb-6590-4f27-b31f-f0b263e91e02",
 			"name": "Get 2 White decorative pieces",
 			"tip": "Can be purchased as a reward from the Castle Wars minigame. Playing on official worlds is recommended, as you get about the same amount of tickets in addition to other resources. Alternatively, you may play with an alt account (works in F2P) for complete AFK.",
