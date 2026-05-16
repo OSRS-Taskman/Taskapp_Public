@@ -20,6 +20,7 @@ class TaskData:
     tip: str
     wiki_link: str
     image_link: str
+    display_item_id: int
     tags: list["TaskTag"]
     verification: VerificationData
 

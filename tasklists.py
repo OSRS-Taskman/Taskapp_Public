@@ -19,6 +19,7 @@ def to_task_class(data: dict) -> TaskData:
                     tip=data.get('tip'),
                     wiki_link=data['wikiLink'],
                     image_link=data['imageLink'],
+                    display_item_id=data['displayItemId'],
                     tags=data.get('tags', []),
                     verification=to_verification_data(data.get('verification')))
 
