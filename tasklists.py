@@ -19,6 +19,7 @@ def to_task_class(data: dict) -> TaskData:
                     tip=data.get('tip'),
                     wiki_link=data['wikiLink'],
                     image_link=data['imageLink'],
+                    display_item_id=data['displayItemId'],
                     tags=data.get('tags', []),
                     verification=to_verification_data(data.get('verification')))
 
@@ -26,6 +27,16 @@ def read_tasks(filename: str) -> list[TaskData]:
     with open('task-lists/' + filename + '.json') as f:
         json_list = json.load(f)
         return list(map(to_task_class, json_list.get('tasks')))
+
+def get_task_tier(task_id: str) -> str:
+    tiers = ['easy', 'medium', 'hard', 'elite', 'master', 'passive', 'extra', 'pets']
+    for tier in tiers:
+        tier_tasks = list_for_tier(tier)
+        is_task_in_tier = next((True for task in tier_tasks if task.id == task_id), False)
+        if (is_task_in_tier):
+            return tier
+
+    return None
 
 
 easy = read_tasks('easy')
