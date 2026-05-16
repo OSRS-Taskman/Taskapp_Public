@@ -28,6 +28,16 @@ def read_tasks(filename: str) -> list[TaskData]:
         json_list = json.load(f)
         return list(map(to_task_class, json_list.get('tasks')))
 
+def get_task_tier(task_id: str) -> str:
+    tiers = ['easy', 'medium', 'hard', 'elite', 'master', 'passive', 'extra', 'pets']
+    for tier in tiers:
+        tier_tasks = list_for_tier(tier)
+        is_task_in_tier = next((True for task in tier_tasks if task.id == task_id), False)
+        if (is_task_in_tier):
+            return tier
+
+    return None
+
 
 easy = read_tasks('easy')
 medium = read_tasks('medium')

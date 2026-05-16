@@ -86,6 +86,15 @@ class UserDatabaseObject:
         else:
             return None
 
+    def current_task_id(self) -> str | None:
+        current_task = self.current_task()
+
+        if not current_task:
+            return None
+
+        return current_task[3]
+
+
     def get_tier_progress(self, tier: str) -> TierProgress:
         # remove instance of duplicate uuid in completed tasks
         def clean_tasklists(tier: str):

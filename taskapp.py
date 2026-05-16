@@ -16,6 +16,7 @@ from task_database import (get_taskCurrent, generate_task, complete_task, get_ta
 import send_grid_email
 from templesync import check_logs, temple_player_data, import_logs
 from task_types import CollectionLogVerificationData
+import task_api
 
 
 '''
