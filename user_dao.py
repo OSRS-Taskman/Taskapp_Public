@@ -64,7 +64,7 @@ class UserDatabaseObject:
         }[tier]
 
 
-    def current_task_for_tier(self, tier: str) -> tuple or None: # type: ignore
+    def current_task_for_tier(self, tier: str) -> tuple | None:
         user_task_list = self.get_task_list(tier)
         if user_task_list.current_task is None:
             return None
@@ -72,7 +72,7 @@ class UserDatabaseObject:
         # TODO Fix this format
         return task.name, task.image_link, tier, task.id, task.tip, task.wiki_link, task.image_link
 
-    def current_task(self) -> tuple or None: # type: ignore
+    def current_task(self) -> tuple | None:
         if self.easy.current_task is not None:
             return self.current_task_for_tier('easyTasks')
         elif self.medium.current_task is not None:

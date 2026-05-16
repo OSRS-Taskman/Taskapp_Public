@@ -432,7 +432,7 @@ Returns:
 '''
 
 
-def generate_task(username: str) -> TaskData or None: # type: ignore
+def generate_task(username: str) -> TaskData | None:
     user = get_user(username)
     if user.current_task() is not None:
         return
