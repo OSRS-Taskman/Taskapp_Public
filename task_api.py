@@ -9,6 +9,7 @@ from http import HTTPStatus
 from task_database import complete_task, generate_task, get_user, manual_complete_tasks, manual_revert_tasks
 from app_setup import app, db
 from tasklists import get_task_tier, list_for_tier
+from templesync import sync_user_tasks
 from user_dao import UserDatabaseObject
 
 
@@ -110,3 +111,20 @@ def apiv2_generate_task(user: UserDatabaseObject):
         return { 'task_id': generated_task.id }
 
     return { 'error': 'No available tasks to generate' }, HTTPStatus.BAD_REQUEST
+
+
+@app.route('/api/v2/user/sync', methods=['POST'])
+@token_required_v2
+def apiv2_sync(user: UserDatabaseObject):
+    body = request.json
+
+    collection_log = set(body['collection_log'])
+    diaries = body['diaries']
+    skills = body['skills']
+
+    changed_tasks = sync_user_tasks(user.username, collection_log, diaries, skills)
+
+    return {
+        'completed': list(changed_tasks[0]),
+        'uncompleted': list(changed_tasks[1])
+    }

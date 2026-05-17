@@ -1,17 +1,31 @@
 import json
-from task_types import TaskData, TaskTag, VerificationData, CollectionLogVerificationData
+from task_types import AchievementDiaryVerificationData, SkillVerificationData, TaskData, TaskTag, VerificationData, CollectionLogVerificationData
 
-def to_verification_data(data: dict) -> VerificationData or None: # type: ignore
+def to_verification_data(data: dict) -> VerificationData | None:
     if data is None:
         return None
 
     method: str = data['method']
-    if (method != "collection-log"):
-        return None
+    if method == "collection-log":
+        return CollectionLogVerificationData(
+            method=data['method'],
+            item_ids=data['itemIds'],
+            count=data['count']
+        )
+    elif method == "achievement-diary":
+        return AchievementDiaryVerificationData(
+            method=data['method'],
+            region=data['region'],
+            difficulty=data['difficulty']
+        )
+    elif method == "skill":
+        return SkillVerificationData(
+            method=data['method'],
+            experience=data['experience'],
+            count=data['count']
+        )
 
-    return CollectionLogVerificationData(method=data['method'],
-                                         item_ids=data['itemIds'],
-                                         count=data['count'])
+    return None
 
 def to_task_class(data: dict) -> TaskData:
     return TaskData(id=data['id'],
