@@ -1,7 +1,8 @@
 import requests
+from task_database import __set_current_task, __set_task_complete, get_user
 import tasklists
 from datetime import datetime, timezone
-from task_types import CollectionLogVerificationData, TaskData
+from task_types import AchievementDiaryVerificationData, CollectionLogVerificationData, SkillVerificationData, TaskData
 
 
 def temple_player_data(username: str):
@@ -171,6 +172,83 @@ def check_logs(username: str, site_tasks: list["TaskData"], action: str):
         sorted_completed_tasks = sorted(completed_tasks)
         # print(sorted_completed_tasks)
         return format_completed_tasks(sorted_completed_tasks)
+
+
+def sync_user_tasks(username: str, collection_log: set[int], diaries: dict, skills: dict) -> tuple[set[int], set[int]]:
+    tiers = ['easy', 'medium', 'hard', 'elite', 'master']
+    tasks = [ task for tier in tiers for task in tasklists.list_for_tier(tier) ]
+
+    completed_tasks: set[int] = set()
+    uncompleted_tasks: set[int] = set()
+
+    for task in tasks:
+        verification_data = task.verification
+        task_completed = False
+
+        if isinstance(verification_data, CollectionLogVerificationData):
+            task_completed = verify_collection_log(collection_log, verification_data)
+        elif isinstance(verification_data, AchievementDiaryVerificationData):
+            task_completed = verify_achievement_diary(diaries, verification_data)
+        elif isinstance(verification_data, SkillVerificationData):
+            task_completed = verify_skill(skills, verification_data)
+
+        if task_completed:
+            completed_tasks.add(task.id)
+        else:
+            uncompleted_tasks.add(task.id)
+
+    user = get_user(username)
+    old_completed_tasks = set([task.id for task in [
+        *user.easy.completed_tasks,
+        *user.medium.completed_tasks,
+        *user.hard.completed_tasks,
+        *user.elite.completed_tasks,
+        *user.master.completed_tasks,
+    ]])
+
+    new_completed_tasks: set[int] = set()
+    new_uncompleted_tasks: set[int] = set()
+
+    for task_id in completed_tasks:
+        if task_id not in old_completed_tasks:
+            __set_task_complete(username, None, task_id, True)
+            new_completed_tasks.add(task_id)
+
+    for task_id in uncompleted_tasks:
+        if task_id in old_completed_tasks:
+            __set_task_complete(username, None, task_id, False)
+            new_uncompleted_tasks.add(task_id)
+
+    current_task_id = user.current_task_id()
+    if current_task_id in new_completed_tasks:
+        __set_current_task(username, None, None, False)
+
+    return new_completed_tasks, new_uncompleted_tasks
+
+
+def verify_collection_log(collection_log: set[int], verification_data: CollectionLogVerificationData) -> bool:
+    log_count = 0
+    for item_id in verification_data.item_ids:
+        if item_id in collection_log:
+            log_count += 1
+
+    return log_count >= verification_data.count
+
+
+def verify_achievement_diary(diaries: dict, verification_data: AchievementDiaryVerificationData) -> bool:
+    region = verification_data.region
+    difficulty = verification_data.difficulty
+
+    return diaries[region][difficulty]
+
+
+def verify_skill(skills: dict, verification_data: SkillVerificationData) -> bool:
+    skill_count = 0
+    for skill, exp in verification_data.experience.items():
+        if skills[skill] >= exp:
+            skill_count += 1
+
+    return skill_count >= verification_data.count
 
 if __name__ == "__main__":
     print(check_logs('Gerni Task', tasklists.list_for_tier('elite'), 'check'))

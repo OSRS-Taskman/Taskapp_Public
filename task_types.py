@@ -12,6 +12,16 @@ class CollectionLogVerificationData(VerificationData):
     item_ids: list[int]
     count: int
 
+@dataclass
+class AchievementDiaryVerificationData(VerificationData):
+    region: str
+    difficulty: str
+
+@dataclass
+class SkillVerificationData(VerificationData):
+    experience: dict
+    count: int
+
 
 @dataclass
 class TaskData:
