@@ -442,6 +442,13 @@ def generate_task(username: str) -> TaskData | None:
         completed_task_ids = list(map(lambda x: x.id, user.get_task_list(tier).completed_tasks))
         return list(filter(lambda x: x.id not in completed_task_ids, all_tasks))
 
+    def get_first_task_instance(generated_task: TaskData, incomplete_tasks: list[TaskData]) -> TaskData:
+        if generated_task.verification:
+            first_task_instance = min([task for task in incomplete_tasks if task.name == generated_task.name],
+                                key=lambda task: getattr(task.verification, "count", 0))
+            return first_task_instance
+        return generated_task
+    
     tasks_easy = get_incomplete_tasks('easy')
     tasks_medium = get_incomplete_tasks('medium')
     tasks_hard = get_incomplete_tasks('hard')
@@ -450,27 +457,34 @@ def generate_task(username: str) -> TaskData | None:
 
     if len(tasks_easy) != 0:
         generated_task = random.choice(tasks_easy)
-        __set_current_task(username, 'easyTasks', generated_task.id, True)
-        return generated_task
+        first_task_instance = get_first_task_instance(generated_task, tasks_easy)
+        __set_current_task(username, 'easyTasks', first_task_instance.id, True)
+        return first_task_instance
+    
     elif len(tasks_medium) != 0:
         generated_task = random.choice(tasks_medium)
-        __set_current_task(username, 'mediumTasks', generated_task.id, True)
-        return generated_task
+        first_task_instance = get_first_task_instance(generated_task, tasks_medium)
+        __set_current_task(username, 'mediumTasks', first_task_instance.id, True)
+        return first_task_instance
+    
     elif len(tasks_hard) != 0:
         generated_task = random.choice(tasks_hard)
-        __set_current_task(username, 'hardTasks', generated_task.id, True)
-        return generated_task
+        first_task_instance = get_first_task_instance(generated_task, tasks_hard)
+        __set_current_task(username, 'hardTasks', first_task_instance.id, True)
+        return first_task_instance
+    
     elif len(tasks_elite) != 0:
         generated_task = random.choice(tasks_elite)
-        __set_current_task(username, 'eliteTasks', generated_task.id, True)
-        return generated_task
+        first_task_instance = get_first_task_instance(generated_task, tasks_elite)
+        __set_current_task(username, 'eliteTasks', first_task_instance.id, True)
+        return first_task_instance
+    
     elif len(tasks_master) != 0:
-        if tasks_master[0].id == "6b09384d-c06b-44ac-8a07-b7038cd30710":
-            generated_task = tasks_master[0]
-        else:
-            generated_task = random.choice(tasks_master)
-        __set_current_task(username, 'masterTasks', generated_task.id, True)
-        return generated_task
+        generated_task = random.choice(tasks_master)
+        first_task_instance = get_first_task_instance(generate_task, tasks_master)
+        __set_current_task(username, 'masterTasks', first_task_instance.id, True)
+        return first_task_instance
+    
     return None
 
 # If user has just completed a task of the given tier and the progress is 100, then they've just completed the last task
