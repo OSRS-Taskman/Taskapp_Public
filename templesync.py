@@ -221,7 +221,7 @@ def sync_user_tasks(username: str, collection_log: set[int], diaries: dict, skil
 
     current_task_id = user.current_task_id()
     if current_task_id in new_completed_tasks:
-        __set_current_task(username, None, None, False)
+        __set_current_task(username, tasklists.get_task_tier(current_task_id), None, False)
 
     return new_completed_tasks, new_uncompleted_tasks
 

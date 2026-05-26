@@ -42,7 +42,7 @@ def read_tasks(filename: str) -> list[TaskData]:
         json_list = json.load(f)
         return list(map(to_task_class, json_list.get('tasks')))
 
-def get_task_tier(task_id: str) -> str:
+def get_task_tier(task_id: str | None) -> str | None:
     tiers = ['easy', 'medium', 'hard', 'elite', 'master', 'passive', 'extra', 'pets']
     for tier in tiers:
         tier_tasks = list_for_tier(tier)
