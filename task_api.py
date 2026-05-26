@@ -6,7 +6,7 @@ from flask import Response, request
 from functools import wraps
 from http import HTTPStatus
 
-from task_database import complete_task, generate_task, get_user, manual_complete_tasks, manual_revert_tasks
+from task_database import complete_task, generate_task, get_user, manual_complete_tasks, manual_revert_tasks, migrate_current_task
 from app_setup import app, db
 from tasklists import get_task_tier, list_for_tier
 from templesync import sync_user_tasks
@@ -72,6 +72,7 @@ def apiv2_get_user_profile(user: UserDatabaseObject):
         'username': user.username,
         'is_official': user.is_official,
         'is_lms_enabled': user.lms_enabled,
+        'has_migrated': user.has_migrated,
         'active_task_id': user.current_task_id(),
         'completed_tasks': [
             *user.easy.completed_tasks,
@@ -128,3 +129,16 @@ def apiv2_sync(user: UserDatabaseObject):
         'completed': list(changed_tasks[0]),
         'uncompleted': list(changed_tasks[1])
     }
+
+
+@app.route('/api/v2/user/migrate', methods=['POST'])
+@token_required_v2
+def apiv2_migrate(user: UserDatabaseObject):
+    body = request.json
+
+    new_current_task_id = body['task_id']
+
+    if not migrate_current_task(user.username, new_current_task_id):
+        return { 'error': 'User has already migrated' }, HTTPStatus.BAD_REQUEST
+
+    return Response(status=HTTPStatus.NO_CONTENT)

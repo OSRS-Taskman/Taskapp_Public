@@ -448,7 +448,7 @@ def generate_task(username: str) -> TaskData | None:
                                 key=lambda task: getattr(task.verification, "count", 0))
             return first_task_instance
         return generated_task
-    
+
     tasks_easy = get_incomplete_tasks('easy')
     tasks_medium = get_incomplete_tasks('medium')
     tasks_hard = get_incomplete_tasks('hard')
@@ -460,31 +460,31 @@ def generate_task(username: str) -> TaskData | None:
         first_task_instance = get_first_task_instance(generated_task, tasks_easy)
         __set_current_task(username, 'easyTasks', first_task_instance.id, True)
         return first_task_instance
-    
+
     elif len(tasks_medium) != 0:
         generated_task = random.choice(tasks_medium)
         first_task_instance = get_first_task_instance(generated_task, tasks_medium)
         __set_current_task(username, 'mediumTasks', first_task_instance.id, True)
         return first_task_instance
-    
+
     elif len(tasks_hard) != 0:
         generated_task = random.choice(tasks_hard)
         first_task_instance = get_first_task_instance(generated_task, tasks_hard)
         __set_current_task(username, 'hardTasks', first_task_instance.id, True)
         return first_task_instance
-    
+
     elif len(tasks_elite) != 0:
         generated_task = random.choice(tasks_elite)
         first_task_instance = get_first_task_instance(generated_task, tasks_elite)
         __set_current_task(username, 'eliteTasks', first_task_instance.id, True)
         return first_task_instance
-    
+
     elif len(tasks_master) != 0:
         generated_task = random.choice(tasks_master)
         first_task_instance = get_first_task_instance(generate_task, tasks_master)
         __set_current_task(username, 'masterTasks', first_task_instance.id, True)
         return first_task_instance
-    
+
     return None
 
 # If user has just completed a task of the given tier and the progress is 100, then they've just completed the last task
@@ -1732,6 +1732,19 @@ def copy_tier_tasks(source_username: str, target_username: str, tiers: list[str]
             {"username": target_username},
             {"$set": updates}
         )
+
+def migrate_current_task(username: str, task_id: str | None) -> bool:
+    user = get_user(username)
+
+    if user.has_migrated:
+        return False
+
+    __set_current_task(username, tasklists.get_task_tier(task_id), task_id, task_id is not None)
+
+    coll = mydb['taskLists']
+    coll.update_one({ 'username': username }, { '$set': { 'hasMigrated': True } })
+
+    return True
 
 if __name__ == "__main__":
     copy_tier_tasks("AreYaTasking", 'Gerni Task2', tiers=["easy", "medium", "hard", "elite", "master"])
