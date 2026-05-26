@@ -37,6 +37,7 @@ class UserDatabaseObject:
     username: str
     is_official: bool
     lms_enabled: bool
+    has_migrated: bool
     easy: UserTaskList
     medium: UserTaskList
     hard: UserTaskList
@@ -310,6 +311,7 @@ def convert_database_user(user_data: dict) -> UserDatabaseObject:
         username=user_data['username'],
         is_official=user_data['isOfficial'],
         lms_enabled=user_data['lmsEnabled'],
+        has_migrated=user_data.get('hasMigrated', False),
         easy=convert_database_tier('easy'),
         medium=convert_database_tier('medium'),
         hard=convert_database_tier('hard'),
