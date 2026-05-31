@@ -2547,62 +2547,6 @@
 			}
 		},
 		{
-			"id": "116ba1f6-6416-4f8f-8e32-42f096b3fe04",
-			"name": "Get a new Golden godsword special from LMS",
-			"tip": "Can be purchased as a reward from the Last Man Standing PVP minigame.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Last_Man_Standing",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Armadyl_hilt_detail.png/320px-Armadyl_hilt_detail.png",
-			"displayItemId": 11810,
-			"tags": [ "lms" ],
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [ 24868, 24869, 24870, 24871 ],
-				"count": 1
-			}
-		},
-		{
-			"id": "ccf42f4a-78e9-4968-b696-b75522198ef4",
-			"name": "Get a new Golden godsword special from LMS",
-			"tip": "Can be purchased as a reward from the Last Man Standing PVP minigame.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Last_Man_Standing",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Armadyl_hilt_detail.png/320px-Armadyl_hilt_detail.png",
-			"displayItemId": 11810,
-			"tags": [ "lms" ],
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [ 24868, 24869, 24870, 24871 ],
-				"count": 2
-			}
-		},
-		{
-			"id": "fa5841dd-eb4f-4140-84aa-e10201e3f1cb",
-			"name": "Get a new Golden godsword special from LMS",
-			"tip": "Can be purchased as a reward from the Last Man Standing PVP minigame.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Last_Man_Standing",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Armadyl_hilt_detail.png/320px-Armadyl_hilt_detail.png",
-			"displayItemId": 11810,
-			"tags": [ "lms" ],
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [ 24868, 24869, 24870, 24871 ],
-				"count": 3
-			}
-		},
-		{
-			"id": "e218b954-430c-4baf-b2eb-aa174cddbfc7",
-			"name": "Get a new Golden godsword special from LMS",
-			"tip": "Can be purchased as a reward from the Last Man Standing PVP minigame.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Last_Man_Standing",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Armadyl_hilt_detail.png/320px-Armadyl_hilt_detail.png",
-			"displayItemId": 11810,
-			"tags": [ "lms" ],
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [ 24868, 24869, 24870, 24871 ],
-				"count": 4
-			}
-		},
-		{
 			"id": "33507618-03ae-4ab5-9cdd-195153d55f22",
 			"name": "Get a Broken dragon pickaxe",
 			"tip": "Can be purchased as a reward from the Volcanic Mine minigame.",
