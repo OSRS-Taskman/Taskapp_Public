@@ -481,7 +481,7 @@ def generate_task(username: str) -> TaskData | None:
 
     elif len(tasks_master) != 0:
         generated_task = random.choice(tasks_master)
-        first_task_instance = get_first_task_instance(generate_task, tasks_master)
+        first_task_instance = get_first_task_instance(generated_task, tasks_master)
         __set_current_task(username, 'masterTasks', first_task_instance.id, True)
         return first_task_instance
 
