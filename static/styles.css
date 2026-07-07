@@ -116,10 +116,15 @@ body {
     box-shadow: 0 0 5px var(--current-task-color);
 }
 
-.container {
+.container-discord-settings, .container {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  
+.container-discord-settings {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 
 .faq-container {
@@ -1445,7 +1450,7 @@ nav svg {
     outline: 2px solid var(--current-task-color);
 }
 
-.profile-content {
+.discord-options, .profile-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1454,7 +1459,7 @@ nav svg {
     row-gap: 20px;
 }
 
-.profile-content input {
+.discord-options input, .profile-content input {
     background-color: var(--main-bg-color);
     color: var(--current-task-color);
     border: 2px solid var(--main-accent-color);
@@ -1466,17 +1471,17 @@ nav svg {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.profile-content input:hover {
+.discord-options input:hover, .profile-content input:hover {
     border-color: var(--current-task-color);
     cursor: pointer;
 }
 
-.profile-content input:focus {
+.discord-options input:focus, .profile-content input:focus {
     border-color: var(--current-task-color);
     box-shadow: 0 0 5px var(--current-task-color);
 }
 
-.email-details {
+.discord-name-details, .email-details {
     display: flex;
 }
 
@@ -1550,7 +1555,7 @@ input:checked + .slider:before {
     
   }
 
-.email-input-box form {
+.discord-name-input-box form, .email-input-box form {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -1562,7 +1567,7 @@ input:checked + .slider:before {
     gap: 5px;
   }
 
-.password-details form {
+.discord-name-details form, .password-details form {
     display: flex;
     flex-direction: column;
     gap: 5px;

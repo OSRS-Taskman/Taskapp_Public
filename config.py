@@ -17,6 +17,9 @@ IS_PROD = os.environ["FLASK_ENV"].lower() != "development"
 SECRET_KEY = os.environ["SECRET_KEY"]
 SENDGRID_API_KEY = os.environ["SENDGRID_API_KEY"]
 MONGO_URL = os.environ["MONGO_URI"]
+DISCORD_CLIENT_ID = os.environ["DISCORD_CLIENT_ID"]
+DISCORD_CLIENT_SECRET = os.environ["DISCORD_CLIENT_SECRET"]
+DISCORD_REDIRECT_URI = os.environ["DISCORD_REDIRECT_URI"]
 
 if IS_PROD:
     RECAPTCHA_SITE_KEY = os.environ["RECAPTCHA_SITE_KEY"]

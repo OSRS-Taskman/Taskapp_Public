@@ -94,6 +94,8 @@ def add_task_account(username, is_official, lms_enabled):
         "username": str(username),
         "isOfficial": bool(is_official),
         "lmsEnabled": bool(lms_enabled),
+        "discordLinked": False,
+        "discordNameSyncEnabled": False,
         "completedTasks": [],
         "recordedItemIdsByTask": {},
         'tiers': {
@@ -1127,6 +1129,11 @@ def get_lms_status(username):
     coll = mydb["taskLists"]
     lms_enabled = coll.find_one({"username": username}, {'lmsEnabled' : 1, '_id': 0})
     return lms_enabled["lmsEnabled"]
+
+def get_discord_name_sync_enabled(username):
+    tldb = mydb["taskLists"]
+    discord_name_sync_enabled = tldb.find_one({"username": username}, {'discordNameSyncEnabled' : 1, '_id': 0})
+    return discord_name_sync_enabled["discordNameSyncEnabled"]
 
 '''
 lms_status_change:

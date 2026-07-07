@@ -37,6 +37,8 @@ class UserDatabaseObject:
     username: str
     is_official: bool
     lms_enabled: bool
+    discord_linked: bool
+    discord_name_sync_enabled: bool
     has_migrated: bool
     easy: UserTaskList
     medium: UserTaskList
@@ -312,6 +314,8 @@ def convert_database_user(user_data: dict) -> UserDatabaseObject:
         is_official=user_data['isOfficial'],
         lms_enabled=user_data['lmsEnabled'],
         has_migrated=user_data.get('hasMigrated', False),
+        discord_linked=user_data.get('discordLinked', False),
+        discord_name_sync_enabled=user_data.get('discordNameSyncEnabled', False),
         easy=convert_database_tier('easy'),
         medium=convert_database_tier('medium'),
         hard=convert_database_tier('hard'),

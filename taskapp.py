@@ -7,6 +7,7 @@ import bcrypt # type: ignore
 from functools import wraps
 import task_login
 import tasklists
+import discord_service
 from task_database import (get_taskCurrent, generate_task, complete_task, get_task_progress,
                            manual_complete_tasks, manual_revert_tasks,
                            get_lms_status, lms_status_change, update_imported_tasks,
@@ -16,7 +17,10 @@ from task_database import (get_taskCurrent, generate_task, complete_task, get_ta
 import send_grid_email
 from templesync import check_logs, temple_player_data, import_logs
 from task_types import CollectionLogVerificationData
+from task_api import login_required
+
 import task_api
+import discord_api
 
 
 '''
@@ -46,35 +50,9 @@ if isProd:
             code = 301
             return redirect(redirect_url, code=code)
 
-
-
-'''
-login_required function:
-
-The login_requried function is used to ensure that only logged in users can access certain pages.
-
-Args:
-    Wrap(*args, **kwargs):
-Returns:
-    redirect request: to login page if the user is not logged in.
-
-
-'''
-def login_required(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        if 'logged_in' in session:
-            return f(*args, **kwargs)
-        else:
-            flash("You must be logged in to access this page!")
-            return redirect(url_for('login'))
-    return wrap
-
-
 class APIUser:
     def __init__(self, username):
         self.username = username
-
 
 '''
 Class to hold data that is used in many templates
@@ -1191,6 +1169,7 @@ def reset_token(token):
 @login_required
 def profile():
     user_info = BasePageInfo()
+    discord_default_username = discord_service.get_discord_auth_info(user_info.username).discord_username_default
     # if not user_info.email_bool:
     #     return render_template('email-verify.html')
     progress = get_task_progress(user_info.username)
@@ -1212,6 +1191,9 @@ def profile():
         email_val=user_info.email_val,
         official=user_info.official,
         lms_status=user_info.user.lms_enabled,
+        discord_status=user_info.user.discord_linked,
+        discord_default_username=discord_default_username,
+        discord_name_sync_enabled=user_info.user.discord_name_sync_enabled,
         **context)
 
 
