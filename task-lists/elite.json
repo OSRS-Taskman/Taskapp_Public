@@ -658,6 +658,36 @@
 			}
 		},
 		{
+			"id": "05e816a3-215d-4b4c-b002-e09d82d88b34",
+			"name": "Get 1 unique from the Wildy bosses",
+			"tip": "Wildy boss uniques are: Dragon 2H, Dragon pickaxe, 3 voidwaker pieces, 3 rev weapon upgrades, 3 rings",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Wilderness#bosses",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Skull_of_vet'ion_detail.png/320px-Skull_of_vet'ion_detail.png",
+			"displayItemId": 27673,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					 7158, 11920, 12601, 12603, 12605, 27667, 27670, 27673, 27681, 27684, 27687
+				],
+				"count": 8
+			}
+		},
+		{
+			"id": "517cf752-d0c3-4c21-b5b6-b96531dd5f7b",
+			"name": "Get 1 unique from the Wildy bosses",
+			"tip": "Wildy boss uniques are: Dragon 2H, Dragon pickaxe, 3 voidwaker pieces, 3 rev weapon upgrades, 3 rings",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Wilderness#bosses",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Skull_of_vet'ion_detail.png/320px-Skull_of_vet'ion_detail.png",
+			"displayItemId": 27673,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					 7158, 11920, 12601, 12603, 12605, 27667, 27670, 27673, 27681, 27684, 27687
+				],
+				"count": 9
+			}
+		},
+		{
 			"id": "1e2cdcc8-3e81-4948-82fb-444415be5ee9",
 			"name": "Get 1 unique drop from Grotesque Guardians",
 			"tip": "Received as a drop from the Grotesque Guardians bosses.",
@@ -2435,38 +2465,6 @@
 			}
 		},
 		{
-			"id": "ce78ed96-2f89-4a2f-91ac-79bd5932fabd",
-			"name": "Get 1 unique from Shades of Mort'ton",
-			"tip": "Potential reward from the Shades of Morton minigame.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Shades_of_Mort'ton_(minigame)",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Fine_cloth_detail.png/320px-Fine_cloth_detail.png",
-			"displayItemId": 3470,
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [
-					 3470, 12851, 25434, 25436, 25438, 25440, 25442, 25445, 25448, 25451, 25454,
-					25474, 25476, 25630
-				],
-				"count": 8
-			}
-		},
-		{
-			"id": "94312599-a8ca-4113-9cd0-665821fabed3",
-			"name": "Get 1 unique from Shades of Mort'ton",
-			"tip": "Potential reward from the Shades of Morton minigame.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Shades_of_Mort'ton_(minigame)",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Fine_cloth_detail.png/320px-Fine_cloth_detail.png",
-			"displayItemId": 3470,
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [
-					 3470, 12851, 25434, 25436, 25438, 25440, 25442, 25445, 25448, 25451, 25454,
-					25474, 25476, 25630
-				],
-				"count": 9
-			}
-		},
-		{
 			"id": "a09d514c-e7e3-43ce-bfe2-c7c9b5f4ee67",
 			"name": "Get 1 unique from Shades of Mort'ton",
 			"tip": "Potential reward from the Shades of Morton minigame.",
@@ -2617,6 +2615,51 @@
 					21804, 21807, 21810, 21813, 22299, 22302, 22305, 22542, 22547, 22552, 22557
 				],
 				"count": 4
+			}
+		},
+		{
+			"id": "a22875b6-c3b2-4787-948b-1110b772f57b",
+			"name": "Get 1 unique from Revenants",
+			"tip": "Can be received as a drop from any Revenant.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Revenants",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Ancient_relic_detail.png/320px-Ancient_relic_detail.png",
+			"displayItemId": 22305,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					21804, 21807, 21810, 21813, 22299, 22302, 22305, 22542, 22547, 22552, 22557
+				],
+				"count": 5
+			}
+		},
+		{
+			"id": "01f11d65-8e3d-4a26-a2fe-641d7035d9b3",
+			"name": "Get 1 unique from Revenants",
+			"tip": "Can be received as a drop from any Revenant.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Revenants",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Ancient_relic_detail.png/320px-Ancient_relic_detail.png",
+			"displayItemId": 22305,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					21804, 21807, 21810, 21813, 22299, 22302, 22305, 22542, 22547, 22552, 22557
+				],
+				"count": 6
+			}
+		},
+		{
+			"id": "0c58c533-55b2-4200-91c4-90eda90a47d7",
+			"name": "Get 1 unique from Revenants",
+			"tip": "Can be received as a drop from any Revenant.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Revenants",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Ancient_relic_detail.png/320px-Ancient_relic_detail.png",
+			"displayItemId": 22305,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					21804, 21807, 21810, 21813, 22299, 22302, 22305, 22542, 22547, 22552, 22557
+				],
+				"count": 7
 			}
 		},
 		{

@@ -2378,6 +2378,38 @@
 			}
 		},
 		{
+			"id": "ce78ed96-2f89-4a2f-91ac-79bd5932fabd",
+			"name": "Get 1 unique from Shades of Mort'ton",
+			"tip": "Potential reward from the Shades of Morton minigame.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Shades_of_Mort'ton_(minigame)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Fine_cloth_detail.png/320px-Fine_cloth_detail.png",
+			"displayItemId": 3470,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					 3470, 12851, 25434, 25436, 25438, 25440, 25442, 25445, 25448, 25451, 25454,
+					25474, 25476, 25630
+				],
+				"count": 8
+			}
+		},
+		{
+			"id": "94312599-a8ca-4113-9cd0-665821fabed3",
+			"name": "Get 1 unique from Shades of Mort'ton",
+			"tip": "Potential reward from the Shades of Morton minigame.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Shades_of_Mort'ton_(minigame)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Fine_cloth_detail.png/320px-Fine_cloth_detail.png",
+			"displayItemId": 3470,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					 3470, 12851, 25434, 25436, 25438, 25440, 25442, 25445, 25448, 25451, 25454,
+					25474, 25476, 25630
+				],
+				"count": 9
+			}
+		},
+		{
 			"id": "85ab6e99-1f53-415a-94fd-7295bac9b61d",
 			"name": "Get the Ash covered tome",
 			"tip": "Can be purchased as a reward from the Volcanic Mine minigame.",
