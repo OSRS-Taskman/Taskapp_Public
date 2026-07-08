@@ -6,3 +6,5 @@ export SERVER_PORT=8080
 export DISCORD_CLIENT_ID=12345
 export DISCORD_CLIENT_SECRET=secret
 export DISCORD_REDIRECT_URI=uri
+export DISCORD_BOT_TOKEN=bot_token
+export DISCORD_GUILD_ID=guild_id

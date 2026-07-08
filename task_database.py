@@ -8,6 +8,7 @@ import config
 import user_dao
 from user_dao import UserDatabaseObject, convert_database_user
 from task_types import TaskData, LeaderboardEntry, TaskData
+import discord_service
 
 mydb = config.MONGO_CLIENT["TaskApp"]
 
@@ -248,6 +249,13 @@ def __set_current_task(username: str, tier: str, task_id: str, current: bool):
             {"username": username},
             {"$set": {f"tiers.{cleaned_tier}.currentTask": {"id": task_id}}},
         )
+
+    if (get_discord_name_sync_enabled(username)):
+        percentage = get_task_progress(username)[cleaned_tier]['percent_complete']
+        discord_username = discord_service.get_discord_auth_info(username).discord_username_default
+        short_name = "" if not current else [n for n in tasklists.list_for_tier(cleaned_tier) if n.id == task_id][0].short_name
+        new_name = discord_service.get_discord_nickname(discord_username, cleaned_tier, short_name, percentage)
+        discord_service.update_nickname_DISCORD(username, new_name)
 
 
 def __parse_completed_iso(value: str | None) -> datetime | None:

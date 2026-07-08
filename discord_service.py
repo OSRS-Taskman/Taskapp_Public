@@ -1,11 +1,16 @@
 
 import config
+import requests
 
 from app_setup import app
 from dataclasses import dataclass, asdict
 
 user_info_db = config.MONGO_CLIENT["TaskAppLoginDB"]
 task_list_db = config.MONGO_CLIENT["TaskApp"]
+
+DISCORD_API_BASE = 'https://discord.com/api/v10'
+BOT_TOKEN = config.DISCORD_BOT_TOKEN
+GUILD_ID = config.DISCORD_GUILD_ID
 
 @dataclass
 class DiscordAuthInfo:
@@ -64,6 +69,53 @@ def update_discord_default_name(username: str, discord_default_name: str):
     auth_info: DiscordAuthInfo = get_discord_auth_info(username)
     auth_info.discord_username_default = discord_default_name
     save_discord_auth_info(username, auth_info)
+    update_nickname_DISCORD(username, discord_default_name)
 
 def update_discord_name_sync(username: str, discord_name_sync_enabled: bool):
     save_discord_name_sync_enabled_status(username, discord_name_sync_enabled)
+
+def update_nickname_DISCORD(username: str, nickname: str) -> bool:
+    discord_user_id = get_discord_auth_info(username).discord_user_id
+    
+    nickname = nickname[:32]
+
+    url = (
+        f"{DISCORD_API_BASE}/guilds/"
+        f"{GUILD_ID}/members/{discord_user_id}"
+    )
+    headers = {
+        "Authorization": f"Bot {BOT_TOKEN}",
+        "Content-Type": "application/json",
+    }
+
+    try:
+        response = requests.patch(
+            url,
+            headers=headers,
+            json={"nick": nickname},
+            timeout=10,
+        )
+
+        if response.status_code == 200:
+            print(f"Updated nickname for Discord user {discord_user_id}")
+            return True
+
+        if response.status_code == 404:
+            print(f"Discord user {discord_user_id} is not in the guild.")
+            save_discord_name_sync_enabled_status(username, discord_name_sync_enabled=False)
+            return False
+
+        if response.status_code == 403:
+            print("Bot lacks permission to update nicknames.")
+            return False
+
+        print(f"Discord API returned {response.status_code}: {response.text}")
+        return False
+
+    except requests.RequestException as e:
+        print(f"Failed to contact Discord: {e}")
+        return False
+
+def get_discord_nickname(discord_username_default: str, tier: str, short_name: str, percentage: int) -> str:
+    short_tier = "" if len(tier) == 0 else tier[0].capitalize()
+    return f"{discord_username_default} {percentage}%{short_tier} {short_name}"

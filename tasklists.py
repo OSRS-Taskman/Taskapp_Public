@@ -30,6 +30,7 @@ def to_verification_data(data: dict) -> VerificationData | None:
 def to_task_class(data: dict) -> TaskData:
     return TaskData(id=data['id'],
                     name=data['name'],
+                    short_name=data.get('shortName', ""),
                     tip=data.get('tip'),
                     wiki_link=data['wikiLink'],
                     image_link=data['imageLink'],
