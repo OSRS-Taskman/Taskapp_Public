@@ -3700,6 +3700,34 @@
 				"itemIds": [ 31428 ],
 				"count": 1
 			}
+		},
+		{
+			"id": "721c58f7-857b-4591-a4d7-0ca2e70f73ae",
+			"name": "Get 1 unique from the Maggot King",
+			"shortName": "Maggot King",
+			"tip": "Don't forget to unlock the quick-travel scout for faster access to the Maggot King!",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Maggot_King",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Crimson_kisten_detail.png/320px-Crimson_kisten_detail.png",
+			"displayItemId": 33631,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 33634, 33631 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "8b6530d6-b481-45b2-aa00-61c09b29484b",
+			"name": "Get 1 unique from the Maggot King",
+			"shortName": "Maggot King",
+			"tip": "Don't forget to unlock the quick-travel scout for faster access to the Maggot King!",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Maggot_King",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Crimson_kisten_detail.png/320px-Crimson_kisten_detail.png",
+			"displayItemId": 33631,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 33634, 33631 ],
+				"count": 2
+			}
 		}
 	]
 }

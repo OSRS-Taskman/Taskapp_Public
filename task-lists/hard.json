@@ -3526,6 +3526,20 @@
 				"itemIds": [ 31420 ],
 				"count": 1
 			}
+		},
+		{
+			"id": "93c0343e-80e7-4935-a74b-eb1e64caf05b",
+			"name": "Get a Venator fang + tooth",
+			"shortName": "Ven Fang+Tooth",
+			"tip": "Requires completion of the Blood Moon Rises quest. If Doc did it, you can too!",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Venator",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Venator_tooth_detail.png/320px-Venator_tooth_detail.png",
+			"displayItemId": 33663,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 33661, 33663 ],
+				"count": 2
+			}
 		}
 	]
 }
