@@ -13,7 +13,7 @@ from task_database import (get_taskCurrent, generate_task, complete_task, get_ta
                            get_lms_status, lms_status_change, update_imported_tasks,
                            official_status_change, username_change, get_taskCurrent_tier, generate_task_for_tier,
                            complete_task_unofficial_tier, get_user, get_leaderboard,
-                           get_roll_candidates_for_tier)
+                           get_roll_candidates_for_tier, get_discord_name_sync_enabled)
 import send_grid_email
 from templesync import check_logs, temple_player_data, import_logs
 from task_types import CollectionLogVerificationData
@@ -900,6 +900,11 @@ def update():
         'completedAtISO': completed_task.get('completed_date_iso') if completed_task else None,
         'completedItemIds': completed_task.get('completed_item_ids') if completed_task else [],
     }
+
+    if (get_discord_name_sync_enabled(user_info.username)):
+        new_name = discord_service.generate_discord_nickname_from_current_task(user_info.username)
+        discord_service.update_nickname_DISCORD(user_info.username, new_name)
+
     return data
 
 # AJAX route for uncompleting/reverting tasks manually on task-list page(s).
@@ -923,6 +928,11 @@ def revert():
         'extra' : progress['extra']['percent_complete'],
         'allPets' : progress['all_pets']['percent_complete'],
     }
+
+    if (get_discord_name_sync_enabled(user_info.username)):
+        new_name = discord_service.generate_discord_nickname_from_current_task(user_info.username)
+        discord_service.update_nickname_DISCORD(user_info.username, new_name)
+
     return data
 
 

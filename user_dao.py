@@ -76,16 +76,24 @@ class UserDatabaseObject:
         return task.name, task.image_link, tier, task.id, task.tip, task.wiki_link, task.image_link
 
     def current_task(self) -> tuple | None:
+        tier = self.current_tier()
+
+        if tier is None:
+            return None
+        
+        return self.current_task_for_tier(f'{tier}Tasks')
+        
+    def current_tier(self) -> str:
         if self.easy.current_task is not None:
-            return self.current_task_for_tier('easyTasks')
+            return 'easy'
         elif self.medium.current_task is not None:
-            return self.current_task_for_tier('mediumTasks')
+            return 'medium'
         elif self.hard.current_task is not None:
-            return self.current_task_for_tier('hardTasks')
+            return 'hard'
         elif self.elite.current_task is not None:
-            return self.current_task_for_tier('eliteTasks')
+            return 'elite'
         elif self.master.current_task is not None:
-            return self.current_task_for_tier('masterTasks')
+            return 'master'
         else:
             return None
 

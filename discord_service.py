@@ -1,6 +1,8 @@
 
 import config
 import requests
+import task_database
+import tasklists
 
 from app_setup import app
 from dataclasses import dataclass, asdict
@@ -46,12 +48,19 @@ def save_discord_auth_info(username: str, auth_info: DiscordAuthInfo):
     uidb.update_one({'username': username}, {'$set': {'discord_auth_info': asdict(auth_info)}})
 
 def save_discord_link_status(username: str, discordLinked: bool):
-    uidb = task_list_db['taskLists']
-    uidb.update_one({'username': username}, {'$set': {'discordLinked': discordLinked}})
+    tldb = task_list_db['taskLists']
+    tldb.update_one({'username': username}, {'$set': {'discordLinked': discordLinked}})
 
 def save_discord_name_sync_enabled_status(username: str, discord_name_sync_enabled: bool):
     tldb = task_list_db['taskLists']
     tldb.update_one({'username': username}, {'$set': {'discordNameSyncEnabled': discord_name_sync_enabled}})
+    if (discord_name_sync_enabled):
+        name = generate_discord_nickname_from_current_task(username)
+        update_nickname_DISCORD(username, name)
+    else:
+        default_name = get_discord_auth_info(username).discord_username_default
+        update_nickname_DISCORD(username, default_name)
+
 
 def link_discord_id(username: str, id: int):
     auth_info: DiscordAuthInfo = get_discord_auth_info(username)
@@ -69,7 +78,13 @@ def update_discord_default_name(username: str, discord_default_name: str):
     auth_info: DiscordAuthInfo = get_discord_auth_info(username)
     auth_info.discord_username_default = discord_default_name
     save_discord_auth_info(username, auth_info)
-    update_nickname_DISCORD(username, discord_default_name)
+    
+    user = task_database.get_user(username)
+    if (user.discord_name_sync_enabled):
+        name = generate_discord_nickname_from_current_task(username)
+        update_nickname_DISCORD(username, name)
+    else:
+        update_nickname_DISCORD(username, discord_default_name)
 
 def update_discord_name_sync(username: str, discord_name_sync_enabled: bool):
     save_discord_name_sync_enabled_status(username, discord_name_sync_enabled)
@@ -119,3 +134,16 @@ def update_nickname_DISCORD(username: str, nickname: str) -> bool:
 def get_discord_nickname(discord_username_default: str, tier: str, short_name: str, percentage: int) -> str:
     short_tier = "" if len(tier) == 0 else tier[0].capitalize()
     return f"{discord_username_default} {percentage}%{short_tier} {short_name}"
+
+def generate_discord_nickname_from_current_task(username: str) -> str:
+    user = task_database.get_user(username)
+
+    tier = user.current_tier()
+    current_task = user.current_task()
+    task_id = current_task[3] if current_task is not None else None
+    percentage = task_database.get_task_progress(username)[tier]['percent_complete']
+
+    discord_username = get_discord_auth_info(username).discord_username_default
+    short_name = [n for n in tasklists.list_for_tier(tier) if n.id == task_id][0].short_name
+
+    return get_discord_nickname(discord_username, tier, short_name, percentage)
