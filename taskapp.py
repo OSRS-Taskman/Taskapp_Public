@@ -7,16 +7,20 @@ import bcrypt # type: ignore
 from functools import wraps
 import task_login
 import tasklists
+import discord_service
 from task_database import (get_taskCurrent, generate_task, complete_task, get_task_progress,
                            manual_complete_tasks, manual_revert_tasks,
                            get_lms_status, lms_status_change, update_imported_tasks,
                            official_status_change, username_change, get_taskCurrent_tier, generate_task_for_tier,
                            complete_task_unofficial_tier, get_user, get_leaderboard,
-                           get_roll_candidates_for_tier)
+                           get_roll_candidates_for_tier, get_discord_name_sync_enabled)
 import send_grid_email
 from templesync import check_logs, temple_player_data, import_logs
 from task_types import CollectionLogVerificationData
+from task_api import login_required
+
 import task_api
+import discord_api
 
 
 '''
@@ -46,35 +50,9 @@ if isProd:
             code = 301
             return redirect(redirect_url, code=code)
 
-
-
-'''
-login_required function:
-
-The login_requried function is used to ensure that only logged in users can access certain pages.
-
-Args:
-    Wrap(*args, **kwargs):
-Returns:
-    redirect request: to login page if the user is not logged in.
-
-
-'''
-def login_required(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        if 'logged_in' in session:
-            return f(*args, **kwargs)
-        else:
-            flash("You must be logged in to access this page!")
-            return redirect(url_for('login'))
-    return wrap
-
-
 class APIUser:
     def __init__(self, username):
         self.username = username
-
 
 '''
 Class to hold data that is used in many templates
@@ -922,6 +900,11 @@ def update():
         'completedAtISO': completed_task.get('completed_date_iso') if completed_task else None,
         'completedItemIds': completed_task.get('completed_item_ids') if completed_task else [],
     }
+
+    if (get_discord_name_sync_enabled(user_info.username)):
+        new_name = discord_service.generate_discord_nickname_from_user(user_info.username)
+        discord_service.update_nickname_DISCORD(user_info.username, new_name)
+
     return data
 
 # AJAX route for uncompleting/reverting tasks manually on task-list page(s).
@@ -945,6 +928,11 @@ def revert():
         'extra' : progress['extra']['percent_complete'],
         'allPets' : progress['all_pets']['percent_complete'],
     }
+
+    if (get_discord_name_sync_enabled(user_info.username)):
+        new_name = discord_service.generate_discord_nickname_from_user(user_info.username)
+        discord_service.update_nickname_DISCORD(user_info.username, new_name)
+
     return data
 
 
@@ -1191,6 +1179,7 @@ def reset_token(token):
 @login_required
 def profile():
     user_info = BasePageInfo()
+    discord_default_username = discord_service.get_discord_auth_info(user_info.username).discord_username_default
     # if not user_info.email_bool:
     #     return render_template('email-verify.html')
     progress = get_task_progress(user_info.username)
@@ -1212,6 +1201,9 @@ def profile():
         email_val=user_info.email_val,
         official=user_info.official,
         lms_status=user_info.user.lms_enabled,
+        discord_status=user_info.user.discord_linked,
+        discord_default_username=discord_default_username,
+        discord_name_sync_enabled=user_info.user.discord_name_sync_enabled,
         **context)
 
 

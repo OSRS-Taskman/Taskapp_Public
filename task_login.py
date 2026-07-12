@@ -4,6 +4,8 @@ from task_database import add_task_account
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from datetime import datetime
 import config
+from dataclasses import asdict
+from discord_service import get_new_discord_auth_info
 
 # specifies database to use.
 db = config.MONGO_CLIENT["TaskAppLoginDB"]
@@ -190,9 +192,9 @@ def add_user(username, password, email, isOfficial, lmsEnabled):
         doc_count = coll.count_documents(user_querydb)
         if doc_count == 0:
             hashed_pass = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-            user_input = {"username": username, "hashed_password": hashed_pass, "user_email": email, 'email_verified': False}
+            user_input = {"username": username, "hashed_password": hashed_pass, "user_email": email, 'email_verified': False, 'discord_auth_info': asdict(get_new_discord_auth_info(username))}
             coll.insert_one(user_input)
-            add_task_account(username, isOfficial, lmsEnabled )
+            add_task_account(username, isOfficial, lmsEnabled)
             success = True
 
             return success, error

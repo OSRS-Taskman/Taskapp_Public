@@ -27,6 +27,7 @@ class SkillVerificationData(VerificationData):
 class TaskData:
     id: str
     name: str
+    short_name: str
     tip: str
     wiki_link: str
     image_link: str

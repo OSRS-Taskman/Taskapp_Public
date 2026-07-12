@@ -2,7 +2,7 @@ import bcrypt
 import datetime
 import jwt
 
-from flask import Response, request
+from flask import Response, request, redirect, url_for, flash, session
 from functools import wraps
 from http import HTTPStatus
 
@@ -32,6 +32,26 @@ def token_required_v2(f):
 
         return f(user, *args, **kwargs)
     return decorated
+
+'''
+login_required function:
+
+The login_requried function is used to ensure that only logged in users can access certain pages.
+
+Args:
+    Wrap(*args, **kwargs):
+Returns:
+    redirect request: to login page if the user is not logged in.
+'''
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash("You must be logged in to access this page!")
+            return redirect(url_for('login'))
+    return wrap
 
 
 @app.route('/api/v2/login', methods=['POST'])

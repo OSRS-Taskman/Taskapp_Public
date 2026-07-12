@@ -53,49 +53,120 @@ Profile
                         <button class="profile-button rsText" id="passwordButton">change</button>
                     </form>
                 </div>
-                    <div class="password-requirements">
+                <div class="password-requirements">
+                    <span>
+                        <ul>
+                            <li id="number" class="">Password must have at least one number (0-9)</li>
+                            <li id="uppercase" class="">Password must have at least one uppercase letters (A-Z)</li>
+                            <li id="lowercase" class="">Password must have at least one lowercase letters (a-z)</li>
+                            <li id="special" class="">Password must have at least one special character. (e.g. !@#$%^&*())</li>
+                            <li id="length" class="">Password must have at least 8 characters.</li>
+                            <li id="match" class="">Password and confirm password must match.</li>
+                        </ul>
+                    </span>
+                </div>
+                <div class="account-options">
+                    <p>LMS Status</p>
+                    <label class="switch">
+                        {% if lms_status == True %}
+                        <input type="checkbox" checked id="lms_status">
+                        {% else %}
+                        <input type="checkbox" id="lms_status">
+                        {% endif %}
+                        <span class="slider round"></span>
+                        
+                        </label>
+                        <p>Official Status</p>
+                        <label class="switch">
+                        {% if official %}
+                        <input type="checkbox" checked id="official">
+                        {% else %}
+                        <input type="checkbox" disabled>
+                        {% endif %}
+                        <span class="slider round"></span>
+                        </label>
+                            <p>Skip Roll Animation</p>
+                            <label class="switch">
+                            <input type="checkbox" id="skip_roll_animation">
+                            <span class="slider round"></span>
+                            </label>
+                </div>
+                <div class="warning-section">
+                    <p id="warning"style="display: none;" class="incomplete">!!!YOU CANNOT RE-ENABLE OFFICIAL STATUS!!!</p>
+                    <button id="warningButton" style="display: none;" class="profile-button rsText">Go Unofficial</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-discord-settings">
+    <div class="main-content-rankcheck">
+        <div class="rect-large rsText">
+            <div class="triangle-top-left">
+                <div class="decoration-top-left shadow"></div>
+            </div>
+            <div class="triangle-top-right">
+                <div class="decoration-top-right shadow"></div>   
+            </div>
+            <div class="triangle-bottom-left">
+                <div class="decoration-bottom-left shadow"></div>
+            </div>
+            <div class="triangle-bottom-right">
+                <div class="decoration-bottom-right shadow"></div>
+            </div>
+            
+            <h3>Discord Settings</h3>
+
+            <div class="discord-options rsText">
+                {% if discord_status == True %}
+                <p style="margin-bottom: 0;">Unlink your Discord Account</p>
+                <a href="/api/v2/auth/discord/disconnect" 
+                    class="profile-button rsText" 
+                    id="disconnectDiscordButton">
+                    disconnect
+                </a>
+                <div class="discord-name-details">
+                    <br />
+                    <div class="discord-name-input-box">
+                        <form>
+                            <span class="details complete">Change Discord Default Name</span>
+                            <input id="discordUsername" type="text" placeholder="{{discord_default_username}}" required maxlength="12">
+                            <button class="profile-button rsText" id="discordUsernameButton">change</button>
+                        </form>
+                    </div>
+                </div>
+                <div class=""discord-name-requirements">
+                    <div class="discord-username-requirements">
                         <span>
                             <ul>
-                                <li id="number" class="">Password must have at least one number (0-9)</li>
-                                <li id="uppercase" class="">Password must have at least one uppercase letters (A-Z)</li>
-                                <li id="lowercase" class="">Password must have at least one lowercase letters (a-z)</li>
-                                <li id="special" class="">Password must have at least one special character. (e.g. !@#$%^&*())</li>
-                                <li id="length" class="">Password must have at least 8 characters.</li>
-                                <li id="match" class="">Password and confirm password must match.</li>
+                                <li id="discord-length" class="">Username must be between 2 and 12 characters.</li>
                             </ul>
                         </span>
                     </div>
-                    <div class="account-options">
-                        <p>LMS Status</p>
-                        <label class="switch">
-                            {% if lms_status == True %}
-                            <input type="checkbox" checked id="lms_status">
-                            {% else %}
-                            <input type="checkbox" id="lms_status">
-                            {% endif %}
-                            <span class="slider round"></span>
-                            
-                            </label>
-                            <p>Official Status</p>
-                            <label class="switch">
-                            {% if official %}
-                            <input type="checkbox" checked id="official">
-                            {% else %}
-                            <input type="checkbox" disabled>
-                            {% endif %}
-                            <span class="slider round"></span>
-                            </label>
-                                <p>Skip Roll Animation</p>
-                                <label class="switch">
-                                <input type="checkbox" id="skip_roll_animation">
-                                <span class="slider round"></span>
-                                </label>
-                    </div>
-                    <div class="warning-section">
-                        <p id="warning"style="display: none;" class="incomplete">!!!YOU CANNOT RE-ENABLE OFFICIAL STATUS!!!</p>
-                        <button id="warningButton" style="display: none;" class="profile-button rsText">Go Unofficial</button>
-                    </div>
                 </div>
+                <div class="account-options">
+                <p>Discord Name Sync</p>
+                <label class="switch">
+                    <input type="checkbox" {{ 'checked' if discord_name_sync_enabled else '' }} id="discord_name_sync_enabled">
+                    <span class="slider round"></span>
+                </div>
+                {% else %}
+                <p>Link your Discord Account</p>
+                <a href="/api/v2/auth/discord/connect" 
+                    class="profile-button rsText" 
+                    id="connectDiscordButton">
+                    connect
+                </a>
+                {% endif %}
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            {{message}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
             </div>
         </div>
     </div>
@@ -170,6 +241,17 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    $("#discordUsername").bind("keyup", function(){
+        const len = $(this).val().length;
+        if (len >= 2 && len <= 12){
+            $('#discord-length').addClass('complete');
+        }
+        else {
+            $('#discord-length').removeClass('complete');
+        }
+    });
+});
 </script>
 
 <script>
@@ -234,6 +316,27 @@ $(document).ready(function(){
     });
     }); 
 });
+
+$(document).ready(function(){
+    $('#discordUsernameButton').on('click', function(){
+        $('form').submit(false);
+        var discord_username = $('#discordUsername').val();
+        req = $.ajax({
+            url : '/api/v2/discord/change-default-name/',
+            type : 'POST',
+            data : {discord_username : discord_username}
+        });
+
+        req.done(function(data){
+            if (!data['success']){
+                alert(data['error'])
+            }
+            else {
+                alert('Your discord default name has been changed!');
+            }
+        });
+    }); 
+});
 </script>
 
 <script>
@@ -253,7 +356,7 @@ function setCookieValue(name, value, maxAgeSeconds) {
     document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; path=/; max-age=${maxAgeSeconds}; SameSite=Lax`;
 }
 
-    $(document).ready(function() {
+$(document).ready(function() {
     const skipRollToggle = document.getElementById('skip_roll_animation');
     if (skipRollToggle) {
         const cookieValue = getCookieValue('skip_roll_animation');
@@ -285,6 +388,24 @@ function setCookieValue(name, value, maxAgeSeconds) {
             }
             else {
                 alert('LMS tasks are now disabled!');
+            }
+        });   
+    });
+
+    
+    $('#discord_name_sync_enabled').on('change', function(e) {
+        var discord_name_sync_enabled = e.target.checked;
+        req = $.ajax({
+            url : '/api/v2/discord/change-name-sync/',
+            type : 'POST',
+            data : {discord_name_sync_enabled : discord_name_sync_enabled}
+        });
+        req.done(function(){
+            if (discord_name_sync_enabled) {
+                alert('Discord name syncing is enabled! Changes in your task list will show up in Discord.');
+            }
+            else {
+                alert('Discord name syncing is disabled!');
             }
         });   
     });

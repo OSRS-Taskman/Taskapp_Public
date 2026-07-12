@@ -37,6 +37,8 @@ class UserDatabaseObject:
     username: str
     is_official: bool
     lms_enabled: bool
+    discord_linked: bool
+    discord_name_sync_enabled: bool
     has_migrated: bool
     easy: UserTaskList
     medium: UserTaskList
@@ -74,16 +76,24 @@ class UserDatabaseObject:
         return task.name, task.image_link, tier, task.id, task.tip, task.wiki_link, task.image_link
 
     def current_task(self) -> tuple | None:
+        tier = self.current_tier()
+
+        if tier is None:
+            return None
+        
+        return self.current_task_for_tier(f'{tier}Tasks')
+        
+    def current_tier(self) -> str:
         if self.easy.current_task is not None:
-            return self.current_task_for_tier('easyTasks')
+            return 'easy'
         elif self.medium.current_task is not None:
-            return self.current_task_for_tier('mediumTasks')
+            return 'medium'
         elif self.hard.current_task is not None:
-            return self.current_task_for_tier('hardTasks')
+            return 'hard'
         elif self.elite.current_task is not None:
-            return self.current_task_for_tier('eliteTasks')
+            return 'elite'
         elif self.master.current_task is not None:
-            return self.current_task_for_tier('masterTasks')
+            return 'master'
         else:
             return None
 
@@ -312,6 +322,8 @@ def convert_database_user(user_data: dict) -> UserDatabaseObject:
         is_official=user_data['isOfficial'],
         lms_enabled=user_data['lmsEnabled'],
         has_migrated=user_data.get('hasMigrated', False),
+        discord_linked=user_data.get('discordLinked', False),
+        discord_name_sync_enabled=user_data.get('discordNameSyncEnabled', False),
         easy=convert_database_tier('easy'),
         medium=convert_database_tier('medium'),
         hard=convert_database_tier('hard'),
