@@ -251,7 +251,12 @@ def __set_current_task(username: str, tier: str, task_id: str, current: bool):
         )
 
     if (get_discord_name_sync_enabled(username)):
-        new_name = discord_service.generate_discord_nickname_from_current_task(username)
+        new_name = ''
+        if current:
+            task: TaskData = [n for n in tasklists.list_for_tier(cleaned_tier) if n.id == task_id][0]
+            new_name = discord_service.generate_discord_nickname_from_current_task(username, cleaned_tier, task)
+        else:
+            new_name = discord_service.generate_discord_nickname_from_completed_task(username, cleaned_tier)
         discord_service.update_nickname_DISCORD(username, new_name)
 
 

@@ -6,6 +6,7 @@ import tasklists
 
 from app_setup import app
 from dataclasses import dataclass, asdict
+from task_types import TaskData
 
 user_info_db = config.MONGO_CLIENT["TaskAppLoginDB"]
 task_list_db = config.MONGO_CLIENT["TaskApp"]
@@ -55,7 +56,7 @@ def save_discord_name_sync_enabled_status(username: str, discord_name_sync_enabl
     tldb = task_list_db['taskLists']
     tldb.update_one({'username': username}, {'$set': {'discordNameSyncEnabled': discord_name_sync_enabled}})
     if (discord_name_sync_enabled):
-        name = generate_discord_nickname_from_current_task(username)
+        name = generate_discord_nickname_from_user(username)
         update_nickname_DISCORD(username, name)
     else:
         default_name = get_discord_auth_info(username).discord_username_default
@@ -81,7 +82,7 @@ def update_discord_default_name(username: str, discord_default_name: str):
     
     user = task_database.get_user(username)
     if (user.discord_name_sync_enabled):
-        name = generate_discord_nickname_from_current_task(username)
+        name = generate_discord_nickname_from_user(username)
         update_nickname_DISCORD(username, name)
     else:
         update_nickname_DISCORD(username, discord_default_name)
@@ -131,19 +132,32 @@ def update_nickname_DISCORD(username: str, nickname: str) -> bool:
         print(f"Failed to contact Discord: {e}")
         return False
 
-def get_discord_nickname(discord_username_default: str, tier: str, short_name: str, percentage: int) -> str:
+def get_discord_nickname(username: str, discord_username_default: str, tier: str, short_name: str) -> str:
     short_tier = "" if len(tier) == 0 else tier[0].capitalize()
+    percentage = task_database.get_task_progress(username)[tier]['percent_complete']
     return f"{discord_username_default} {percentage}%{short_tier} {short_name}"
 
-def generate_discord_nickname_from_current_task(username: str) -> str:
+def generate_discord_nickname_from_current_task(username: str, tier: str, task: TaskData) -> str:
+    discord_username = get_discord_auth_info(username).discord_username_default
+
+    return get_discord_nickname(username, discord_username, tier, task.short_name)
+
+def generate_discord_nickname_from_completed_task(username: str, tier: str) -> str:
+    discord_username = get_discord_auth_info(username).discord_username_default
+
+    return get_discord_nickname(username, discord_username, tier, '')
+
+def generate_discord_nickname_from_user(username: str) -> str:
     user = task_database.get_user(username)
+    discord_username = get_discord_auth_info(username).discord_username_default
 
     tier = user.current_tier()
+
+    if (tier is None):
+        return discord_username
+
     current_task = user.current_task()
     task_id = current_task[3] if current_task is not None else None
-    percentage = task_database.get_task_progress(username)[tier]['percent_complete']
-
-    discord_username = get_discord_auth_info(username).discord_username_default
     short_name = [n for n in tasklists.list_for_tier(tier) if n.id == task_id][0].short_name
 
-    return get_discord_nickname(discord_username, tier, short_name, percentage)
+    return get_discord_nickname(username, discord_username, tier, short_name)

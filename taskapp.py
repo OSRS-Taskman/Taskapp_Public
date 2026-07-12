@@ -902,7 +902,7 @@ def update():
     }
 
     if (get_discord_name_sync_enabled(user_info.username)):
-        new_name = discord_service.generate_discord_nickname_from_current_task(user_info.username)
+        new_name = discord_service.generate_discord_nickname_from_user(user_info.username)
         discord_service.update_nickname_DISCORD(user_info.username, new_name)
 
     return data
@@ -930,7 +930,7 @@ def revert():
     }
 
     if (get_discord_name_sync_enabled(user_info.username)):
-        new_name = discord_service.generate_discord_nickname_from_current_task(user_info.username)
+        new_name = discord_service.generate_discord_nickname_from_user(user_info.username)
         discord_service.update_nickname_DISCORD(user_info.username, new_name)
 
     return data

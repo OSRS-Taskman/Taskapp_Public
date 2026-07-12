@@ -64,7 +64,7 @@ def change_discord_default_name():
       discord_service.update_discord_default_name(username, discord_default_name=discord_default_name)
       return {'success' : True}
     else:
-        return {'success' : False, 'error' : "Password does not meet requirements"}
+        return {'success' : False, 'error' : "New name does not meet requirements."}
 
 @app.route("/api/v2/discord/change-name-sync/", methods=['POST'])
 @login_required
