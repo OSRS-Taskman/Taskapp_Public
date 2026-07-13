@@ -2395,6 +2395,23 @@
 			}
 		},
 		{
+			"id": "a1c9589f-b3fc-4d8a-bff1-e56fa3dd06a7",
+			"name": "Get 1 unique from Moons of Peril",
+			"shortName": "Moons Unique",
+			"tip": "Received as a drop from Moons of Peril bosses",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Moons_of_Peril",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Dual_macuahuitl_detail.png/320px-Dual_macuahuitl_detail.png",
+			"displayItemId": 28997,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					28988, 28991, 28997, 29000, 29004, 29007, 29010, 29013, 29016, 29019, 29022,
+					29025, 29028
+				],
+				"count": 5
+			}
+		},
+		{
 			"id": "800ad058-37f5-4862-a5ef-1a6424e979ed",
 			"name": "Get 1 unique from the Hunter Guild",
 			"shortName": "Hunter Guild",
