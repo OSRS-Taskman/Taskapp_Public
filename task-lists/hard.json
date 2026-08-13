@@ -2190,7 +2190,7 @@
 			"shortName": "GauntletUnique",
 			"tip": "Can be received as a drop from the Gauntlet. Been there done that.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Gauntlet",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Blade_of_saeldor_(inactive)_detail.png/320px-Blade_of_saeldor_(inactive)_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Blade_of_Saeldor_(inactive)_detail.png/320px-Blade_of_Saeldor_(inactive)_detail.png",
 			"displayItemId": 25862,
 			"verification": {
 				"method": "collection-log",
@@ -2204,7 +2204,7 @@
 			"shortName": "GauntletUnique",
 			"tip": "Can be received as a drop from the Gauntlet. Anyone want some armour seeds?.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Gauntlet",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Blade_of_saeldor_(inactive)_detail.png/320px-Blade_of_saeldor_(inactive)_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Blade_of_Saeldor_(inactive)_detail.png/320px-Blade_of_Saeldor_(inactive)_detail.png",
 			"displayItemId": 25862,
 			"verification": {
 				"method": "collection-log",
@@ -3176,7 +3176,7 @@
 			"displayItemId": 29799,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 29781, 29782, 29784, 29788, 29790, 29792, 29794, 29799 ],
+				"itemIds": [ 29782, 29784, 29788, 29790, 29792, 29794, 29799 ],
 				"count": 1
 			}
 		},
@@ -3190,7 +3190,7 @@
 			"displayItemId": 29799,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 29781, 29782, 29784, 29788, 29790, 29792, 29794, 29799 ],
+				"itemIds": [ 29782, 29784, 29788, 29790, 29792, 29794, 29799 ],
 				"count": 2
 			}
 		},
