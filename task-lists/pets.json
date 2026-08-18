@@ -31,8 +31,8 @@
 			"id": "7892a92a-3ab3-413e-821e-cef29098b440",
 			"name": "Giant squirrel",
 			"tip": "Can be obtained after completion of an agility course, as well as from ticket dispensers in Brimhaven Agility Arena.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Giant_squirrel",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Giant_squirrel_(follower).png/320px-Giant_squirrel_(follower).png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Giant_Squirrel",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Giant_Squirrel_(follower).png/320px-Giant_Squirrel_(follower).png",
 			"displayItemId": 20659,
 			"verification": {
 				"method": "collection-log",
@@ -213,8 +213,8 @@
 			"id": "4663bc6a-a704-48e8-9369-69c226f53ca9",
 			"name": "Ikkle hydra",
 			"tip": "Can be obtained by defeating the Alchemical Hydra.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Ikkle_hydra",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Ikkle_Hydra_(serpentine).png/320px-Ikkle_Hydra_(serpentine).png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Ikkle_Hydra",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Ikkle_Hydra_(follower,_serpentine).png/320px-Ikkle_Hydra_(follower,_serpentine).png",
 			"displayItemId": 22746,
 			"verification": {
 				"method": "collection-log",
@@ -226,8 +226,8 @@
 			"id": "afde6030-8cba-4e6f-8be6-b54dd5883a40",
 			"name": "Jal-nib-rek",
 			"tip": "Can be obtained by defeating TzKal-Zuk, upon completion of the Inferno.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jal-nib-rek",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jal-Nib-Rek.png/320px-Jal-Nib-Rek.png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jal-Nib-Rek",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jal-Nib-Rek_(follower).png/320px-Jal-Nib-Rek_(follower).png",
 			"displayItemId": 21291,
 			"verification": {
 				"method": "collection-log",
@@ -239,8 +239,8 @@
 			"id": "43ed2a3b-b36c-4ff4-a229-9639dcc7a429",
 			"name": "Kalphite princess",
 			"tip": "Can be obtained by defeating the Kalphite Queen.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Kalphite_princess",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Kalphite_Princess.png/320px-Kalphite_Princess.png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Kalphite_Princess",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Kalphite_Princess_(follower,_walking).png/320px-Kalphite_Princess_(follower,_walking).png",
 			"displayItemId": 12647,
 			"verification": {
 				"method": "collection-log",
@@ -252,8 +252,8 @@
 			"id": "4f26629c-5429-4a90-a4fa-79434c38770f",
 			"name": "Lil' zik",
 			"tip": "Can be obtained by completing the Theatre of Blood.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Lil'_zik",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Lil'_Zik.png/320px-Lil'_Zik.png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Lil'_Zik",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Lil'_Zik_(follower).png/320px-Lil'_Zik_(follower).png",
 			"displayItemId": 22473,
 			"verification": {
 				"method": "collection-log",
@@ -265,8 +265,8 @@
 			"id": "db2932e6-f8b4-48bc-92a2-502705655b17",
 			"name": "Little nightmare",
 			"tip": "Can be obtained by defeating The Nightmare or Phosani's Nightmare.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Little_nightmare",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Little_nightmare_(follower).png/320px-Little_nightmare_(follower).png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Little_Nightmare",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Little_Nightmare_(follower).png/320px-Little_Nightmare_(follower).png",
 			"displayItemId": 24491,
 			"verification": {
 				"method": "collection-log",
@@ -367,9 +367,9 @@
 		},
 		{
 			"id": "ae72d0c5-2131-4ac5-88ba-2673493be3bd",
-			"name": "Dagannoth prime jr.",
+			"name": "Dagannoth Prime Jr.",
 			"tip": "Can be obtained by defeating Dagannoth Prime.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_dagannoth_prime",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_Dagannoth_Prime",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Dagannoth_Prime_Jr..png/320px-Dagannoth_Prime_Jr..png",
 			"displayItemId": 12644,
 			"verification": {
@@ -380,9 +380,9 @@
 		},
 		{
 			"id": "b6d9eebb-2cc9-4e0d-8bc2-9aae715488ac",
-			"name": "Dagannoth rex jr.",
+			"name": "Dagannoth Rex Jr.",
 			"tip": "Can be obtained by defeating Dagannoth Rex.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_dagannoth_rex",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_Dagannoth_Rex",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Dagannoth_Rex_Jr..png/320px-Dagannoth_Rex_Jr..png",
 			"displayItemId": 12645,
 			"verification": {
@@ -393,9 +393,9 @@
 		},
 		{
 			"id": "9cd3429d-1b46-4ef7-9948-78a9813227ca",
-			"name": "Dagannoth supreme jr.",
+			"name": "Dagannoth Supreme Jr.",
 			"tip": "Can be obtained by defeating Dagannoth Supreme.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_dagannoth_supreme",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_Dagannoth_Supreme",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Dagannoth_Supreme_Jr..png/320px-Dagannoth_Supreme_Jr..png",
 			"displayItemId": 12643,
 			"verification": {
@@ -421,7 +421,7 @@
 			"id": "28c5fef8-e1ab-42ea-90a1-dfcfdd602401",
 			"name": "General graardor jr.",
 			"tip": "Can be obtained by defeating General Graardor.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_general_graardor",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_General_Graardor",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/General_Graardor_Jr..png/320px-General_Graardor_Jr..png",
 			"displayItemId": 12650,
 			"verification": {
@@ -434,7 +434,7 @@
 			"id": "7e690297-f53a-4a54-88b8-e5fbb40f0296",
 			"name": "K'ril tsutsaroth jr.",
 			"tip": "Can be obtained by defeating K'ril Tsutsaroth.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_k'ril_tsutsaroth",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_K'ril_Tsutsaroth",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/K'ril_Tsutsaroth_Jr..png/320px-K'ril_Tsutsaroth_Jr..png",
 			"displayItemId": 12652,
 			"verification": {
@@ -447,8 +447,8 @@
 			"id": "57762bb9-1c7e-4325-846c-6ce541e48aa4",
 			"name": "Pet kraken",
 			"tip": "Can be obtained by defeating the Kraken.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_kraken",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Kraken_(follower).png/320px-Kraken_(follower).png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_Kraken",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Pet_Kraken_(follower).png/320px-Pet_Kraken_(follower).png",
 			"displayItemId": 12655,
 			"verification": {
 				"method": "collection-log",
@@ -460,7 +460,7 @@
 			"id": "31ef9651-6bb0-468c-92c7-fd272a4cf9b1",
 			"name": "Kree'arra jr.",
 			"tip": "Can be obtained by defeating Kree'arra.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_kree'arra",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_Kree'arra",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Kree'arra_Jr..png/320px-Kree'arra_Jr..png",
 			"displayItemId": 12649,
 			"verification": {
@@ -473,7 +473,7 @@
 			"id": "b82d1edf-a609-4757-aa7a-dabadbe441cc",
 			"name": "Pet smoke devil",
 			"tip": "Can be obtained by defeating the Thermonuclear Smoke Devil.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_smoke_devil",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_Smoke_Devil",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Smoke_Devil_(follower).png/320px-Smoke_Devil_(follower).png",
 			"displayItemId": 12648,
 			"verification": {
@@ -486,7 +486,7 @@
 			"id": "871c2274-585c-40b2-ab9d-fc1b78ae18d5",
 			"name": "Snakeling",
 			"tip": "Can be obtained by defeating Zulrah.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_snakeling",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_Snakeling",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Snakeling.png/320px-Snakeling.png",
 			"displayItemId": 12921,
 			"verification": {
@@ -499,7 +499,7 @@
 			"id": "6a001a9b-b3f2-421c-a62a-faafc5e1dae0",
 			"name": "Zilyana jr.",
 			"tip": "Can be obtained by defeating Zilyana.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_zilyana",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_Zilyana",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Zilyana_Jr..png/320px-Zilyana_Jr..png",
 			"displayItemId": 12651,
 			"verification": {
@@ -510,10 +510,10 @@
 		},
 		{
 			"id": "d7d850c8-53a6-4758-8873-bb3752566d10",
-			"name": "Prince black dragon",
+			"name": "Prince Black Dragon",
 			"tip": "Can be obtained by defeating the King Black Dragon.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Prince_black_dragon",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Prince_Black_Dragon.png/320px-Prince_Black_Dragon.png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Prince_Black_Dragon",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Prince_Black_Dragon_(follower).png/320px-Prince_Black_Dragon_(follower).png",
 			"displayItemId": 12653,
 			"verification": {
 				"method": "collection-log",
@@ -577,8 +577,8 @@
 			"id": "9ddc93bc-0df1-468f-b836-cf8e8b0a4e56",
 			"name": "Tzrek-jad",
 			"tip": "Can be obtained by defeating TzTok-Jad in the TzHaar Fight Cave.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Tzrek-jad",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/TzRek-Jad.png/320px-TzRek-Jad.png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Tzrek-Jad",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/TzRek-Jad_(follower).png/320px-TzRek-Jad_(follower).png",
 			"displayItemId": 13225,
 			"verification": {
 				"method": "collection-log",
@@ -614,10 +614,10 @@
 		},
 		{
 			"id": "9f8c0e97-5b85-4777-9077-29adf17473f9",
-			"name": "Vet'ion jr",
+			"name": "Vet'ion Jr.",
 			"tip": "Can be obtained by defeating Vet'ion or Calvar'ion.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Vet'ion_jr.",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Vet'ion_Jr..png/320px-Vet'ion_Jr..png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Vet'ion_Jr.",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Vet'ion_Jr._(follower).png/320px-Vet'ion_Jr._(follower).png",
 			"displayItemId": 13179,
 			"verification": {
 				"method": "collection-log",
@@ -643,7 +643,7 @@
 			"name": "Smol Heredit",
 			"tip": "Can be obtained by defeating Sol Heredit in the Fortis Colosseum.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Smol_heredit",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Smol_Heredit.png/320px-Smol_Heredit.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Smol_Heredit_(follower).png/320px-Smol_Heredit_(follower).png",
 			"displayItemId": 28960,
 			"verification": {
 				"method": "collection-log",
@@ -707,7 +707,7 @@
 			"id": "a44db8e6-f1f8-44d6-a8f7-1cd0890b8e24",
 			"name": "Penance pet",
 			"tip": "Can be obtained from high level gambles in the Barbarian Assault minigame.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_penance_queen",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Pet_Penance_Queen",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Penance_Pet.png/320px-Penance_Pet.png",
 			"displayItemId": 12703,
 			"verification": {
@@ -772,8 +772,8 @@
 			"id": "cea25d15-7d27-403a-b6cf-43cb8278616d",
 			"name": "Lil' creator",
 			"tip": "Can be obtained by opening spoils of war from the Soul Wars minigame.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Lil'_creator",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Lil'_Creator.png/320px-Lil'_Creator.png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Lil'_Creator",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Lil'_Creator_(follower).png/320px-Lil'_Creator_(follower).png",
 			"displayItemId": 25348,
 			"verification": {
 				"method": "collection-log",
