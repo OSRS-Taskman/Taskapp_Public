@@ -32,7 +32,7 @@
 		{
 			"id": "b9fe2097-02ec-4885-8072-1a303c93e147",
 			"name": "Get 1 unique from Wintertodt",
-			"shortName": "WT Unique",
+			"shortName": "Wintertodt",
 			"tip": "Can be reached quickly with a Games necklace. The Phoenix and Dragon axe do not count for this task. Why Fletch?",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Wintertodt",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Pyromancer_hood_detail.png/320px-Pyromancer_hood_detail.png",
@@ -46,7 +46,7 @@
 		{
 			"id": "c09587c2-f732-42ff-8bb1-35f9d657e9c7",
 			"name": "Get 1 unique from Wintertodt",
-			"shortName": "WT Unique",
+			"shortName": "Wintertodt",
 			"tip": "Can be reached quickly with a Games necklace. The Phoenix and Dragon axe do not count for this task. Why Fletch?",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Wintertodt",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Pyromancer_hood_detail.png/320px-Pyromancer_hood_detail.png",
@@ -60,7 +60,7 @@
 		{
 			"id": "f1587710-61b2-4ecf-9fe5-ef63be0aed95",
 			"name": "Get 1 unique from Wintertodt",
-			"shortName": "WT Unique",
+			"shortName": "Wintertodt",
 			"tip": "Can be reached quickly with a Games necklace. The Phoenix and Dragon axe do not count for this task. Why Fletch?",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Wintertodt",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Pyromancer_hood_detail.png/320px-Pyromancer_hood_detail.png",
@@ -74,7 +74,7 @@
 		{
 			"id": "25bfc85a-0429-478a-b3af-498e35918a71",
 			"name": "Get 1 unique from Wintertodt",
-			"shortName": "WT Unique",
+			"shortName": "Wintertodt",
 			"tip": "Can be reached quickly with a Games necklace. The Phoenix and Dragon axe do not count for this task. Why Fletch?",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Wintertodt",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Pyromancer_hood_detail.png/320px-Pyromancer_hood_detail.png",
@@ -88,7 +88,7 @@
 		{
 			"id": "4943aa05-a4b2-48ca-876d-42dc98e063a7",
 			"name": "Get 1 unique from Wintertodt",
-			"shortName": "WT Unique",
+			"shortName": "Wintertodt",
 			"tip": "Can be reached quickly with a Games necklace. The Phoenix and Dragon axe do not count for this task. Why Fletch?",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Wintertodt",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Pyromancer_hood_detail.png/320px-Pyromancer_hood_detail.png",
@@ -710,7 +710,7 @@
 		{
 			"id": "100fc573-a473-4f8e-82d8-bda08f454a06",
 			"name": "Get a Void Knight seal",
-			"shortName": "VK Seal",
+			"shortName": "Void Seal",
 			"tip": "Purchased with Pest Control commendation points. I sure don't miss the novice boat...",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Pest_Control",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Void_seal_detail.png/320px-Void_seal_detail.png",
@@ -724,7 +724,7 @@
 		{
 			"id": "010d0bc4-d9e1-46da-a802-ed62efe66de7",
 			"name": "Get Void Knight gloves",
-			"shortName": "VK Gloves",
+			"shortName": "Void Gloves",
 			"tip": "Purchased with Pest Control commendation points. Requires 42 in all combat stats and 22 Prayer to purchase. Always attack the spinners!",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Pest_Control",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Void_knight_gloves_detail.png/320px-Void_knight_gloves_detail.png",
@@ -808,7 +808,7 @@
 		{
 			"id": "679c04c8-ff5b-4c47-a9dc-a4984d8366bb",
 			"name": "Get 1 unique from Shades of Mort'ton",
-			"shortName": "Shades Unique",
+			"shortName": "Shades",
 			"tip": "Set ghost remains ablaze on top of logs soaked in sacred oil. Somehow that makes shiny keys and gold. Who knows?",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Shades_of_Mort'ton_(minigame)",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Fine_cloth_detail.png/320px-Fine_cloth_detail.png",
@@ -825,7 +825,7 @@
 		{
 			"id": "9157d0d5-abca-4654-8646-38b293c22754",
 			"name": "Get 1 unique from Shades of Mort'ton",
-			"shortName": "Shades Unique",
+			"shortName": "Shades",
 			"tip": "Set ghost remains ablaze on top of logs soaked in sacred oil. Somehow that makes shiny keys and gold. Who knows?",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Shades_of_Mort'ton_(minigame)",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Fine_cloth_detail.png/320px-Fine_cloth_detail.png",
@@ -898,7 +898,7 @@
 		{
 			"id": "bd2c8923-be2b-4295-acd6-5f949dc3e27e",
 			"name": "Get the Gricoller's can",
-			"shortName": "Gricol. Can",
+			"shortName": "Gricollers Can",
 			"tip": "Can be purchased at the Tithe Farm minigame. You can boost using a garden pie to access it earlier, as well as for higher tier seeds.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Gricoller's_can",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Gricoller's_can_detail.png/320px-Gricoller's_can_detail.png",
@@ -982,7 +982,7 @@
 		{
 			"id": "db8b3842-abfa-4b64-bf59-c820a0dce83d",
 			"name": "Get the Pearl fishing rod",
-			"shortName": "Pearl Fish Rod",
+			"shortName": "Pearl Rod",
 			"tip": "Obtained from Aerial Fishing on Molch Island. Good luck with that RSI.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Aerial_fishing",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Pearl_fishing_rod_detail.png/320px-Pearl_fishing_rod_detail.png",
@@ -2111,7 +2111,7 @@
 		{
 			"id": "043ba4f2-591d-4828-8fb2-aa88260f5fcf",
 			"name": "Get 1 unique from Tempoross",
-			"shortName": "Tempo Unique",
+			"shortName": "Tempoross",
 			"tip": "Can be received directly from Tempoross' reward pool or by combining the Angler outfit pieces with 1,200 Spirit flakes, if you have one. The Dragon harpoon does not count.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_water_(empty)_detail.png/320px-Tome_of_water_(empty)_detail.png",
@@ -2127,7 +2127,7 @@
 		{
 			"id": "e77633b4-40f3-4dd6-9e6e-5554ecbec38c",
 			"name": "Get 1 unique from Tempoross",
-			"shortName": "Tempo Unique",
+			"shortName": "Tempoross",
 			"tip": "Can be received directly from Tempoross' reward pool or by combining the Angler outfit pieces with 1,200 Spirit flakes, if you have one. The Dragon harpoon does not count.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_water_(empty)_detail.png/320px-Tome_of_water_(empty)_detail.png",
@@ -2143,7 +2143,7 @@
 		{
 			"id": "c13a79ba-49f7-46ae-ab34-09b2dea01df1",
 			"name": "Get 1 unique from Tempoross",
-			"shortName": "Tempo Unique",
+			"shortName": "Tempoross",
 			"tip": "Can be received directly from Tempoross' reward pool or by combining the Angler outfit pieces with 1,200 Spirit flakes, if you have one. The Dragon harpoon does not count.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_water_(empty)_detail.png/320px-Tome_of_water_(empty)_detail.png",
@@ -2159,7 +2159,7 @@
 		{
 			"id": "0fe7ee39-2387-48e3-8316-1f3a73ba7d31",
 			"name": "Get 1 unique from Tempoross",
-			"shortName": "Tempo Unique",
+			"shortName": "Tempoross",
 			"tip": "Can be received directly from Tempoross' reward pool or by combining the Angler outfit pieces with 1,200 Spirit flakes, if you have one. The Dragon harpoon does not count.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_water_(empty)_detail.png/320px-Tome_of_water_(empty)_detail.png",
@@ -2207,7 +2207,7 @@
 		{
 			"id": "29f0793b-ab50-48f5-8e5f-c665b37f302b",
 			"name": "Get 1 unique from Guardians of the Rift",
-			"shortName": "GotR Unique",
+			"shortName": "GotR",
 			"tip": "Uniques can come from the Rewards Guardian or purchased in the shop with Abyssal pearls. Requires the Temple of the Eye quest.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/320px-Hat_of_the_eye_detail.png",
@@ -2224,7 +2224,7 @@
 		{
 			"id": "eaa7fb4c-8647-4952-866f-0ff17175566f",
 			"name": "Get 1 unique from Guardians of the Rift",
-			"shortName": "GotR Unique",
+			"shortName": "GotR",
 			"tip": "Uniques can come from the Rewards Guardian or purchased in the shop with Abyssal pearls. Requires the Temple of the Eye quest.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/320px-Hat_of_the_eye_detail.png",
@@ -2241,7 +2241,7 @@
 		{
 			"id": "5cf8c24d-4c39-4626-a529-8e92c0beaae1",
 			"name": "Get 1 unique from Guardians of the Rift",
-			"shortName": "GotR Unique",
+			"shortName": "GotR",
 			"tip": "Uniques can come from the Rewards Guardian or purchased in the shop with Abyssal pearls. Requires the Temple of the Eye quest.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/320px-Hat_of_the_eye_detail.png",
@@ -2258,7 +2258,7 @@
 		{
 			"id": "c58b3f37-57d8-4230-917e-b1a6289a085f",
 			"name": "Get 1 unique from Guardians of the Rift",
-			"shortName": "GotR Unique",
+			"shortName": "GotR",
 			"tip": "Uniques can come from the Rewards Guardian or purchased in the shop with Abyssal pearls. Requires the Temple of the Eye quest.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/320px-Hat_of_the_eye_detail.png",
@@ -2275,7 +2275,7 @@
 		{
 			"id": "59834ab0-010c-45d2-91d3-73dd45bb5963",
 			"name": "Get 1 unique from Giants' Foundry",
-			"shortName": "GF Unique",
+			"shortName": "Giants Foundry",
 			"tip": "Requires the Sleeping Giants quest. You can buy warhammers and battleaxes in Mt Karuulm and Cam Torum for cheap sword materials.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Giants'_Foundry",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Kovac's_grog_detail.png/320px-Kovac's_grog_detail.png",
@@ -2289,7 +2289,7 @@
 		{
 			"id": "c66b3654-6987-43c3-8b0b-de91e8819932",
 			"name": "Get 1 unique from Giants' Foundry",
-			"shortName": "GF Unique",
+			"shortName": "Giants Foundry",
 			"tip": "Requires the Sleeping Giants quest. You can buy warhammers and battleaxes in Mt Karuulm and Cam Torum for cheap sword materials.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Giants'_Foundry",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Kovac's_grog_detail.png/320px-Kovac's_grog_detail.png",
@@ -2303,7 +2303,7 @@
 		{
 			"id": "ea129e62-a3e5-4b86-96fd-b0c8dceb8856",
 			"name": "Get 1 unique from Giants' Foundry",
-			"shortName": "GF Unique",
+			"shortName": "Giants Foundry",
 			"tip": "Requires the Sleeping Giants quest. You can buy warhammers and battleaxes in Mt Karuulm and Cam Torum for cheap sword materials.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Giants'_Foundry",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Kovac's_grog_detail.png/320px-Kovac's_grog_detail.png",
@@ -2317,7 +2317,7 @@
 		{
 			"id": "de313a0b-4736-4e55-bf95-9d1f7329d533",
 			"name": "Get 1 unique from Giants' Foundry",
-			"shortName": "GF Unique",
+			"shortName": "Giants Foundry",
 			"tip": "Requires the Sleeping Giants quest. You can buy warhammers and battleaxes in Mt Karuulm and Cam Torum for cheap sword materials.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Giants'_Foundry",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Kovac's_grog_detail.png/320px-Kovac's_grog_detail.png",
@@ -2489,7 +2489,7 @@
 		{
 			"id": "583f9e90-f977-40f9-adba-111f8064f289",
 			"name": "Get 1 unique from Vale Totems",
-			"shortName": "VT Unique",
+			"shortName": "Vale Totems",
 			"tip": "Obtained by rummaging offerings or, if you're unlucky, buying from Ranulph with research points. You may chop logs for this task.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Vale_Totems",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Vale_offerings_detail.png/320px-Vale_offerings_detail.png",
@@ -2503,7 +2503,7 @@
 		{
 			"id": "50bf552f-5f5a-48b1-aeff-28a2e81d240c",
 			"name": "Get 1 unique from Vale Totems",
-			"shortName": "VT Unique",
+			"shortName": "Vale Totems",
 			"tip": "Obtained by rummaging offerings or, if you're unlucky, buying from Ranulph with research points. You may chop logs for this task.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Vale_Totems",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Vale_offerings_detail.png/320px-Vale_offerings_detail.png",
@@ -2699,7 +2699,7 @@
 		{
 			"id": "37a47530-6b37-4a59-b2b2-953987f96c1c",
 			"name": "Get 1 unique from Brutus",
-			"shortName": "Brutus Unique",
+			"shortName": "Brutus",
 			"tip": "Requires the Ides of Milk quest. Hope you like bull milk. Moooooooo.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Brutus",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Mooleta_detail.png/320px-Mooleta_detail.png",
@@ -2713,7 +2713,7 @@
 		{
 			"id": "68fd60c9-2903-48d1-abad-bc963e9a4081",
 			"name": "Get 1 unique from Brutus",
-			"shortName": "Brutus Unique",
+			"shortName": "Brutus",
 			"tip": "Requires the Ides of Milk quest. Hope you like bull milk. Moooooooo.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Brutus",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Mooleta_detail.png/320px-Mooleta_detail.png",
@@ -2727,7 +2727,7 @@
 		{
 			"id": "4e0db17e-f799-42cb-b7be-9b6870c99527",
 			"name": "Get 1 unique from Brutus",
-			"shortName": "Brutus Unique",
+			"shortName": "Brutus",
 			"tip": "Requires the Ides of Milk quest. Hope you like bull milk. Moooooooo.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Brutus",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Mooleta_detail.png/320px-Mooleta_detail.png",
