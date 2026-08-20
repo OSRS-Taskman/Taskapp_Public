@@ -3,108 +3,115 @@
 	"tasks": [
 		{
 			"id": "08b95c14-4baf-46cf-8d79-f2b9e9bee0f8",
-			"name": "Get a Jar of chemicals",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_chemicals",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_chemicals_detail.png/320px-Jar_of_chemicals_detail.png",
+			"name": "Get a Jar of Chemicals",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Chemicals",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Chemicals_detail.png/320px-Jar_of_Chemicals_detail.png",
 			"displayItemId": 23064
 		},
 		{
 			"id": "7bbf9d8b-3366-4967-9ff4-fc16d61a793b",
-			"name": "Get a Jar of souls",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_souls",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_souls_detail.png/320px-Jar_of_souls_detail.png",
+			"name": "Get a Jar of Souls",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Souls",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Souls_detail.png/320px-Jar_of_Souls_detail.png",
 			"displayItemId": 13245
 		},
 		{
 			"id": "2e286779-0ca4-4998-a6fb-a977e24dd8b4",
-			"name": "Get a Jar of sand",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_sand",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_sand_detail.png/320px-Jar_of_sand_detail.png",
+			"name": "Get a Jar of Sand",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Sand",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Sand_detail.png/320px-Jar_of_Sand_detail.png",
 			"displayItemId": 12885
 		},
 		{
 			"id": "0b19601f-7631-4d6d-bb8c-3904c4a4c397",
-			"name": "Get a Jar of decay",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_decay",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_decay_detail.png/320px-Jar_of_decay_detail.png",
+			"name": "Get a Jar of Decay",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Decay",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Decay_detail.png/320px-Jar_of_Decay_detail.png",
 			"displayItemId": 22106
 		},
 		{
 			"id": "23e11ebd-5776-403b-9392-b56803d92a63",
-			"name": "Get a Jar of swamp",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_swamp",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_swamp_detail.png/320px-Jar_of_swamp_detail.png",
+			"name": "Get a Jar of Swamp",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Swamp",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Swamp_detail.png/320px-Jar_of_Swamp_detail.png",
 			"displayItemId": 12936
 		},
 		{
 			"id": "3295429c-cff5-4684-8c4f-1dbd10cce269",
-			"name": "Get a Jar of eyes",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_eyes",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_eyes_detail.png/320px-Jar_of_eyes_detail.png",
+			"name": "Get a Jar of Eyes",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Eyes",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Eyes_detail.png/320px-Jar_of_Eyes_detail.png",
 			"displayItemId": 23525
 		},
 		{
 			"id": "45b53558-612b-47df-a7d7-4ed930a836d5",
-			"name": "Get a Jar of stone",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_stone",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_stone_detail.png/320px-Jar_of_stone_detail.png",
+			"name": "Get a Jar of Stone",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Stone",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Stone_detail.png/320px-Jar_of_Stone_detail.png",
 			"displayItemId": 21745
 		},
 		{
 			"id": "2cb8983b-bdd6-408a-adde-f553f9ac4fac",
-			"name": "Get a Jar of darkness",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_darkness",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_darkness_detail.png/320px-Jar_of_darkness_detail.png",
+			"name": "Get a Jar of Darkness",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Darkness",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Darkness_detail.png/320px-Jar_of_Darkness_detail.png",
 			"displayItemId": 19701
 		},
 		{
 			"id": "5ac9cab3-e0ba-4fa3-8d52-9d2f804add99",
-			"name": "Get a Jar of dreams",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_dreams",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_dreams_detail.png/320px-Jar_of_dreams_detail.png",
+			"name": "Get a Jar of Dreams",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Dreams",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Dreams_detail.png/320px-Jar_of_Dreams_detail.png",
 			"displayItemId": 24495
 		},
 		{
 			"id": "cdddd0e6-0d6f-4ec5-a486-bff27ab51df2",
-			"name": "Get a Jar of dirt",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_dirt",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_dirt_detail.png/320px-Jar_of_dirt_detail.png",
+			"name": "Get a Jar of Dirt",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Dirt",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Dirt_detail.png/320px-Jar_of_Dirt_detail.png",
 			"displayItemId": 12007
 		},
 		{
 			"id": "eb60d1ee-e46a-44fd-bc09-0ae40a2f2ebb",
-			"name": "Get a Jar of miasma",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_miasma",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_miasma_detail.png/320px-Jar_of_miasma_detail.png",
+			"name": "Get a Jar of Miasma",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Miasma",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Miasma_detail.png/320px-Jar_of_Miasma_detail.png",
 			"displayItemId": 13277
 		},
 		{
 			"id": "a6ffb904-4857-4727-b9ec-a8663c35f80d",
-			"name": "Get a Jar of spirits",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_spirits",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_spirits_detail.png/320px-Jar_of_spirits_detail.png",
+			"name": "Get a Jar of Spirits",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Spirits",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Spirits_detail.png/320px-Jar_of_Spirits_detail.png",
 			"displayItemId": 25521
 		},
 		{
 			"id": "acba7294-7fcd-4e76-97ff-6646fba4f0b2",
-			"name": "Get a Jar of smoke",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_smoke",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_smoke_detail.png/320px-Jar_of_smoke_detail.png",
+			"name": "Get a Jar of Smoke",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Smoke",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Smoke_detail.png/320px-Jar_of_Smoke_detail.png",
 			"displayItemId": 25524
 		},
 		{
 			"id": "0acbd53c-573a-41a5-a1fc-bb10f8d15c12",
-			"name": "Get a Jar of venom",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_venom",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_venom_detail.png/320px-Jar_of_venom_detail.png",
+			"name": "Get a Jar of Venom",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Venom",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Venom_detail.png/320px-Jar_of_Venom_detail.png",
 			"displayItemId": 29786
 		},
 		{
 			"id": "45d58f26-929c-41b3-8c27-6ba270fbe636",
-			"name": "Get a Jar of feathers",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_feathers",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_feathers_detail.png/320px-Jar_of_feathers_detail.png",
+			"name": "Get a Jar of Feathers",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Jar_of_Feathers",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Feathers_detail.png/320px-Jar_of_Feathers_detail.png",
 			"displayItemId": 32921
+		},
+		{
+			"id": "d2b5c6b8-7953-436b-8163-83b021002f83",
+			"name": "Get a Jar of Light",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Light",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Light_detail.png/320px-Jar_of_Light_detail.png",
+			"displayItemId": 34030
 		},
 		{
 			"id": "bf3ce43e-d365-419d-a3fc-edbda9b0a850",
@@ -739,29 +746,29 @@
 		{
 			"id": "f3c24c46-f8f5-48ff-8ba6-3c4caef03512",
 			"name": "Get a Remnant of Akkha",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Remnant_of_akkha",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Remnant_of_akkha_detail.png/320px-Remnant_of_akkha_detail.png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Remnant_of_Akkha",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Remnant_of_Akkha_detail.png/320px-Remnant_of_Akkha_detail.png",
 			"displayItemId": 27377
 		},
 		{
 			"id": "107f7fe7-4f09-4aec-b4ab-da3f2309bb68",
-			"name": "Get a Remnant of Ba-ba",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Remnant_of_ba-ba",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Remnant_of_ba-ba_detail.png/320px-Remnant_of_ba-ba_detail.png",
+			"name": "Get a Remnant of Ba-Ba",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Remnant_of_Ba-Ba",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Remnant_of_Ba-Ba_detail.png/320px-Remnant_of_Ba-Ba_detail.png",
 			"displayItemId": 27378
 		},
 		{
 			"id": "0fd84bb1-f54f-4d8a-bd55-14841aa15bbb",
 			"name": "Get a Remnant of Kephri",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Remnant_of_kephri",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Remnant_of_kephri_detail.png/320px-Remnant_of_kephri_detail.png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Remnant_of_Kephri",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Remnant_of_Kephri_detail.png/320px-Remnant_of_Kephri_detail.png",
 			"displayItemId": 27379
 		},
 		{
 			"id": "d382e513-4655-468d-9316-e37f8f27b424",
 			"name": "Get a Remnant of Zebak",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Remnant_of_zebak",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Remnant_of_zebak_detail.png/320px-Remnant_of_zebak_detail.png",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Remnant_of_Zebak",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Remnant_of_Zebak_detail.png/320px-Remnant_of_Zebak_detail.png",
 			"displayItemId": 27380
 		},
 		{
@@ -810,35 +817,35 @@
 			"id": "1d2a9ccf-a2f5-4330-9a40-ba03736321bb",
 			"name": "Get 1 unique from Guardians of the Rift",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/320px-Hat_of_the_eye_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_Eye_detail.png/120px-Hat_of_the_Eye_detail.png",
 			"displayItemId": 26850
 		},
 		{
 			"id": "9080390d-c8b1-4e66-8190-4c66da8f49e4",
 			"name": "Get 1 unique from the Wildy bosses",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Wilderness#Bosses",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Skull_of_vet'ion_detail.png/320px-Skull_of_vet'ion_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Skull_of_Vet'ion_detail.png/320px-Skull_of_Vet'ion_detail.png",
 			"displayItemId": 27673
 		},
 		{
 			"id": "0c5f52d0-2cec-44e4-9945-de583c711ed2",
 			"name": "Get 1 unique from the Wildy bosses",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Wilderness#Bosses",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Skull_of_vet'ion_detail.png/320px-Skull_of_vet'ion_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Skull_of_Vet'ion_detail.png/320px-Skull_of_Vet'ion_detail.png",
 			"displayItemId": 27673
 		},
 		{
 			"id": "d30520a8-eb8b-44db-920c-aac5ccdbb97d",
 			"name": "Get 1 unique from the Wildy bosses",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Wilderness#Bosses",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Skull_of_vet'ion_detail.png/320px-Skull_of_vet'ion_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Skull_of_Vet'ion_detail.png/320px-Skull_of_Vet'ion_detail.png",
 			"displayItemId": 27673
 		},
 		{
 			"id": "769d7c4a-cab5-43d0-9dda-ce204336bd28",
 			"name": "Get 1 unique from the Wildy bosses",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Wilderness#Bosses",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Skull_of_vet'ion_detail.png/320px-Skull_of_vet'ion_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Skull_of_Vet'ion_detail.png/320px-Skull_of_Vet'ion_detail.png",
 			"displayItemId": 27673
 		},
 		{

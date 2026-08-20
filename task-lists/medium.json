@@ -2098,7 +2098,7 @@
 			"shortName": "GotR",
 			"tip": "Can be received as a reward from the Guardians of the Rift Skilling minigame. Runecrafting... it's actually kinda fun now.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/320px-Hat_of_the_eye_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_Eye_detail.png/120px-Hat_of_the_Eye_detail.png",
 			"displayItemId": 26850,
 			"verification": {
 				"method": "collection-log",
@@ -2115,7 +2115,7 @@
 			"shortName": "GotR",
 			"tip": "Can be received as a reward from the Guardians of the Rift Skilling minigame. Runecrafting... it's actually kinda fun now.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/320px-Hat_of_the_eye_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_Eye_detail.png/120px-Hat_of_the_Eye_detail.png",
 			"displayItemId": 26850,
 			"verification": {
 				"method": "collection-log",
@@ -2132,7 +2132,7 @@
 			"shortName": "GotR",
 			"tip": "Can be received as a reward from the Guardians of the Rift Skilling minigame. Runecrafting... it's actually kinda fun now.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/320px-Hat_of_the_eye_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_Eye_detail.png/120px-Hat_of_the_Eye_detail.png",
 			"displayItemId": 26850,
 			"verification": {
 				"method": "collection-log",
@@ -2149,7 +2149,7 @@
 			"shortName": "GotR",
 			"tip": "Can be received as a reward from the Guardians of the Rift Skilling minigame. Runecrafting... it's actually kinda fun now.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Guardians_of_the_Rift",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_eye_detail.png/320px-Hat_of_the_eye_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Hat_of_the_Eye_detail.png/120px-Hat_of_the_Eye_detail.png",
 			"displayItemId": 26850,
 			"verification": {
 				"method": "collection-log",
@@ -2738,10 +2738,10 @@
 		},
 		{
 			"id": "5bb661d8-21f3-45e7-9eff-13fd3f8113bb",
-			"name": "Get a Horn of plenty",
+			"name": "Get a Horn of Plenty",
 			"shortName": "Horn of Plenty",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Horn_of_plenty",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Horn_of_plenty_detail.png/320px-Horn_of_plenty_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Horn_of_Plenty_detail.png/130px-Horn_of_Plenty_detail.png",
 			"displayItemId": 31241,
 			"verification": {
 				"method": "collection-log",
