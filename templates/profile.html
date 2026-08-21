@@ -7,7 +7,7 @@ Profile
 {% block context %}
 <br>
 <br>
-<div class="container">
+<div class="container" style="gap: 50px; flex-wrap: wrap;">
     <div class="main-content-rankcheck">
         <div class="rect-large rsText">
             <div class="triangle-top-left">
@@ -98,80 +98,80 @@ Profile
             </div>
         </div>
     </div>
-</div>
-<div class="container-discord-settings">
-    <div class="main-content-rankcheck">
-        <div class="rect-large rsText">
-            <div class="triangle-top-left">
-                <div class="decoration-top-left shadow"></div>
-            </div>
-            <div class="triangle-top-right">
-                <div class="decoration-top-right shadow"></div>   
-            </div>
-            <div class="triangle-bottom-left">
-                <div class="decoration-bottom-left shadow"></div>
-            </div>
-            <div class="triangle-bottom-right">
-                <div class="decoration-bottom-right shadow"></div>
-            </div>
-            
-            <h3>Discord Settings</h3>
+    
+    <div class="container-discord-settings">
+        <div class="main-content-rankcheck">
+            <div class="rect-large rsText">
+                <div class="triangle-top-left">
+                    <div class="decoration-top-left shadow"></div>
+                </div>
+                <div class="triangle-top-right">
+                    <div class="decoration-top-right shadow"></div>   
+                </div>
+                <div class="triangle-bottom-left">
+                    <div class="decoration-bottom-left shadow"></div>
+                </div>
+                <div class="triangle-bottom-right">
+                    <div class="decoration-bottom-right shadow"></div>
+                </div>
+                
+                <h3>Discord Settings</h3>
 
-            <div class="discord-options rsText">
-                {% if discord_status == True %}
-                <p style="margin-bottom: 0;">Unlink your Discord Account</p>
-                <a href="/api/v2/auth/discord/disconnect" 
-                    class="profile-button rsText" 
-                    id="disconnectDiscordButton">
-                    disconnect
-                </a>
-                <div class="discord-name-details">
-                    <br />
-                    <div class="discord-name-input-box">
-                        <form>
-                            <span class="details complete">Change Discord Default Name</span>
-                            <input id="discordUsername" type="text" placeholder="{{discord_default_username}}" required maxlength="12">
-                            <button class="profile-button rsText" id="discordUsernameButton">change</button>
-                        </form>
-                    </div>
-                </div>
-                <div class=""discord-name-requirements">
-                    <div class="discord-username-requirements">
-                        <span>
-                            <ul>
-                                <li id="discord-length" class="">Username must be between 2 and 12 characters.</li>
-                            </ul>
-                        </span>
-                    </div>
-                </div>
-                <div class="account-options">
-                <p>Discord Name Sync</p>
-                <label class="switch">
-                    <input type="checkbox" {{ 'checked' if discord_name_sync_enabled else '' }} id="discord_name_sync_enabled">
-                    <span class="slider round"></span>
-                </div>
-                {% else %}
-                <p>Link your Discord Account</p>
-                <a href="/api/v2/auth/discord/connect" 
-                    class="profile-button rsText" 
-                    id="connectDiscordButton">
-                    connect
-                </a>
-                {% endif %}
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for message in messages %}
-                        <div class="alert alert-danger alert-dismissible" role="alert">
-                            {{message}}
+                <div class="discord-options rsText">
+                    {% if discord_status == True %}
+                    <p style="margin-bottom: 0;">Unlink your Discord Account</p>
+                    <a href="/api/v2/auth/discord/disconnect" 
+                        class="profile-button rsText" 
+                        id="disconnectDiscordButton">
+                        disconnect
+                    </a>
+                    <div class="discord-name-details">
+                        <br />
+                        <div class="discord-name-input-box">
+                            <form>
+                                <span class="details complete">Change Discord Default Name</span>
+                                <input id="discordUsername" type="text" placeholder="{{discord_default_username}}" required maxlength="12">
+                                <button class="profile-button rsText" id="discordUsernameButton">change</button>
+                            </form>
                         </div>
-                        {% endfor %}
+                    </div>
+                    <div class=""discord-name-requirements">
+                        <div class="discord-username-requirements">
+                            <span>
+                                <ul>
+                                    <li id="discord-length" class="">Username must be between 2 and 12 characters.</li>
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="account-options">
+                    <p>Discord Name Sync</p>
+                    <label class="switch">
+                        <input type="checkbox" {{ 'checked' if discord_name_sync_enabled else '' }} id="discord_name_sync_enabled">
+                        <span class="slider round"></span>
+                    </div>
+                    {% else %}
+                    <p>Link your Discord Account</p>
+                    <a href="/api/v2/auth/discord/connect" 
+                        class="profile-button rsText" 
+                        id="connectDiscordButton">
+                        connect
+                    </a>
                     {% endif %}
-                {% endwith %}
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                {{message}}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <script>
 $(document).ready(function(){
     $("#password").bind("keyup", function(){
