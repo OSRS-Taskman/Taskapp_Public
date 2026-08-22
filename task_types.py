@@ -63,6 +63,17 @@ class TierProgress:
     total: int
     total_complete: int
 
+@dataclass
+class UserTierProgressCache:
+    easy: TierProgress
+    medium: TierProgress
+    hard: TierProgress
+    elite: TierProgress
+    master: TierProgress
+    passive: TierProgress
+    extra: TierProgress
+    pets: TierProgress
+
 class PageTask:
     def __init__(self, is_completed: bool, is_current: bool, task_data: TaskData,
                  completed_date = None, completed_date_iso: str = None,
@@ -87,7 +98,6 @@ class PageTask:
 @dataclass
 class LeaderboardEntry:
     username: str
-    lms_enabled: bool
     easy_progress: TierProgress
     medium_progress: TierProgress
     hard_progress: TierProgress

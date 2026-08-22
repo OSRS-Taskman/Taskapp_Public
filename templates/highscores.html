@@ -1,33 +1,59 @@
-{% extends "base.html" %}
+{% extends "base_updated.html" %}
+{% block title %}
+Hiscores
+{% endblock %}
+{% block head %}
+{% endblock %}
 {% block context %}
 
-<div class="container d-flex flex py-2 mt-5 border-light">
-    <table class="table table-condensed text-white">
-        <thead>
-        <tr>
-            <th>Username</th>
-            <th>LMS Enabled</th>
-            <th>Easy Percent</th>
-            <th>Medium Percent</th>
-            <th>Hard Percent</th>
-            <th>Elite Percent%</th>
-            <th>Points</th>
-        </tr>
-        </thead>
-        <tbody style="--bs-table-hover-color=white">
-        {% for user in leaderboard %}
-        <tr id="{{ user }}">
-            <td>{{ user.username }}</td>
-            <td>{{ user.lms_enabled }}</td>
-            <td>{{ user.easy_progress.percent_complete }}</td>
-            <td>{{ user.medium_progress.percent_complete }}</td>
-            <td>{{ user.hard_progress.percent_complete }}</td>
-            <td>{{ user.elite_progress.percent_complete }}</td>
-            <td>{{ user.points() }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="hiscores-container">
+    <div class="rect-large-wop rsText">
+        <div class="wop-input">
+            <input type="text" class="hiscores-input-field rsText" placeholder="Search..." id="txtInputTableHiscores">
+        </div>
+        <div class="wop-box">
+            <div class="wop-table">
+                <table class="rsText">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th class="complete">Easy %</th>
+                            <th class="incomplete">Medium %</th>
+                            <th class="complete">Hard %</th>
+                            <th class="incomplete">Elite %</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody style="--bs-table-hover-color: white">
+                    {% for user in leaderboard %}
+                    <tr id="{{ user }}">
+                        <td>{{ loop.index }}.</td>
+                        <td>{{ user.username }}</td>
+                        <td class="complete">{{ user.easy_progress.percent_complete }}</td>
+                        <td class="incomplete">{{ user.medium_progress.percent_complete }}</td>
+                        <td class="complete">{{ user.hard_progress.percent_complete }}</td>
+                        <td class="incomplete">{{ user.elite_progress.percent_complete }}</td>
+                        <td>{{ user.points() }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script>
+   $(document).ready(function(){
+       $("#txtInputTableHiscores").on("keyup", function(){
+           var value = $(this).val().toLowerCase();
+           $("tr").filter(function(){
+                var tableRow = $(this).text().toLowerCase();
+               $(this).toggle(tableRow.indexOf(value) > -1 || tableRow.indexOf("easy %") > -1)
+           });
+       });
+   });
+</script>
 
 {% endblock %}
