@@ -1371,7 +1371,28 @@
 		},
 		{
 			"id": "5c7108d6-3eda-4a54-8007-136d17484cfc",
-			"name": "Get 2 new uniques from elite clues",
+			"name": "Get 1 new unique from elite clues",
+			"shortName": "Elite Clues",
+			"tip": "Potential reward from elite clues. Elite clue rewards are not real. Jagex please fix.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Clue_scroll_(elite)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Clue_scroll_(elite)_detail.png/320px-Clue_scroll_(elite)_detail.png",
+			"displayItemId": 12073,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					12335, 12337, 12351, 12353, 12355, 12357, 12363, 12365, 12367, 12369, 12373,
+					12381, 12383, 12385, 12387, 12393, 12395, 12397, 12430, 12432, 12439, 12441,
+					12443, 12526, 12528, 12530, 12532, 12534, 12536, 12538, 12540, 12596, 19943,
+					19946, 19949, 19952, 19955, 19958, 19961, 19964, 19967, 19970, 19973, 19976,
+					19979, 19982, 19985, 19988, 19991, 19994, 19997, 20002, 23185, 23246, 23249,
+					23252, 23255, 23270, 23273
+				],
+				"count": 1
+			}
+		},
+		{
+			"id": "f8f9070a-cc07-48dd-8801-e0602b58d105",
+			"name": "Get 1 new unique from elite clues",
 			"shortName": "Elite Clues",
 			"tip": "Potential reward from elite clues. Elite clue rewards are not real. Jagex please fix.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Clue_scroll_(elite)",
@@ -1392,7 +1413,28 @@
 		},
 		{
 			"id": "b36983da-b09e-4b7f-8800-c75165cd3994",
-			"name": "Get 2 new uniques from elite clues",
+			"name": "Get 1 new unique from elite clues",
+			"shortName": "Elite Clues",
+			"tip": "Potential reward from elite clues. Elite clue rewards are not real. Jagex please fix.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Clue_scroll_(elite)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Clue_scroll_(elite)_detail.png/320px-Clue_scroll_(elite)_detail.png",
+			"displayItemId": 12073,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					12335, 12337, 12351, 12353, 12355, 12357, 12363, 12365, 12367, 12369, 12373,
+					12381, 12383, 12385, 12387, 12393, 12395, 12397, 12430, 12432, 12439, 12441,
+					12443, 12526, 12528, 12530, 12532, 12534, 12536, 12538, 12540, 12596, 19943,
+					19946, 19949, 19952, 19955, 19958, 19961, 19964, 19967, 19970, 19973, 19976,
+					19979, 19982, 19985, 19988, 19991, 19994, 19997, 20002, 23185, 23246, 23249,
+					23252, 23255, 23270, 23273
+				],
+				"count": 3
+			}
+		},
+		{
+			"id": "b010f038-fcb0-4c8d-9531-3847706cd1ce",
+			"name": "Get 1 new unique from elite clues",
 			"shortName": "Elite Clues",
 			"tip": "Potential reward from elite clues. Elite clue rewards are not real. Jagex please fix.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Clue_scroll_(elite)",
@@ -1413,7 +1455,28 @@
 		},
 		{
 			"id": "96337b61-d22a-45ea-afff-3b1219671da2",
-			"name": "Get 2 new uniques from elite clues",
+			"name": "Get 1 new unique from elite clues",
+			"shortName": "Elite Clues",
+			"tip": "Potential reward from elite clues. Elite clue rewards are not real. Jagex please fix.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Clue_scroll_(elite)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Clue_scroll_(elite)_detail.png/320px-Clue_scroll_(elite)_detail.png",
+			"displayItemId": 12073,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					12335, 12337, 12351, 12353, 12355, 12357, 12363, 12365, 12367, 12369, 12373,
+					12381, 12383, 12385, 12387, 12393, 12395, 12397, 12430, 12432, 12439, 12441,
+					12443, 12526, 12528, 12530, 12532, 12534, 12536, 12538, 12540, 12596, 19943,
+					19946, 19949, 19952, 19955, 19958, 19961, 19964, 19967, 19970, 19973, 19976,
+					19979, 19982, 19985, 19988, 19991, 19994, 19997, 20002, 23185, 23246, 23249,
+					23252, 23255, 23270, 23273
+				],
+				"count": 5
+			}
+		},
+		{
+			"id": "f77f5326-a68a-4129-9ec2-c95746570665",
+			"name": "Get 1 new unique from elite clues",
 			"shortName": "Elite Clues",
 			"tip": "Potential reward from elite clues. Elite clue rewards are not real. Jagex please fix.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Clue_scroll_(elite)",
@@ -1434,7 +1497,28 @@
 		},
 		{
 			"id": "177eb3af-da04-4090-87ce-1de1d7a097c6",
-			"name": "Get 2 new uniques from elite clues",
+			"name": "Get 1 new unique from elite clues",
+			"shortName": "Elite Clues",
+			"tip": "Potential reward from elite clues. Elite clue rewards are not real. Jagex please fix.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Clue_scroll_(elite)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Clue_scroll_(elite)_detail.png/320px-Clue_scroll_(elite)_detail.png",
+			"displayItemId": 12073,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					12335, 12337, 12351, 12353, 12355, 12357, 12363, 12365, 12367, 12369, 12373,
+					12381, 12383, 12385, 12387, 12393, 12395, 12397, 12430, 12432, 12439, 12441,
+					12443, 12526, 12528, 12530, 12532, 12534, 12536, 12538, 12540, 12596, 19943,
+					19946, 19949, 19952, 19955, 19958, 19961, 19964, 19967, 19970, 19973, 19976,
+					19979, 19982, 19985, 19988, 19991, 19994, 19997, 20002, 23185, 23246, 23249,
+					23252, 23255, 23270, 23273
+				],
+				"count": 7
+			}
+		},
+		{
+			"id": "b772098f-f9cf-4ca3-b906-b7a42b831ffc",
+			"name": "Get 1 new unique from elite clues",
 			"shortName": "Elite Clues",
 			"tip": "Potential reward from elite clues. Elite clue rewards are not real. Jagex please fix.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Clue_scroll_(elite)",
@@ -1455,7 +1539,28 @@
 		},
 		{
 			"id": "4e24d326-41fe-4915-acad-12527bb309c3",
-			"name": "Get 2 new uniques from elite clues",
+			"name": "Get 1 new unique from elite clues",
+			"shortName": "Elite Clues",
+			"tip": "Potential reward from elite clues. Elite clue rewards are not real. Jagex please fix.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Clue_scroll_(elite)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Clue_scroll_(elite)_detail.png/320px-Clue_scroll_(elite)_detail.png",
+			"displayItemId": 12073,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					12335, 12337, 12351, 12353, 12355, 12357, 12363, 12365, 12367, 12369, 12373,
+					12381, 12383, 12385, 12387, 12393, 12395, 12397, 12430, 12432, 12439, 12441,
+					12443, 12526, 12528, 12530, 12532, 12534, 12536, 12538, 12540, 12596, 19943,
+					19946, 19949, 19952, 19955, 19958, 19961, 19964, 19967, 19970, 19973, 19976,
+					19979, 19982, 19985, 19988, 19991, 19994, 19997, 20002, 23185, 23246, 23249,
+					23252, 23255, 23270, 23273
+				],
+				"count": 9
+			}
+		},
+		{
+			"id": "b4e581c0-44f3-44f9-b706-71baecc30940",
+			"name": "Get 1 new unique from elite clues",
 			"shortName": "Elite Clues",
 			"tip": "Potential reward from elite clues. Elite clue rewards are not real. Jagex please fix.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Clue_scroll_(elite)",
@@ -3446,20 +3551,6 @@
 			"verification": {
 				"method": "collection-log",
 				"itemIds": [ 31406 ],
-				"count": 1
-			}
-		},
-		{
-			"id": "051b908c-c675-4946-a508-1816cb35022c",
-			"name": "Get a Narwhal horn",
-			"shortName": "Narwhal Horn",
-			"tip": "Obtained as a drop from Narwhals.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Narwhal_horn",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Narwhal_horn_detail.png/320px-Narwhal_horn_detail.png",
-			"displayItemId": 31954,
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [ 31954 ],
 				"count": 1
 			}
 		},

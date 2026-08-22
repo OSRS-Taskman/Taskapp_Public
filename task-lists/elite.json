@@ -3691,6 +3691,19 @@
 				"itemIds": [ 25837 ],
 				"count": 1
 			}
+		},
+		{
+			"id": "cd4bf1e4-b20d-44f8-8485-a5bf35d55cb5",
+			"name": "Get 1 Zalcano unique",
+			"tip": "Boss or Minigame?",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Zalcano",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Zalcano_shard_detail.png/320px-Zalcano_shard_detail.png",
+			"displayItemId": 23908,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 23953, 23908 ],
+				"count": 1
+			}
 		}
 	]
 }
