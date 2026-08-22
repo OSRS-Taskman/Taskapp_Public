@@ -3147,6 +3147,20 @@
 				"itemIds": [ 34033, 34027 ],
 				"count": 2
 			}
+		},
+		{
+			"id": "051b908c-c675-4946-a508-1816cb35022c",
+			"name": "Get a Narwhal horn",
+			"shortName": "Narwhal Horn",
+			"tip": "Obtained as a drop from Narwhals.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Narwhal_horn",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Narwhal_horn_detail.png/320px-Narwhal_horn_detail.png",
+			"displayItemId": 31954,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31954 ],
+				"count": 1
+			}
 		}
 	]
 }
