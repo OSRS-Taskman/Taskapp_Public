@@ -66,15 +66,7 @@ Profile
                     </span>
                 </div>
                 <div class="account-options">
-                    <p>LMS Status</p>
-                    <label class="switch">
-                        {% if lms_status == True %}
-                        <input type="checkbox" checked id="lms_status">
-                        {% else %}
-                        <input type="checkbox" id="lms_status">
-                        {% endif %}
-                        <span class="slider round"></span>
-                        
+                    <label class="switch">                        
                         </label>
                         <p>Official Status</p>
                         <label class="switch">
@@ -373,24 +365,6 @@ $(document).ready(function() {
             }
         });
     }
-
-    
-    $('#lms_status').on('change', function(e) {
-        var lms_status = e.target.checked;
-        req = $.ajax({
-            url : '/profile/change-lms-status/',
-            type : 'POST',
-            data : {lms_status : lms_status}
-        });
-        req.done(function(){
-            if (lms_status) {
-                alert('LMS tasks are now enabled!');
-            }
-            else {
-                alert('LMS tasks are now disabled!');
-            }
-        });   
-    });
 
     
     $('#discord_name_sync_enabled').on('change', function(e) {
