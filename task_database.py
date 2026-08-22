@@ -1653,7 +1653,7 @@ def get_leaderboard() -> list[LeaderboardEntry]:
             )
         
         user = convert_database_user(data)
-        print("Generating cache entry...")
+        
         cache = UserTierProgressCache(
             user.get_tier_progress('easy'),
             user.get_tier_progress('medium'),
