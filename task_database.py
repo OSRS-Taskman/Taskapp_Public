@@ -1630,7 +1630,7 @@ def unofficial_icon(username):
 
 def get_leaderboard() -> list[LeaderboardEntry]:
     def get_leaderboard_entry_from_db(data):
-        display_name = discord_service.get_discord_auth_info(user.username).discord_username_default
+        display_name = discord_service.get_discord_auth_info(data['username']).discord_username_default
         
         if 'user_tier_progress_cache' in data.keys():
             cache = UserTierProgressCache(
