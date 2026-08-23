@@ -1850,7 +1850,7 @@
 			"shortName": "Mask of Ranul",
 			"tip": "Can be received as a drop from Undead Druids.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Mask_of_ranul",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Mask_of_ranul_detail.png/320px-Mask_of_ranul_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Mask_of_Ranul_detail.png/320px-Mask_of_Ranul_detail.png",
 			"displayItemId": 23522,
 			"verification": {
 				"method": "collection-log",
@@ -2004,7 +2004,7 @@
 			"shortName": "Tempoross",
 			"tip": "Can be received as a reward from the Tempoross Skilling boss.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_water_(empty)_detail.png/320px-Tome_of_water_(empty)_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_Water_(empty)_detail.png/320px-Tome_of_Water_(empty)_detail.png",
 			"displayItemId": 25574,
 			"verification": {
 				"method": "collection-log",
@@ -2020,7 +2020,7 @@
 			"shortName": "Tempoross",
 			"tip": "Can be received as a reward from the Tempoross Skilling boss.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_water_(empty)_detail.png/320px-Tome_of_water_(empty)_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_Water_(empty)_detail.png/320px-Tome_of_Water_(empty)_detail.png",
 			"displayItemId": 25574,
 			"verification": {
 				"method": "collection-log",
@@ -2036,7 +2036,7 @@
 			"shortName": "Tempoross",
 			"tip": "Can be received as a reward from the Tempoross Skilling boss.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_water_(empty)_detail.png/320px-Tome_of_water_(empty)_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_Water_(empty)_detail.png/320px-Tome_of_Water_(empty)_detail.png",
 			"displayItemId": 25574,
 			"verification": {
 				"method": "collection-log",
@@ -2066,7 +2066,7 @@
 			"shortName": "Tempoross",
 			"tip": "Can be received as a reward from the Tempoross Skilling boss.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_water_(empty)_detail.png/320px-Tome_of_water_(empty)_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_Water_(empty)_detail.png/320px-Tome_of_Water_(empty)_detail.png",
 			"displayItemId": 25574,
 			"verification": {
 				"method": "collection-log",
@@ -2082,7 +2082,7 @@
 			"shortName": "Tempoross",
 			"tip": "Can be received as a reward from the Tempoross Skilling boss.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Tempoross",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_water_(empty)_detail.png/320px-Tome_of_water_(empty)_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Tome_of_Water_(empty)_detail.png/320px-Tome_of_Water_(empty)_detail.png",
 			"displayItemId": 25574,
 			"verification": {
 				"method": "collection-log",
@@ -2924,7 +2924,7 @@
 			"shortName": "Medallion Deep",
 			"tip": "Assembled from eight fragments, which are found on different islands and through different methods. Check the wiki for more information.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Medallion_of_the_deep",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Medallion_of_the_deep_detail.png/320px-Medallion_of_the_deep_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Medallion_of_the_Deep_detail.png/320px-Medallion_of_the_Deep_detail.png",
 			"displayItemId": 32386,
 			"verification": {
 				"method": "collection-log",
@@ -3017,7 +3017,7 @@
 					12653, 12655, 12816, 12921, 13177, 13178, 13179, 13181, 13225, 13247, 13262,
 					20851, 21273, 21291, 21748, 21992, 22473, 22746, 23495, 23757, 24491, 26348,
 					27352, 27590, 28246, 28248, 28250, 28252, 28801, 28960, 29836, 30152, 30154,
-					30622, 30888, 31130, 31285, 33124
+					30622, 30888, 31130, 31285, 33124, 34042, 33642
 				],
 				"count": 1
 			}
