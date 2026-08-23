@@ -576,7 +576,7 @@
 					12653, 12655, 12816, 12921, 13177, 13178, 13179, 13181, 13225, 13247, 13262,
 					20851, 21273, 21291, 21748, 21992, 22473, 22746, 23495, 23757, 24491, 26348,
 					27352, 27590, 28246, 28248, 28250, 28252, 28801, 28960, 29836, 30152, 30154,
-					30622, 30888, 31130, 31285, 33124
+					30622, 30888, 31130, 31285, 33124, 34042, 33642
 				],
 				"count": 3
 			}
@@ -596,7 +596,7 @@
 					12653, 12655, 12816, 12921, 13177, 13178, 13179, 13181, 13225, 13247, 13262,
 					20851, 21273, 21291, 21748, 21992, 22473, 22746, 23495, 23757, 24491, 26348,
 					27352, 27590, 28246, 28248, 28250, 28252, 28801, 28960, 29836, 30152, 30154,
-					30622, 30888, 31130, 31285, 33124
+					30622, 30888, 31130, 31285, 33124, 34042, 33642
 				],
 				"count": 4
 			}
@@ -616,7 +616,7 @@
 					12653, 12655, 12816, 12921, 13177, 13178, 13179, 13181, 13225, 13247, 13262,
 					20851, 21273, 21291, 21748, 21992, 22473, 22746, 23495, 23757, 24491, 26348,
 					27352, 27590, 28246, 28248, 28250, 28252, 28801, 28960, 29836, 30152, 30154,
-					30622, 30888, 31130, 31285, 33124
+					30622, 30888, 31130, 31285, 33124, 34042, 33642
 				],
 				"count": 5
 			}
@@ -3488,7 +3488,7 @@
 			"shortName": "Doom",
 			"tip": "Giant, insect-like, demonic boss found in the Tonali Cavern after completion of The Final Dawn quest.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Doom_of_Mokhaiotl",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Eye_of_ayak_detail.png/320px-Eye_of_ayak_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Eye_of_Ayak_detail.png/320px-Eye_of_Ayak_detail.png",
 			"displayItemId": 31115,
 			"verification": {
 				"method": "collection-log",
@@ -3502,7 +3502,7 @@
 			"shortName": "Doom",
 			"tip": "Giant, insect-like, demonic boss found in the Tonali Cavern after completion of The Final Dawn quest.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Doom_of_Mokhaiotl",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Eye_of_ayak_detail.png/320px-Eye_of_ayak_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Eye_of_Ayak_detail.png/320px-Eye_of_Ayak_detail.png",
 			"displayItemId": 31115,
 			"verification": {
 				"method": "collection-log",

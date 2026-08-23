@@ -832,6 +832,45 @@
 				"itemIds": [ 33124 ],
 				"count": 1
 			}
+		},
+		{
+			"id": "77fa8b90-bb18-416c-afc2-d41cc46dca20",
+			"name": "Aggy",
+			"tip": "Can be obtained by defeating the Mad Angel.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Aggy",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Aggy_(follower).png/320px-Aggy_(follower).png",
+			"displayItemId": 34042,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34042 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "e11f670d-8c3e-4e6f-8e75-33aadffd9041",
+			"name": "Maggot marquess",
+			"tip": "Can be obtained by defeating the Maggot King.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Maggot_marquess",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Maggot_marquess_(follower).png/320px-Maggot_marquess_(follower).png",
+			"displayItemId": 33642,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 33642 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "8fb12609-eb12-46f4-9eb3-6b04766125e4",
+			"name": "Mr McGroot",
+			"tip": "Can be obtained by hunting goats on Wyrmscraig.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Mr_McGroot",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Mr_McGroot_(follower).png/320px-Mr_McGroot_(follower).png",
+			"displayItemId": 34040,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34040 ],
+				"count": 1
+			}
 		}
 	]
 }
