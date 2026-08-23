@@ -2489,20 +2489,6 @@
 			}
 		},
 		{
-			"id": "4d4ea1e8-2128-45b6-aefc-2bdbffaa6a42",
-			"name": "Get the Fish sack",
-			"shortName": "Fish Sack",
-			"tip": "Can be purchased as a reward from Aerial Fishing hunter method. Giga RSI.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Fish_sack",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Fish_sack_detail.png/320px-Fish_sack_detail.png",
-			"displayItemId": 22838,
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [ 22838 ],
-				"count": 1
-			}
-		},
-		{
 			"id": "d94b002c-302b-4839-b3ec-6425bbd7b9f7",
 			"name": "Get 1 unique piece of the Dagon'hai robes",
 			"shortName": "Dagon'hai Robe",
@@ -3702,6 +3688,22 @@
 			"verification": {
 				"method": "collection-log",
 				"itemIds": [ 23953, 23908 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "bf82951d-afc5-4066-9012-dc1b5df4e12d",
+			"name": "Get a new boss jar",
+			"tip": "If doing this task actively, you must go first for Jar of Light from Mad Angel.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Boss_lair_display#List_of_displays",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Jar_of_Venom_detail.png/320px-Jar_of_Venom_detail.png",
+			"displayItemId": 29786,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					23064, 13245, 12885, 22106, 12936, 23525, 21745, 19701, 24495, 12007, 13277,
+					25521, 25524, 29786, 32921, 34030
+				],
 				"count": 1
 			}
 		}

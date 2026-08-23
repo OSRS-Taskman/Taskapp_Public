@@ -3651,6 +3651,20 @@
 				"itemIds": [ 33661, 33663 ],
 				"count": 2
 			}
+		},
+		{
+			"id": "4d4ea1e8-2128-45b6-aefc-2bdbffaa6a42",
+			"name": "Get the Fish sack",
+			"shortName": "Fish Sack",
+			"tip": "Can be purchased as a reward from Aerial Fishing hunter method. Giga RSI.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Fish_sack",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Fish_sack_detail.png/320px-Fish_sack_detail.png",
+			"displayItemId": 22838,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 22838 ],
+				"count": 1
+			}
 		}
 	]
 }
