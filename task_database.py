@@ -6,8 +6,9 @@ from datetime import datetime, timezone
 import tasklists
 import config
 import user_dao
+from dataclasses import asdict
 from user_dao import UserDatabaseObject, convert_database_user
-from task_types import TaskData, LeaderboardEntry, TaskData
+from task_types import TaskData, TierProgress, UserTierProgressCache, LeaderboardEntry, TaskData
 import discord_service
 
 mydb = config.MONGO_CLIENT["TaskApp"]
@@ -250,6 +251,7 @@ def __set_current_task(username: str, tier: str, task_id: str, current: bool):
             {"$set": {f"tiers.{cleaned_tier}.currentTask": {"id": task_id}}},
         )
 
+    clear_leaderboard_cache(username)
     if (get_discord_name_sync_enabled(username)):
         new_name = ''
         if current:
@@ -1145,6 +1147,10 @@ def get_discord_name_sync_enabled(username):
     discord_name_sync_enabled = tldb.find_one({"username": username}, {'discordNameSyncEnabled' : 1, '_id': 0})
     return discord_name_sync_enabled["discordNameSyncEnabled"]
 
+def clear_leaderboard_cache(username):
+    tldb = mydb["taskLists"]
+    tldb.update_one({'username': username}, {'$unset': {'user_tier_progress_cache': ""}})
+
 '''
 lms_status_change:
 
@@ -1623,15 +1629,65 @@ def unofficial_icon(username):
     return rank_icon
 
 def get_leaderboard() -> list[LeaderboardEntry]:
-    # def to_user(data):
-    #     user = convert_database_user(migrate_database_user_to_new_format(data))
-    #     return LeaderboardEntry(user.username, user.lms_enabled, user.get_tier_progress('easy'),
-    #                             user.get_tier_progress('medium'), user.get_tier_progress('hard'),
-    #                             user.get_tier_progress('elite'), user.get_tier_progress('master'))
+    def get_leaderboard_entry_from_db(data):
+        display_name = discord_service.get_discord_auth_info(user.username).discord_username_default
+        
+        if 'user_tier_progress_cache' in data.keys():
+            cache = UserTierProgressCache(
+                data['user_tier_progress_cache']['easy'],
+                data['user_tier_progress_cache']['medium'],
+                data['user_tier_progress_cache']['hard'],
+                data['user_tier_progress_cache']['elite'],
+                data['user_tier_progress_cache']['master'],
+                data['user_tier_progress_cache']['passive'],
+                data['user_tier_progress_cache']['extra'],
+                data['user_tier_progress_cache']['pets']
+            )
+            return LeaderboardEntry(
+                display_name,
+                TierProgress(**cache.easy),
+                TierProgress(**cache.medium),
+                TierProgress(**cache.hard),
+                TierProgress(**cache.elite),
+                TierProgress(**cache.master)
+            )
+        
+        user = convert_database_user(data)
+        
+        cache = UserTierProgressCache(
+            user.get_tier_progress('easy'),
+            user.get_tier_progress('medium'),
+            user.get_tier_progress('hard'),
+            user.get_tier_progress('elite'),
+            user.get_tier_progress('master'),
+            user.get_tier_progress('passive'),
+            user.get_tier_progress('extra'),
+            user.get_tier_progress('pets')
+        )
 
-    # coll = mydb['taskAccounts']
-    # return list(sorted(map(to_user, coll.find({'isOfficial': True})), key=lambda x: x.points(), reverse=True))
-    return []
+        tldb = mydb['taskLists']
+        tldb.update_one({'username': user.username}, {'$set': {'user_tier_progress_cache': asdict(cache)}})
+
+        return LeaderboardEntry(
+            display_name,
+            cache.easy,
+            cache.medium,
+            cache.hard,
+            cache.elite,
+            cache.master
+        )
+
+    tldb = mydb['taskLists']
+    return list(
+        sorted(
+            map(
+                get_leaderboard_entry_from_db,
+                tldb.find({'discordLinked': True, 'isOfficial': True})
+            ), 
+            key=lambda x: x.points(), 
+            reverse=True
+        )
+    )
 
 def test():
     task_coll = mydb["taskLists"]

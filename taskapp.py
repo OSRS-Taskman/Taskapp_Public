@@ -13,7 +13,7 @@ from task_database import (get_taskCurrent, generate_task, complete_task, get_ta
                            get_lms_status, lms_status_change, update_imported_tasks,
                            official_status_change, username_change, get_taskCurrent_tier, generate_task_for_tier,
                            complete_task_unofficial_tier, get_user, get_leaderboard,
-                           get_roll_candidates_for_tier, get_discord_name_sync_enabled)
+                           get_roll_candidates_for_tier, get_discord_name_sync_enabled, clear_leaderboard_cache)
 import send_grid_email
 from templesync import check_logs, temple_player_data, import_logs
 from task_types import CollectionLogVerificationData
@@ -831,21 +831,36 @@ def task_list_extra():
 def task_list_passive():
     return single_task_list(list_title='Passive Task List', task_type='passive')
 
-@app.route('/hiscores', methods=['GET'])
+@app.route('/hiscores/', methods=['GET'])
 @login_required
 def highscores():
     user_info = BasePageInfo()
-    # if not user_info.email_bool:
-    #     return render_template('email-verify.html')
+    discord_default_username = discord_service.get_discord_auth_info(user_info.username).discord_username_default
+
+    progress = get_task_progress(user_info.username)
+    context = {
+        'easy': progress['easy']['percent_complete'],
+        'medium': progress['medium']['percent_complete'],
+        'hard': progress['hard']['percent_complete'],
+        'elite': progress['elite']['percent_complete'],
+        'master' : progress['master']['percent_complete'],
+        'passive' : progress['passive']['percent_complete'],
+        'extra' : progress['extra']['percent_complete'],
+        'allPets' : progress['all_pets']['percent_complete'],
+        }
+
     return render_template(
         'highscores.html',
         username=user_info.username,
         email_verify=user_info.email_bool,
         email_val=user_info.email_val,
-        taskapp_email=taskapp_email,
         official=user_info.official,
-        leaderboard=get_leaderboard()
-    )
+        lms_status=user_info.user.lms_enabled,
+        discord_status=user_info.user.discord_linked,
+        discord_default_username=discord_default_username,
+        discord_name_sync_enabled=user_info.user.discord_name_sync_enabled,
+        leaderboard=get_leaderboard(),
+        **context)
 
 tier_to_type = {
     "easyTasks": 'easy',
@@ -901,6 +916,7 @@ def update():
         'completedItemIds': completed_task.get('completed_item_ids') if completed_task else [],
     }
 
+    clear_leaderboard_cache(user_info.username)
     if (get_discord_name_sync_enabled(user_info.username)):
         new_name = discord_service.generate_discord_nickname_from_user(user_info.username)
         discord_service.update_nickname_DISCORD(user_info.username, new_name)
@@ -929,6 +945,7 @@ def revert():
         'allPets' : progress['all_pets']['percent_complete'],
     }
 
+    clear_leaderboard_cache(user_info.username)
     if (get_discord_name_sync_enabled(user_info.username)):
         new_name = discord_service.generate_discord_nickname_from_user(user_info.username)
         discord_service.update_nickname_DISCORD(user_info.username, new_name)
