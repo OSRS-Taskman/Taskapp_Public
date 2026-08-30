@@ -72,6 +72,8 @@ class UserDatabaseObject:
         if user_task_list.current_task is None:
             return None
         task = task_info_for_id(tasklists.list_for_tier(tier), user_task_list.current_task.id)
+        if not task:
+            return None
         # TODO Fix this format
         return task.name, task.image_link, tier, task.id, task.tip, task.wiki_link, task.image_link
 
@@ -216,8 +218,9 @@ class UserDatabaseObject:
 def task_info_for_id(task_list: list[TaskData], task_id: str) -> tasklists.TaskData:
     filtered = list(filter(lambda x: x.id == task_id, task_list))
     if len(filtered) == 0:
-        raise Exception("No id found in list " + task_id)
+        return None
     return filtered[0]
+
 
 
 '''
