@@ -214,6 +214,10 @@ Returns:
 
 
 def get_taskCurrent(username):
+    task_current = get_user(username).current_task()
+    if not task_current:
+        __unset_current_task_after_task_move(username)
+        return None
     return get_user(username).current_task()
 
 
@@ -234,9 +238,28 @@ Returns:
 
 
 def get_taskCurrent_tier(username, tier):
+    task_current = get_user(username).current_task_for_tier(tier)
+    if not task_current:
+        __unset_current_task_after_task_move(username)
+        return None
     return get_user(username).current_task_for_tier(tier)
 
-
+def __unset_current_task_after_task_move(username: str):
+    task_coll = mydb["taskLists"]
+    user_current_task = task_coll.find_one({"username": username}, {"_id": 0, "tiers": 1})
+    included_tiers = {"easy", "medium", "hard", "elite", "master"}
+    for possible_tier in included_tiers:
+        current_task_info = user_current_task.get("tiers", {}).get(possible_tier, {}).get("currentTask")
+        if current_task_info:
+            removed_task_id = current_task_info.get("id")
+            confirm_before_unset = tasklists.list_for_tier(possible_tier)
+            if not any(task.id == removed_task_id for task in confirm_before_unset):
+                print(f"Task with ID {removed_task_id} not found in tier {possible_tier}. Unsetting current task.")
+                task_coll.update_one(
+                    {"username": username},
+                    {"$unset": {f"tiers.{possible_tier}.currentTask": ""}},
+                )
+    
 def __set_current_task(username: str, tier: str, task_id: str, current: bool):
     task_coll = mydb["taskLists"]
     cleaned_tier = tier.replace("Tasks", "")
