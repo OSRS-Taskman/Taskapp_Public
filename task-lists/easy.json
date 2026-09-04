@@ -1474,7 +1474,7 @@
 			"displayItemId": 11902,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 4113, 11902 ],
+				"itemIds": [ 4113, 11902, 34401 ],
 				"count": 1
 			}
 		},
@@ -1488,8 +1488,22 @@
 			"displayItemId": 11902,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 4113, 11902 ],
+				"itemIds": [ 4113, 11902, 34401 ],
 				"count": 2
+			}
+		},
+		{
+			"id": "6e72c2ae-05e8-49ed-ab52-7e87aac7f95b",
+			"name": "Get 1 unique from Turoths",
+			"shortName": "Turoth Unique",
+			"tip": "Requires special weaponry to kill: a leaf-bladed spear, broad arrows or the slayer dart spell.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Turoth",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Leaf-bladed_sword_detail.png/320px-Leaf-bladed_sword_detail.png",
+			"displayItemId": 11902,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 4113, 11902, 34401 ],
+				"count": 3
 			}
 		},
 		{
@@ -1628,7 +1642,7 @@
 			"displayItemId": 4099,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 4099, 4107 ],
+				"itemIds": [ 4099, 4107, 34422 ],
 				"count": 1
 			}
 		},
@@ -1642,8 +1656,22 @@
 			"displayItemId": 4099,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 4099, 4107 ],
+				"itemIds": [ 4099, 4107, 34422 ],
 				"count": 2
+			}
+		},
+		{
+			"id": "3e874d9f-e460-4411-b749-2e12b0b7a98f",
+			"name": "Get 1 unique from Infernal Mages",
+			"shortName": "Infernal Mages",
+			"tip": "One of the mages (ID 444) can be safespotted using long range with your bow. The Lava battlestaff does not count as it is not in theeee Collection Log.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Infernal_Mage",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Mystic_hat_(dark)_detail.png/320px-Mystic_hat_(dark)_detail.png",
+			"displayItemId": 4099,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 4099, 4107, 34422 ],
+				"count": 3
 			}
 		},
 		{
@@ -2736,6 +2764,48 @@
 				"method": "collection-log",
 				"itemIds": [ 33101, 33091, 33093 ],
 				"count": 3
+			}
+		},
+		{
+			"id": "63c2d667-2125-46c4-879f-6a670f1120cb",
+			"name": "Get an Air diamond",
+			"shortName": "Air Diamond",
+			"tip": "Obtained as a drop from Killerwatts. You may safespot them by repeatedly entering and exiting the portal to reset aggro.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Air_diamond",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Air_diamond_detail.png/320px-Air_diamond_detail.png",
+			"displayItemId": 34404,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34404 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "7a29c1df-536f-4960-8c64-7344c8d54b6f",
+			"name": "Get an Earth emerald",
+			"shortName": "Earth Emerald",
+			"tip": "Obtained as a drop from Molanisks. Remember your light source and your slayer bell.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Earth_emerald",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Earth_emerald_detail.png/320px-Earth_emerald_detail.pngg",
+			"displayItemId": 34416,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34416 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "4c3cb4bf-d3ff-4b42-aab3-3e88bbf9b45c",
+			"name": "Get a Water sapphire",
+			"shortName": "Water Sapphire",
+			"tip": "Obtained as a drop from Sea snake hatchlings. Bring an antipoison!",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Water_sapphire",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Water_sapphire_detail.png/320px-Water_sapphire_detail.png",
+			"displayItemId": 34410,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34410 ],
+				"count": 1
 			}
 		}
 	]
