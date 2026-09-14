@@ -681,30 +681,30 @@
 		},
 		{
 			"id": "623e01ec-3fc9-4d79-8cf9-473438deface",
-			"name": "Get Infinity boots",
-			"shortName": "Inf Boots",
-			"tip": "Obtained from the Mage Training Arena minigame. Telekinetic room is the worst!",
+			"name": "Get the next Infinity piece",
+			"shortName": "Infinity",
+			"tip": "Obtained from the Mage Training Arena minigame. Alch room is the worst!",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Mage_Training_Arena",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Infinity_boots_detail.png/320px-Infinity_boots_detail.png",
-			"displayItemId": 6920,
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Infinity_hat_detail.png/320px-Infinity_hat_detail.png",
+			"displayItemId": 6918,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 6920 ],
+				"itemIds": [ 6920, 6922, 6918, 6916, 6924 ],
 				"count": 1
 			}
 		},
 		{
 			"id": "eb9282b7-017a-4cb5-9bc4-6710307486bc",
-			"name": "Get Infinity gloves",
-			"shortName": "Inf Gloves",
-			"tip": "Obtained from the Mage Training Arena minigame. Telekinetic room is the worst!",
+			"name": "Get the next Infinity piece",
+			"shortName": "Infinity",
+			"tip": "Obtained from the Mage Training Arena minigame. Alch room is the worst!",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Mage_Training_Arena",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Infinity_gloves_detail.png/320px-Infinity_gloves_detail.png",
-			"displayItemId": 6922,
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Infinity_hat_detail.png/320px-Infinity_hat_detail.png",
+			"displayItemId": 6918,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 6922 ],
-				"count": 1
+				"itemIds": [ 6920, 6922, 6918, 6916, 6924 ],
+				"count": 2
 			}
 		},
 		{

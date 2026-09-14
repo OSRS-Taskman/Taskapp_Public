@@ -822,44 +822,44 @@
 		},
 		{
 			"id": "9e3b3b7c-0a03-4540-b8b1-3d1a82dfb379",
-			"name": "Get an Infinity hat",
-			"shortName": "Infinity Hat",
-			"tip": "Can be purchased as a reward from the Mage Training Arena minigame.",
+			"name": "Get the next Infinity piece",
+			"shortName": "Infinity",
+			"tip": "Obtained from the Mage Training Arena minigame. Alch room is the worst!",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Mage_Training_Arena",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Infinity_hat_detail.png/320px-Infinity_hat_detail.png",
 			"displayItemId": 6918,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 6918 ],
-				"count": 1
+				"itemIds": [ 6920, 6922, 6918, 6916, 6924 ],
+				"count": 3
 			}
 		},
 		{
 			"id": "8ed2b59b-a1a2-43e8-b7ce-383761e80f9e",
-			"name": "Get an Infinity top",
-			"shortName": "Infinity Top",
-			"tip": "Can be purchased as a reward from the Mage Training Arena minigame.",
+			"name": "Get the next Infinity piece",
+			"shortName": "Infinity",
+			"tip": "Obtained from the Mage Training Arena minigame. Alch room is the worst!",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Mage_Training_Arena",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Infinity_top_detail.png/320px-Infinity_top_detail.png",
-			"displayItemId": 6916,
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Infinity_hat_detail.png/320px-Infinity_hat_detail.png",
+			"displayItemId": 6918,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 6916 ],
-				"count": 1
+				"itemIds": [ 6920, 6922, 6918, 6916, 6924 ],
+				"count": 4
 			}
 		},
 		{
 			"id": "bad8e134-9327-4840-aeab-466891734411",
-			"name": "Get Infinity bottoms",
-			"shortName": "Inf Bottoms",
-			"tip": "Can be purchased as a reward from the Mage Training Arena minigame.",
+			"name": "Get the next Infinity piece",
+			"shortName": "Infinity",
+			"tip": "Obtained from the Mage Training Arena minigame. Alch room is the worst!",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Mage_Training_Arena",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Infinity_bottoms_detail.png/320px-Infinity_bottoms_detail.png",
-			"displayItemId": 6924,
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Infinity_hat_detail.png/320px-Infinity_hat_detail.png",
+			"displayItemId": 6918,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 6924 ],
-				"count": 1
+				"itemIds": [ 6920, 6922, 6918, 6916, 6924 ],
+				"count": 5
 			}
 		},
 		{

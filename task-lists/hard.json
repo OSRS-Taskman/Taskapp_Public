@@ -2959,6 +2959,40 @@
 			}
 		},
 		{
+			"id": "2ef66864-8a66-45c2-a5a7-3def6f101202",
+			"name": "Get 1 unique from Tombs of Amascut",
+			"shortName": "ToA",
+			"tip": "Can be received as a reward from the Tombs of Amascut raid",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Tombs_of_Amascut",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Thread_of_Elidinis_detail.png/320px-Thread_of_Elidinis_detail.png",
+			"displayItemId": 27279,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					25975, 25985, 26219, 27226, 27229, 27232, 27277, 27279, 27283, 27285, 27289,
+					27293, 30893
+				],
+				"count": 4
+			}
+		},
+		{
+			"id": "00a576ae-f37a-49e8-83b7-5998cf40768e",
+			"name": "Get 1 unique from Tombs of Amascut",
+			"shortName": "ToA",
+			"tip": "Can be received as a reward from the Tombs of Amascut raid",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Tombs_of_Amascut",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Thread_of_Elidinis_detail.png/320px-Thread_of_Elidinis_detail.png",
+			"displayItemId": 27279,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					25975, 25985, 26219, 27226, 27229, 27232, 27277, 27279, 27283, 27285, 27289,
+					27293, 30893
+				],
+				"count": 5
+			}
+		},
+		{
 			"id": "e0ff91a7-4f46-4393-8597-fb9cecbe1753",
 			"name": "Get 1 unique from the Phantom Muspah",
 			"shortName": "Phantom Muspah",

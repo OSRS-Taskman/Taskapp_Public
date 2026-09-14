@@ -746,42 +746,6 @@
 			}
 		},
 		{
-			"id": "cfe62202-fcff-4c48-a7ce-759ab7abf4fc",
-			"name": "Get 1 unique from Raids (CoX or ToB or ToA)",
-			"shortName": "Raids",
-			"tip": "Can be received as a drop from any raid: Chambers of Xeric, Theatre of Blood or Tombs of Amascut.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Raids",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Twisted_bow_detail.png/320px-Twisted_bow_detail.png",
-			"displayItemId": 20997,
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [
-					13652, 20997, 21000, 21003, 21012, 21015, 21018, 21021, 21024, 21034, 21043,
-					21079, 22324, 22326, 22327, 22328, 22477, 22481, 22486, 25975, 25985, 26219,
-					27226, 27229, 27232, 27277, 27279, 27283, 27285, 27289, 27293, 30893
-				],
-				"count": 4
-			}
-		},
-		{
-			"id": "23d240d5-ff59-4dfc-a36c-2c04aaea5f98",
-			"name": "Get 1 unique from Raids (CoX or ToB or ToA)",
-			"shortName": "Raids",
-			"tip": "Can be received as a drop from any raid: Chambers of Xeric, Theatre of Blood or Tombs of Amascut.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Raids",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Twisted_bow_detail.png/320px-Twisted_bow_detail.png",
-			"displayItemId": 20997,
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [
-					13652, 20997, 21000, 21003, 21012, 21015, 21018, 21021, 21024, 21034, 21043,
-					21079, 22324, 22326, 22327, 22328, 22477, 22481, 22486, 25975, 25985, 26219,
-					27226, 27229, 27232, 27277, 27279, 27283, 27285, 27289, 27293, 30893
-				],
-				"count": 5
-			}
-		},
-		{
 			"id": "81bfa29c-7aa1-4c83-9b66-886b8cc7efb0",
 			"name": "Get 1 unique from Raids (CoX or ToB or ToA)",
 			"shortName": "Raids",
@@ -1980,30 +1944,114 @@
 		},
 		{
 			"id": "b25d9d8b-ba1a-4caf-a525-6c1d0bea2469",
-			"name": "Get a Gold decorative helm",
-			"shortName": "CW Gold Helm",
+			"name": "Get the next piece of the Gold Decorative set",
+			"shortName": "CW Gold Deco",
 			"tip": "Can be purchased as a reward from the Castle Wars minigame. Playing on official worlds is recommended, as you get about the same amount of tickets in addition to other resources. Alternatively, you may play with an alt account (works in F2P) for complete AFK.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Decorative_helm_(gold)_detail.png/320px-Decorative_helm_(gold)_detail.png",
 			"displayItemId": 4511,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 4511 ],
+				"itemIds": [ 4511, 25174, 4509, 4510, 11895, 25171, 4512, 4508 ],
 				"count": 1
 			}
 		},
 		{
 			"id": "eb73c2e6-455c-44b8-bbe3-8f00a88a2bcc",
-			"name": "Get a pair of Gold decorative boots",
-			"shortName": "CW Gold Boots",
+			"name": "Get the next piece of the Gold Decorative set",
+			"shortName": "CW Gold Deco",
 			"tip": "Can be purchased as a reward from the Castle Wars minigame. Playing on official worlds is recommended, as you get about the same amount of tickets in addition to other resources. Alternatively, you may play with an alt account (works in F2P) for complete AFK.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Decorative_boots_(gold)_detail.png/320px-Decorative_boots_(gold)_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Decorative_helm_(gold)_detail.png/320px-Decorative_helm_(gold)_detail.png",
 			"displayItemId": 25171,
 			"verification": {
 				"method": "collection-log",
-				"itemIds": [ 25171 ],
-				"count": 1
+				"itemIds": [ 4511, 25174, 4509, 4510, 11895, 25171, 4512, 4508 ],
+				"count": 2
+			}
+		},
+		{
+			"id": "54d991c2-0c6a-4ab2-89a1-d49d3f29928b",
+			"name": "Get the next piece of the Gold Decorative set",
+			"shortName": "CW Gold Deco",
+			"tip": "Can be purchased as a reward from the Castle Wars minigame. Playing on official worlds is recommended, as you get about the same amount of tickets in addition to other resources. Alternatively, you may play with an alt account (works in F2P) for complete AFK.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Decorative_helm_(gold)_detail.png/320px-Decorative_helm_(gold)_detail.png",
+			"displayItemId": 25171,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 4511, 25174, 4509, 4510, 11895, 25171, 4512, 4508 ],
+				"count": 3
+			}
+		},
+		{
+			"id": "342b3cd0-75eb-42b7-8723-36d5c9b14d00",
+			"name": "Get the next piece of the Gold Decorative set",
+			"shortName": "CW Gold Deco",
+			"tip": "Can be purchased as a reward from the Castle Wars minigame. Playing on official worlds is recommended, as you get about the same amount of tickets in addition to other resources. Alternatively, you may play with an alt account (works in F2P) for complete AFK.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Decorative_helm_(gold)_detail.png/320px-Decorative_helm_(gold)_detail.png",
+			"displayItemId": 25171,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 4511, 25174, 4509, 4510, 11895, 25171, 4512, 4508 ],
+				"count": 4
+			}
+		},
+		{
+			"id": "f346e62c-6490-44be-8444-b5c986c62729",
+			"name": "Get the next piece of the Gold Decorative set",
+			"shortName": "CW Gold Deco",
+			"tip": "Can be purchased as a reward from the Castle Wars minigame. Playing on official worlds is recommended, as you get about the same amount of tickets in addition to other resources. Alternatively, you may play with an alt account (works in F2P) for complete AFK.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Decorative_helm_(gold)_detail.png/320px-Decorative_helm_(gold)_detail.png",
+			"displayItemId": 25171,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 4511, 25174, 4509, 4510, 11895, 25171, 4512, 4508 ],
+				"count": 5
+			}
+		},
+		{
+			"id": "79539527-0c2f-493a-bef4-9a31de9503c1",
+			"name": "Get the next piece of the Gold Decorative set",
+			"shortName": "CW Gold Deco",
+			"tip": "Can be purchased as a reward from the Castle Wars minigame. Playing on official worlds is recommended, as you get about the same amount of tickets in addition to other resources. Alternatively, you may play with an alt account (works in F2P) for complete AFK.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Decorative_helm_(gold)_detail.png/320px-Decorative_helm_(gold)_detail.png",
+			"displayItemId": 25171,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 4511, 25174, 4509, 4510, 11895, 25171, 4512, 4508 ],
+				"count": 6
+			}
+		},
+		{
+			"id": "4a672056-7113-473d-9f95-7ae5cf3e41d7",
+			"name": "Get the next piece of the Gold Decorative set",
+			"shortName": "CW Gold Deco",
+			"tip": "Can be purchased as a reward from the Castle Wars minigame. Playing on official worlds is recommended, as you get about the same amount of tickets in addition to other resources. Alternatively, you may play with an alt account (works in F2P) for complete AFK.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Decorative_helm_(gold)_detail.png/320px-Decorative_helm_(gold)_detail.png",
+			"displayItemId": 25171,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 4511, 25174, 4509, 4510, 11895, 25171, 4512, 4508 ],
+				"count": 7
+			}
+		},
+		{
+			"id": "ffaa128a-0c8d-42bc-b00d-de236307fc29",
+			"name": "Get the next piece of the Gold Decorative set",
+			"shortName": "CW Gold Deco",
+			"tip": "Can be purchased as a reward from the Castle Wars minigame. Playing on official worlds is recommended, as you get about the same amount of tickets in addition to other resources. Alternatively, you may play with an alt account (works in F2P) for complete AFK.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Castle_Wars",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Decorative_helm_(gold)_detail.png/320px-Decorative_helm_(gold)_detail.png",
+			"displayItemId": 25171,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 4511, 25174, 4509, 4510, 11895, 25171, 4512, 4508 ],
+				"count": 8
 			}
 		},
 		{
