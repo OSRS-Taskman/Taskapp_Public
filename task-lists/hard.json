@@ -3575,20 +3575,6 @@
 			}
 		},
 		{
-			"id": "3ad2a052-e9e7-495a-9d47-02e30194d8de",
-			"name": "Get some Dragon nails",
-			"shortName": "Dragon Nails",
-			"tip": "Obtained as a drop from Narwhals.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Dragon_nails",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Dragon_nails_detail.png/320px-Dragon_nails_detail.png",
-			"displayItemId": 31406,
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [ 31406 ],
-				"count": 1
-			}
-		},
-		{
 			"id": "b5278998-7a38-4f11-a816-0cd3256cfbcc",
 			"name": "Get a Broken dragon hook",
 			"shortName": "Broken D Hook",
