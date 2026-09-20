@@ -2877,6 +2877,20 @@
 			}
 		},
 		{
+			"id": "3ad2a052-e9e7-495a-9d47-02e30194d8de",
+			"name": "Get some Dragon nails",
+			"shortName": "Dragon Nails",
+			"tip": "Obtained as a drop from Narwhals.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Dragon_nails",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Dragon_nails_detail.png/320px-Dragon_nails_detail.png",
+			"displayItemId": 31406,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31406 ],
+				"count": 1
+			}
+		},
+		{
 			"id": "a2292aef-4feb-4d86-a6d7-6f0b37173093",
 			"name": "Get a Dragon metal sheet",
 			"shortName": "D Metal Sheet",
