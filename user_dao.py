@@ -111,7 +111,6 @@ class UserDatabaseObject:
         all_tasks = tasklists.list_for_tier(tier, self.lms_enabled)
         completed_task_ids = list(map(lambda x: x.id, self.get_task_list(tier).completed_tasks))
         return list(filter(lambda x: x.id not in completed_task_ids, all_tasks))
-    
 
     def current_task_id(self) -> str | None:
         current_task = self.current_task()
