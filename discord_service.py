@@ -154,9 +154,16 @@ def generate_discord_nickname_from_user(username: str) -> str:
     tier = user.current_tier()
 
     if (tier is None):
-        return discord_username
+        tier = user.current_rollable_tier()
+
+        if (tier is None):
+            return discord_username
 
     current_task = user.current_task()
+
+    if (current_task is None):
+        return generate_discord_nickname_from_completed_task(username, tier)
+
     task_id = current_task[3] if current_task is not None else None
     short_name = [n for n in tasklists.list_for_tier(tier) if n.id == task_id][0].short_name
 

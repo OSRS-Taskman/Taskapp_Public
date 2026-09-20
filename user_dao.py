@@ -99,6 +99,20 @@ class UserDatabaseObject:
         else:
             return None
 
+    def current_rollable_tier(self) -> str | None:        
+        for tier in ['easy', 'medium', 'hard', 'elite', 'master']:
+            tasks = self.get_incomplete_tasks(tier)
+            if len(tasks) != 0:
+                return tier        
+
+        return None
+
+    def get_incomplete_tasks(self, tier: str) -> list[TaskData]:
+        all_tasks = tasklists.list_for_tier(tier, self.lms_enabled)
+        completed_task_ids = list(map(lambda x: x.id, self.get_task_list(tier).completed_tasks))
+        return list(filter(lambda x: x.id not in completed_task_ids, all_tasks))
+    
+
     def current_task_id(self) -> str | None:
         current_task = self.current_task()
 
