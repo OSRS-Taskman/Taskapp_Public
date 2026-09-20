@@ -8,7 +8,7 @@ import config
 import user_dao
 from dataclasses import asdict
 from user_dao import UserDatabaseObject, convert_database_user
-from task_types import TaskData, TierProgress, UserTierProgressCache, LeaderboardEntry, TaskData
+from task_types import CompletionMethod, TaskData, TierProgress, UserTierProgressCache, LeaderboardEntry, TaskData
 import discord_service
 
 mydb = config.MONGO_CLIENT["TaskApp"]
@@ -259,7 +259,7 @@ def __unset_current_task_after_task_move(username: str):
                     {"username": username},
                     {"$unset": {f"tiers.{possible_tier}.currentTask": ""}},
                 )
-    
+
 def __set_current_task(username: str, tier: str, task_id: str, current: bool):
     task_coll = mydb["taskLists"]
     cleaned_tier = tier.replace("Tasks", "")
@@ -315,9 +315,17 @@ def __sanitize_item_ids(item_ids) -> list[int]:
 
 
 
-def __set_task_complete(username: str, tier: str, task_id: str, complete: bool,
-                        completed_at_iso: str | None = None,
-                        completed_item_ids: list[int] | None = None):
+def __set_task_complete(
+        username: str,
+        task_id: str,
+        complete: bool,
+        completed_at_iso: str | None = None,
+        completed_item_ids: list[int] | None = None,
+        was_active: bool | None = None,
+        method: CompletionMethod = CompletionMethod.MANUAL,
+        play_time: int | None = None,
+    ):
+
     task_coll = mydb['taskLists']
     if complete:
         completed_date = __parse_completed_iso(completed_at_iso) or datetime.now(timezone.utc)
@@ -339,7 +347,10 @@ def __set_task_complete(username: str, tier: str, task_id: str, complete: bool,
                     "completedTasks": {
                         "id": task_id,
                         "completedDate": completed_date,
-                        "retainedItemIds": safe_completed_item_ids
+                        "retainedItemIds": safe_completed_item_ids,
+                        "wasActive": was_active,
+                        "method": method,
+                        "playTime": play_time
                     }
                 }
             }
@@ -563,9 +574,10 @@ def complete_task_unofficial_tier(username: str,
                                  tier: str,
                                  completed_at_iso: str | None = None,
                                  completed_item_ids: list[int] | None = None) -> dict:
-    __set_task_complete(username, tier, task_id, True,
+    __set_task_complete(username, task_id, True,
                         completed_at_iso=completed_at_iso,
-                        completed_item_ids=completed_item_ids)
+                        completed_item_ids=completed_item_ids,
+                        was_active=True)
     __set_current_task(username, tier, task_id, False)
     return __get_firework_variables(username, tier)
 
@@ -592,7 +604,8 @@ Returns:
 
 def complete_task(username: str,
                   completed_at_iso: str | None = None,
-                  completed_item_ids: list[int] | None = None) -> dict:
+                  completed_item_ids: list[int] | None = None,
+                  play_time: int | None = None) -> dict:
     user = get_user(username)
     task_check = user.current_task()
     if task_check is None:
@@ -600,9 +613,11 @@ def complete_task(username: str,
 
     tier = task_check[2]
     task_id = task_check[3]
-    __set_task_complete(username, tier, task_id, True,
+    __set_task_complete(username, task_id, True,
                         completed_at_iso=completed_at_iso,
-                        completed_item_ids=completed_item_ids)
+                        completed_item_ids=completed_item_ids,
+                        was_active=True,
+                        play_time=play_time)
     __set_current_task(username, tier, task_id, False)
 
     return __get_firework_variables(username, tier)
@@ -666,14 +681,16 @@ Returns:
 
 
 def manual_complete_tasks(username, tier, task_id, completed_at_iso: str | None = None,
-                          completed_item_ids: list[int] | None = None):
+                          completed_item_ids: list[int] | None = None,
+                          play_time: int | None = None):
     completed_date, stored_completed_item_ids = __set_task_complete(
         username,
-        tier,
         task_id,
         True,
         completed_at_iso,
         completed_item_ids,
+        was_active=False,
+        play_time=play_time
     )
     exclude_list = ['bossPetTasks', 'skillPetTasks', 'otherPetTasks']
     if tier in exclude_list:
@@ -706,7 +723,7 @@ Returns:
 
 
 def manual_revert_tasks(username, tier, task_id):
-    __set_task_complete(username, tier, task_id, False)
+    __set_task_complete(username, task_id, False)
     exclude_list = ['bossPetTasks', 'skillPetTasks', 'otherPetTasks']
     if tier in exclude_list:
         tier = tier.replace('Tasks', '')
@@ -737,7 +754,8 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
             __set_current_task(username, tier, task_id, False)  # ✅ dynamically uses tier
 
     # Rest of your function remains unchanged
-    easy_diaries = {
+    diary_tasks = {
+        # easy
         "c366a4e5-3463-46e5-a9d1-da706a86d051",
         "1c486d16-4538-424d-986a-efb457de0a8a",
         "c82332c7-d026-4d53-a8cc-50ed31e2b182",
@@ -749,9 +767,9 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
         "309d3dbb-6b68-4697-8562-c72e6c48e8e5",
         "cf8660d4-cf64-4448-a4fd-e9b622293e53",
         "3f4958dd-c0f7-4315-90c6-710ee0db254a",
-        "e4efcd63-f488-4a91-9307-c6662e9f612f"
-    }
-    medium_diaries = {
+        "e4efcd63-f488-4a91-9307-c6662e9f612f",
+
+        # medium
         "040f49c9-93e9-431d-8a4c-d1b8b8a7edf6",
         "5d2d9461-00bc-431b-b943-0693bb8b0fb6",
         "a455bbf7-a570-494f-9753-643aeb83aca9",
@@ -764,8 +782,8 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
         "f59758a3-122e-4d8a-b2ed-5b908fc60a8c",
         "993eb6f8-e30a-4f0a-977d-148b45e0f7f7",
         "59e36673-6808-4371-ba70-fd8d8003e5ef",
-    }
-    hard_diaries = {
+
+        # hard
         "0adb8c5f-1f25-469f-a5ca-caeb72926555",
         "6d862500-e957-438a-91d7-73afd64cbc94",
         "ac81b972-e058-4f1c-9a6d-6b584152018e",
@@ -778,8 +796,8 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
         "376f87f1-88c5-4180-abca-505cdaa542e4",
         "6cad11a7-d40c-4a5e-962d-0387c9eb256b",
         "4a1632cf-a847-43d9-884a-a43e135fdb76",
-    }
-    elite_diaries = {
+
+        # elite
         "8c0cb3d6-e137-4a4a-b567-cab75ed2077f",
         "7ec18760-279b-403f-a871-8f0bb99d3387",
         "ab7fc232-2f2d-4497-8ea8-c7073d02539b",
@@ -957,47 +975,15 @@ def update_imported_tasks(username: str, all_tasks: list, username2: str,
     coll.update_one({'username': username}, {'$set': {'ign': username2}})
 
     for diary in existing_root_completed:
-        if diary['id'] in easy_diaries:
+        if diary['id'] in diary_tasks:
             __set_task_complete(
                 username,
-                'easyTasks',
                 diary['id'],
                 True,
                 __datetime_to_iso(diary.get('completedDate')),
                 diary.get('retainedItemIds', []),
-            )
-
-    for diary in existing_root_completed:
-        if diary['id'] in medium_diaries:
-            __set_task_complete(
-                username,
-                'mediumTasks',
-                diary['id'],
-                True,
-                __datetime_to_iso(diary.get('completedDate')),
-                diary.get('retainedItemIds', []),
-            )
-
-    for diary in existing_root_completed:
-        if diary['id'] in hard_diaries:
-            __set_task_complete(
-                username,
-                'hardTasks',
-                diary['id'],
-                True,
-                __datetime_to_iso(diary.get('completedDate')),
-                diary.get('retainedItemIds', []),
-            )
-
-    for diary in existing_root_completed:
-        if diary['id'] in elite_diaries:
-            __set_task_complete(
-                username,
-                'eliteTasks',
-                diary['id'],
-                True,
-                __datetime_to_iso(diary.get('completedDate')),
-                diary.get('retainedItemIds', []),
+                False,
+                CompletionMethod.SYNC
             )
 
 
@@ -1654,7 +1640,7 @@ def unofficial_icon(username):
 def get_leaderboard() -> list[LeaderboardEntry]:
     def get_leaderboard_entry_from_db(data):
         display_name = discord_service.get_discord_auth_info(data['username']).discord_username_default
-        
+
         if 'user_tier_progress_cache' in data.keys():
             cache = UserTierProgressCache(
                 data['user_tier_progress_cache']['easy'],
@@ -1674,9 +1660,9 @@ def get_leaderboard() -> list[LeaderboardEntry]:
                 TierProgress(**cache.elite),
                 TierProgress(**cache.master)
             )
-        
+
         user = convert_database_user(data)
-        
+
         cache = UserTierProgressCache(
             user.get_tier_progress('easy'),
             user.get_tier_progress('medium'),
@@ -1706,8 +1692,8 @@ def get_leaderboard() -> list[LeaderboardEntry]:
             map(
                 get_leaderboard_entry_from_db,
                 tldb.find({'discordLinked': True, 'isOfficial': True})
-            ), 
-            key=lambda x: x.points(), 
+            ),
+            key=lambda x: x.points(),
             reverse=True
         )
     )
