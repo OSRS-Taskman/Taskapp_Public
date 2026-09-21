@@ -62,7 +62,6 @@ def save_discord_name_sync_enabled_status(username: str, discord_name_sync_enabl
         default_name = get_discord_auth_info(username).discord_username_default
         update_nickname_DISCORD(username, default_name)
 
-
 def link_discord_id(username: str, id: int):
     auth_info: DiscordAuthInfo = get_discord_auth_info(username)
     auth_info.discord_user_id = id
@@ -168,3 +167,8 @@ def generate_discord_nickname_from_user(username: str) -> str:
     short_name = [n for n in tasklists.list_for_tier(tier) if n.id == task_id][0].short_name
 
     return get_discord_nickname(username, discord_username, tier, short_name)
+
+def update_discord_if_enabled(username: str):
+    if (task_database.get_discord_name_sync_enabled(username)):
+        new_name = generate_discord_nickname_from_user(username)
+        update_nickname_DISCORD(username, new_name)
