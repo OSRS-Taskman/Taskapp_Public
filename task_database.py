@@ -275,15 +275,7 @@ def __set_current_task(username: str, tier: str, task_id: str, current: bool):
         )
 
     clear_leaderboard_cache(username)
-    if (get_discord_name_sync_enabled(username)):
-        new_name = ''
-        if current:
-            task: TaskData = [n for n in tasklists.list_for_tier(cleaned_tier) if n.id == task_id][0]
-            new_name = discord_service.generate_discord_nickname_from_current_task(username, cleaned_tier, task)
-        else:
-            new_name = discord_service.generate_discord_nickname_from_completed_task(username, cleaned_tier)
-        discord_service.update_nickname_DISCORD(username, new_name)
-
+    discord_service.update_discord_if_enabled(username)
 
 def __parse_completed_iso(value: str | None) -> datetime | None:
     if not value:
@@ -474,11 +466,6 @@ def generate_task(username: str) -> TaskData | None:
     if user.current_task() is not None:
         return
 
-    def get_incomplete_tasks(tier: str) -> list[TaskData]:
-        all_tasks = tasklists.list_for_tier(tier, user.lms_enabled)
-        completed_task_ids = list(map(lambda x: x.id, user.get_task_list(tier).completed_tasks))
-        return list(filter(lambda x: x.id not in completed_task_ids, all_tasks))
-
     def get_first_task_instance(generated_task: TaskData, incomplete_tasks: list[TaskData]) -> TaskData:
         if generated_task.verification:
             first_task_instance = min([task for task in incomplete_tasks if task.name == generated_task.name],
@@ -486,43 +473,16 @@ def generate_task(username: str) -> TaskData | None:
             return first_task_instance
         return generated_task
 
-    tasks_easy = get_incomplete_tasks('easy')
-    tasks_medium = get_incomplete_tasks('medium')
-    tasks_hard = get_incomplete_tasks('hard')
-    tasks_elite = get_incomplete_tasks('elite')
-    tasks_master = get_incomplete_tasks('master')
+    tier = user.current_rollable_tier()
 
-    if len(tasks_easy) != 0:
-        generated_task = random.choice(tasks_easy)
-        first_task_instance = get_first_task_instance(generated_task, tasks_easy)
-        __set_current_task(username, 'easyTasks', first_task_instance.id, True)
-        return first_task_instance
+    if tier is None:
+        return None
 
-    elif len(tasks_medium) != 0:
-        generated_task = random.choice(tasks_medium)
-        first_task_instance = get_first_task_instance(generated_task, tasks_medium)
-        __set_current_task(username, 'mediumTasks', first_task_instance.id, True)
-        return first_task_instance
-
-    elif len(tasks_hard) != 0:
-        generated_task = random.choice(tasks_hard)
-        first_task_instance = get_first_task_instance(generated_task, tasks_hard)
-        __set_current_task(username, 'hardTasks', first_task_instance.id, True)
-        return first_task_instance
-
-    elif len(tasks_elite) != 0:
-        generated_task = random.choice(tasks_elite)
-        first_task_instance = get_first_task_instance(generated_task, tasks_elite)
-        __set_current_task(username, 'eliteTasks', first_task_instance.id, True)
-        return first_task_instance
-
-    elif len(tasks_master) != 0:
-        generated_task = random.choice(tasks_master)
-        first_task_instance = get_first_task_instance(generated_task, tasks_master)
-        __set_current_task(username, 'masterTasks', first_task_instance.id, True)
-        return first_task_instance
-
-    return None
+    tasks = user.get_incomplete_tasks(tier)
+    generated_task = random.choice(tasks)
+    first_task_instance = get_first_task_instance(generated_task, tasks)
+    __set_current_task(username, f'{tier}Tasks', first_task_instance.id, True)
+    return first_task_instance
 
 # If user has just completed a task of the given tier and the progress is 100, then they've just completed the last task
 def __get_firework_variables(username, tier):
