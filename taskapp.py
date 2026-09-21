@@ -783,9 +783,7 @@ def update():
     }
 
     clear_leaderboard_cache(user_info.username)
-    if (get_discord_name_sync_enabled(user_info.username)):
-        new_name = discord_service.generate_discord_nickname_from_user(user_info.username)
-        discord_service.update_nickname_DISCORD(user_info.username, new_name)
+    discord_service.update_discord_if_enabled(user_info.username)
 
     return data
 
@@ -812,9 +810,7 @@ def revert():
     }
 
     clear_leaderboard_cache(user_info.username)
-    if (get_discord_name_sync_enabled(user_info.username)):
-        new_name = discord_service.generate_discord_nickname_from_user(user_info.username)
-        discord_service.update_nickname_DISCORD(user_info.username, new_name)
+    discord_service.update_discord_if_enabled(user_info.username)
 
     return data
 

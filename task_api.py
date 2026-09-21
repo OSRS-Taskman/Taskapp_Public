@@ -11,6 +11,7 @@ from app_setup import app, db
 from tasklists import get_task_tier, list_for_tier
 from templesync import sync_user_tasks
 from user_dao import UserDatabaseObject
+import discord_service
 
 
 def token_required_v2(f):
@@ -117,8 +118,10 @@ def apiv2_update_user_task(user: UserDatabaseObject, id: str) -> None:
             complete_task(user.username, play_time=play_time)
         else:
             manual_complete_tasks(user.username, tier, id, play_time=play_time)
+            discord_service.update_discord_if_enabled(user.username)
     elif completed == False:
         manual_revert_tasks(user.username, tier, id)
+        discord_service.update_discord_if_enabled(user.username)
 
     return Response(status=HTTPStatus.NO_CONTENT)
 
