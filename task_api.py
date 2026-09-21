@@ -110,14 +110,16 @@ def apiv2_get_user_profile(user: UserDatabaseObject):
 def apiv2_update_user_task(user: UserDatabaseObject, id: str) -> None:
     tier = get_task_tier(id)
     body = request.json
+    completed = body['completed']
+    play_time = body['play_time']
 
-    if body['completed'] == True:
+    if completed == True:
         if user.current_task_id() == id:
-            complete_task(user.username)
+            complete_task(user.username, play_time=play_time)
         else:
-            manual_complete_tasks(user.username, tier, id)
+            manual_complete_tasks(user.username, tier, id, play_time=play_time)
             discord_service.update_discord_if_enabled(user.username)
-    elif body['completed'] == False:
+    elif completed == False:
         manual_revert_tasks(user.username, tier, id)
         discord_service.update_discord_if_enabled(user.username)
 
@@ -145,8 +147,9 @@ def apiv2_sync(user: UserDatabaseObject):
     collection_log = set(body['collection_log'])
     diaries = body['diaries']
     skills = body['skills']
+    play_time = body['play_time']
 
-    changed_tasks = sync_user_tasks(user.username, collection_log, diaries, skills)
+    changed_tasks = sync_user_tasks(user.username, collection_log, diaries, skills, play_time)
 
     return {
         'completed': list(changed_tasks[0]),

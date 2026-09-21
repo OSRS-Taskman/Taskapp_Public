@@ -2,7 +2,7 @@ import requests
 from task_database import __set_current_task, __set_task_complete, get_user
 import tasklists
 from datetime import datetime, timezone
-from task_types import AchievementDiaryVerificationData, CollectionLogVerificationData, SkillVerificationData, TaskData
+from task_types import AchievementDiaryVerificationData, CollectionLogVerificationData, CompletionMethod, SkillVerificationData, TaskData
 
 
 def temple_player_data(username: str):
@@ -174,7 +174,7 @@ def check_logs(username: str, site_tasks: list["TaskData"], action: str):
         return format_completed_tasks(sorted_completed_tasks)
 
 
-def sync_user_tasks(username: str, collection_log: set[int], diaries: dict, skills: dict) -> tuple[set[int], set[int]]:
+def sync_user_tasks(username: str, collection_log: set[int], diaries: dict, skills: dict, play_time: int) -> tuple[set[int], set[int]]:
     tiers = ['easy', 'medium', 'hard', 'elite', 'master']
     tasks = [ task for tier in tiers for task in tasklists.list_for_tier(tier) ]
 
@@ -209,17 +209,23 @@ def sync_user_tasks(username: str, collection_log: set[int], diaries: dict, skil
     new_completed_tasks: set[int] = set()
     new_uncompleted_tasks: set[int] = set()
 
+    current_task_id = user.current_task_id()
+
     for task_id in completed_tasks:
         if task_id not in old_completed_tasks:
-            __set_task_complete(username, None, task_id, True)
+            __set_task_complete(
+                username, task_id, True,
+                was_active=task_id == current_task_id,
+                method=CompletionMethod.SYNC,
+                play_time=play_time
+            )
             new_completed_tasks.add(task_id)
 
     for task_id in uncompleted_tasks:
         if task_id in old_completed_tasks:
-            __set_task_complete(username, None, task_id, False)
+            __set_task_complete(username, task_id, False)
             new_uncompleted_tasks.add(task_id)
 
-    current_task_id = user.current_task_id()
     if current_task_id in new_completed_tasks:
         __set_current_task(username, tasklists.get_task_tier(current_task_id), None, False)
 

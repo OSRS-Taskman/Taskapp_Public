@@ -45,11 +45,19 @@ class UserCurrentTask:
     assigned_date: datetime = None
 
 @dataclass
+class CompletionMethod(StrEnum):
+    MANUAL = 'manual'
+    SYNC = 'sync'
+
+@dataclass
 class UserCompletedTask:
     id: str
     assigned_date: datetime = None
     completed_date: datetime = None
     completed_item_ids: list[int] = None
+    was_active: bool | None = None
+    method: CompletionMethod | None = None
+    play_time: int | None = None
 
 @dataclass
 class UserTaskList:

@@ -3,7 +3,7 @@ import tasklists
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from bson.objectid import ObjectId
-from task_types import UserTaskList, TierProgress, UserCompletedTask, UserCurrentTask, TaskData, PageTask, CollectionLogVerificationData
+from task_types import CompletionMethod, UserTaskList, TierProgress, UserCompletedTask, UserCurrentTask, TaskData, PageTask, CollectionLogVerificationData
 
 LMS_TASK_IDS = {
     "df3f714e-eb7e-4b86-8b73-f25d6ebc3020",
@@ -82,9 +82,9 @@ class UserDatabaseObject:
 
         if tier is None:
             return None
-        
+
         return self.current_task_for_tier(f'{tier}Tasks')
-        
+
     def current_tier(self) -> str:
         if self.easy.current_task is not None:
             return 'easy'
@@ -273,11 +273,18 @@ def convert_database_user(user_data: dict) -> UserDatabaseObject:
         retained_item_ids = value.get('retainedItemIds')
         if retained_item_ids is None:
             retained_item_ids = value.get('completedItemIds', [])
+        method = value.get('method')
+        if method is not None:
+            method = CompletionMethod(method)
+
         return UserCompletedTask(
             id=str(task_id),
             assigned_date=value.get('assignedDate'),
             completed_date=value.get('completedDate'),
             completed_item_ids=to_item_ids(retained_item_ids),
+            was_active=value.get('wasActive'),
+            method=method,
+            play_time=value.get('playTime')
         )
 
     root_completed_tasks: list[UserCompletedTask] = []
