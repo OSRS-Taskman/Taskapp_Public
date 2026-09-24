@@ -20,11 +20,11 @@ def command_get_task_progress(username: str):
             "tier": curr_tier,
             "progressPercentage": progress[curr_tier]["percent_complete"]
         }
-    except Exception:
+    except Exception as e:
         logger.exception("Error on retrieving command information")
         return {
-            'error': 'Something went wrong when retrieving command information'
-        }, HTTPStatus.NOT_FOUND
+            'error': f'Error: {e}'
+        }, HTTPStatus.INTERNAL_SERVER_ERROR
 
 
 def _get_current_tier(progress):
