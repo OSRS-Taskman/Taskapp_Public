@@ -21,6 +21,7 @@ from task_api import login_required
 
 import task_api
 import discord_api
+import command_api
 
 
 '''
