@@ -35,7 +35,7 @@ def store_rsn_by_username(user: UserDatabaseObject):
     return '', HTTPStatus.NO_CONTENT
 
 
-@app.route('/api/v2/command/<rsn>', methods=['GET'])
+@app.route('/command/<rsn>', methods=['GET'])
 def command_get_task_progress(rsn: str):
     logger.debug("Looking up RSN in cache: rsn=%s, cache=%s",rsn, username_by_rsn_cache)
 
