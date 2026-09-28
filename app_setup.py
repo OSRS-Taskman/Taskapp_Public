@@ -1,9 +1,11 @@
 from flask import Flask
 import config
-from flask_recaptcha import ReCaptcha # type: ignore
+from recaptcha_helper import Recaptcha
+
 
 app = Flask(__name__)
 
+recaptcha = Recaptcha()
 isProd = config.IS_PROD
 
 # Set secret key for Flask App.
@@ -14,13 +16,7 @@ if isProd:
     app.config['RECAPTCHA_SITE_KEY'] = config.RECAPTCHA_SITE_KEY
     app.config['RECAPTCHA_SECRET_KEY'] = config.RECAPTCHA_SECRET_KEY
     # initialize reCAPTCHA
-    recaptcha = ReCaptcha(app)
-else:
-    recaptcha = "Disabled for DEV"
-
-
-# email service account.
-taskapp_email = config.SECRET_KEY
+    recaptcha.init_app(app)
 
 # specifies database to use.
 db = config.MONGO_CLIENT["TaskAppLoginDB"]

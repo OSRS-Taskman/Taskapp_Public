@@ -5,7 +5,7 @@ import jwt
 from flask import Response, request, redirect, url_for, flash, session
 from functools import wraps
 from http import HTTPStatus
-
+from task_login import pw_bytes
 from task_database import complete_task, generate_task, get_user, manual_complete_tasks, manual_revert_tasks, migrate_current_task
 from app_setup import app, db
 from tasklists import get_task_tier, list_for_tier
@@ -66,7 +66,7 @@ def apiv2_login():
     if not user:
         return { 'error': 'Invalid credentials' }, HTTPStatus.UNAUTHORIZED
 
-    if not bcrypt.checkpw(body['password'].encode('utf-8'), user['hashed_password']):
+    if not bcrypt.checkpw(pw_bytes(body['password']), user['hashed_password']):
         return { 'error': 'Invalid credentials' }, HTTPStatus.UNAUTHORIZED
 
     now = datetime.datetime.now(datetime.timezone.utc)

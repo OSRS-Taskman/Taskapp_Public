@@ -1,7 +1,7 @@
 import bcrypt
 import re
 from task_database import add_task_account
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from itsdangerous import URLSafeTimedSerializer, BadSignature
 from datetime import datetime
 import config
 from dataclasses import asdict
@@ -21,6 +21,8 @@ mycoll = mydb['taskAccounts']
 
 # List of lists of dictionaries for tasks and cooresponding urls/tips.
 
+# Maximum age of token in seconds. 1800 seconds = 30 minutes.
+TOKEN_MAX_AGE = 1800
 '''
 query_email function:
 
@@ -39,6 +41,18 @@ def query_email(email):
 
 
 '''
+_serializer function:
+The _serializer function generates a Serializer object with the SECRET_KEY and the expiration time.
+
+Args:
+    str: salt - salt to be used for the Serializer object.
+Returns:
+    Serializer: s - Serializer object with the SECRET_KEY and the expiration time.
+'''
+
+def _serializer(salt):
+    return URLSafeTimedSerializer(config.SECRET_KEY, salt=salt)
+'''
 get_reset_token function:
 
 The get_reset_token generates a Serializer object with the SECRET_KEY and the expiration time.
@@ -48,12 +62,9 @@ Args:
     str: username - username of the user to be reset.
 Returns:
     Serializer: s - Serializer object with the username.
-
-
 '''
-def get_reset_token(username, expires=1800):
-    s = Serializer(config.SECRET_KEY, expires)
-    return s.dumps({'username': username}).decode('utf-8')
+def get_reset_token(username):
+    return _serializer('reset-password').dumps({"username" : username})
 
 '''
 verify_reset_token function:
@@ -70,13 +81,10 @@ Returns:
 
 '''
 def verify_reset_token(token):
-    s = Serializer(config.SECRET_KEY)
     try:
-        username = s.loads(token)['username']
-
-    except:
+        return _serializer('reset-password').loads(token, max_age=TOKEN_MAX_AGE)["username"]
+    except (BadSignature, KeyError):
         return None
-    return username
 
 '''
 email_verify function:
@@ -111,9 +119,8 @@ Returns:
 
 
 '''
-def get_email_verify_token(username, email, expires=1800):
-    s = Serializer(config.SECRET_KEY, expires)
-    return s.dumps({'username': username, 'email' : email}).decode('utf-8')
+def get_email_verify_token(username, email):
+    return _serializer('verify-email').dumps({'username': username, 'email': email})
 
 
 '''
@@ -131,15 +138,11 @@ Returns:
 
 '''
 def verify_email_verify_token(token):
-    s = Serializer(config.SECRET_KEY)
     try:
-        username = s.loads(token)['username']
-        email = s.loads(token)['email']
-    except:
+        data = _serializer('verify-email').loads(token, max_age=TOKEN_MAX_AGE)
+        return data['username'], data['email']
+    except (BadSignature, KeyError):
         return None
-    return username, email
-
-
 
 '''
 update_email function:
@@ -153,12 +156,9 @@ Args:
 
 Returns:
     
-
-
 '''
 def update_email(username, email):
     coll.update_one({'username': username}, {'$set' : {'user_email': email, 'email_verified': True}})
-
 
 
 '''
@@ -183,7 +183,7 @@ Returns:
 def add_user(username, password, email, isOfficial, lmsEnabled):
     success = False
     error = None
-    reg = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[?,.;'\"!@#$%^&*(){}[\]_+=\-]).{8,}$"
+    reg = r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[?,.;'\"!@#$%^&*(){}[\]_+=\-]).{8,}$"
     pattern = re.compile(reg)
     match = re.search(pattern, password)
     if match:
@@ -191,7 +191,7 @@ def add_user(username, password, email, isOfficial, lmsEnabled):
         user_querydb = {'username': username}
         doc_count = coll.count_documents(user_querydb)
         if doc_count == 0:
-            hashed_pass = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+            hashed_pass = bcrypt.hashpw(pw_bytes(password), bcrypt.gensalt())
             user_input = {"username": username, "hashed_password": hashed_pass, "user_email": email, 'email_verified': False, 'discord_auth_info': asdict(get_new_discord_auth_info(username))}
             coll.insert_one(user_input)
             add_task_account(username, isOfficial, lmsEnabled)
@@ -207,6 +207,19 @@ def add_user(username, password, email, isOfficial, lmsEnabled):
         error = 'Password does not meet requirements'
         return success, error
 
+'''
+pw_bytes function:
+
+The pw_bytes function converts the password string to bytes.
+
+Args:
+    str: password - password of the user.
+Returns:
+    bytes: password_bytes - password in bytes.
+
+'''
+def pw_bytes(password):
+    return password.encode('utf-8')[:72]
 
 
 '''
@@ -225,13 +238,13 @@ Returns:
 
 '''
 def change_password(username, password):
-    reg = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[?,.;'\"!@#$%^&*(){}[\]_+=\-]).{8,}$"
+    reg = r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[?,.;'\"!@#$%^&*(){}[\]_+=\-]).{8,}$"
     pattern = re.compile(reg)
     match = re.search(pattern, password)
     error = None
     success = False
     if match:
-        hashed_pass = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        hashed_pass = bcrypt.hashpw(pw_bytes(password), bcrypt.gensalt())
         coll.update_one({'username' : username}, {'$set': {'hashed_password': hashed_pass}})
         success = True
         return success, error
