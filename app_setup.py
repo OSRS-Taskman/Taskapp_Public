@@ -1,7 +1,7 @@
 from flask import Flask
 import config
 from recaptcha_helper import Recaptcha
-
+from datetime import timedelta
 
 app = Flask(__name__)
 
@@ -10,7 +10,9 @@ isProd = config.IS_PROD
 
 # Set secret key for Flask App.
 app.config['SECRET_KEY'] = config.SECRET_KEY
-
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=30)
+app.config['SESSION_COOKIE_SECURE'] = isProd
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 if isProd:
     # Keys for Google reCAPTCHA.
     app.config['RECAPTCHA_SITE_KEY'] = config.RECAPTCHA_SITE_KEY

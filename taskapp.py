@@ -127,6 +127,8 @@ Functions will be explained in more detail in the functions themselves.
 # Base route for the website, renders hero.html
 @app.route('/')
 def index():
+    if session.get('logged_in'):
+        return redirect(url_for('dashboard'))
     return render_template('hero.html')
 
 # Register route, renders registerV2.html on GET request.
@@ -211,6 +213,8 @@ def register_user():
 # On POST request, verifies the users input and logs the user in.
 @app.route('/login/', methods= ['GET', 'POST'])
 def login():
+    if request.method == 'GET' and session.get('logged_in'):
+        return redirect(url_for('dashboard'))
     try:
         error = None
         coll = db['users']
