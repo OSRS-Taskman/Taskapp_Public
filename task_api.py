@@ -47,11 +47,17 @@ Returns:
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
-        if 'logged_in' in session:
-            return f(*args, **kwargs)
-        else:
+        if 'logged_in' not in session:
             flash("You must be logged in to access this page!")
             return redirect(url_for('login'))
+        
+        if not db['users'].count_documents({'username': session.get('username')}, limit=1):
+            session.clear()
+            flash("Your session has expired, please log in again.")
+            return redirect(url_for('login'))
+        
+        return f(*args, **kwargs)
+    
     return wrap
 
 
