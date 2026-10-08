@@ -10,7 +10,7 @@ from task_database import complete_task, generate_task, get_user, manual_complet
 from app_setup import app, db
 from tasklists import get_task_tier, list_for_tier
 from templesync import sync_user_tasks
-from user_dao import UserDatabaseObject
+from user_dao import ROLLABLE_TIERS, UserDatabaseObject
 import discord_service
 
 
@@ -132,7 +132,17 @@ def apiv2_generate_task(user: UserDatabaseObject):
     if user.current_task():
         return { 'error': 'User already has an active task' }, HTTPStatus.BAD_REQUEST
 
-    generated_task = generate_task(user.username)
+    body = request.get_json() if request.data else {}
+    if not isinstance(body, dict):
+        return { 'error': 'Request body must be a JSON object' }, HTTPStatus.BAD_REQUEST
+
+    hide_below = body.get('hide_below', 'easy')
+    if not isinstance(hide_below, str) or hide_below not in ROLLABLE_TIERS:
+        return {
+            'error': f"hide_below must be one of: {', '.join(ROLLABLE_TIERS)}"
+        }, HTTPStatus.BAD_REQUEST
+
+    generated_task = generate_task(user.username, hide_below)
     if generated_task:
         return { 'task_id': generated_task.id }
 

@@ -472,7 +472,7 @@ Returns:
 '''
 
 
-def generate_task(username: str) -> TaskData | None:
+def generate_task(username: str, hide_below: str = 'easy') -> TaskData | None:
     user = get_user(username)
     if user.current_task() is not None:
         return
@@ -484,7 +484,7 @@ def generate_task(username: str) -> TaskData | None:
             return first_task_instance
         return generated_task
 
-    tier = user.current_rollable_tier()
+    tier = user.current_rollable_tier(hide_below)
 
     if tier is None:
         return None

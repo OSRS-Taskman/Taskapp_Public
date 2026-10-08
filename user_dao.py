@@ -30,6 +30,7 @@ LMS_TASK_IDS = {
     "5cbcc790-10d1-4c17-8b39-cad7b48dadf8",
     "4a387bb0-dfc3-4374-aa35-9bacfc2fc92d",
 }
+ROLLABLE_TIERS = ('easy', 'medium', 'hard', 'elite', 'master')
 
 @dataclass
 class UserDatabaseObject:
@@ -99,8 +100,12 @@ class UserDatabaseObject:
         else:
             return None
 
-    def current_rollable_tier(self) -> str | None:        
-        for tier in ['easy', 'medium', 'hard', 'elite', 'master']:
+    def current_rollable_tier(self, hide_below: str = 'easy') -> str | None:
+        if hide_below not in ROLLABLE_TIERS:
+            raise ValueError(f"Invalid minimum rollable tier: {hide_below}")
+
+        first_tier_index = ROLLABLE_TIERS.index(hide_below)
+        for tier in ROLLABLE_TIERS[first_tier_index:]:
             tasks = self.get_incomplete_tasks(tier)
             if len(tasks) != 0:
                 return tier        
