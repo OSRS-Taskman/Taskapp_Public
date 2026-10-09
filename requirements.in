@@ -8,3 +8,4 @@ bcrypt
 requests>=2.33
 sendgrid
 itsdangerous
+werkzeug>=3.1.9
