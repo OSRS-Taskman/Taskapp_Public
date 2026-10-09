@@ -82,6 +82,14 @@ Profile
                             <input type="checkbox" id="skip_roll_animation">
                             <span class="slider round"></span>
                             </label>
+                    {% if not official %}
+                    <p>Hide Tasks Below</p>
+                    <select id="hide_below" aria-label="Hide tasks below">
+                        {% for tier in rollable_tiers %}
+                        <option value="{{ tier }}" {% if hide_below == tier %}selected{% endif %}>{{ tier|capitalize }}</option>
+                        {% endfor %}
+                    </select>
+                    {% endif %}
                 </div>
                 <div class="warning-section">
                     <p id="warning"style="display: none;" class="incomplete">!!!YOU CANNOT RE-ENABLE OFFICIAL STATUS!!!</p>
@@ -366,7 +374,21 @@ $(document).ready(function() {
         });
     }
 
-    
+    $('#hide_below').on('change', function() {
+        const hideBelow = $(this).val();
+        $.ajax({
+            url: '/profile/change-hide-below/',
+            type: 'POST',
+            data: {hide_below: hideBelow}
+        }).done(function(data) {
+            if (!data.success) {
+                alert(data.error || 'Could not update the minimum task tier.');
+            }
+        }).fail(function() {
+            alert('Could not update the minimum task tier.');
+        });
+    });
+
     $('#discord_name_sync_enabled').on('change', function(e) {
         var discord_name_sync_enabled = e.target.checked;
         req = $.ajax({
@@ -418,5 +440,3 @@ $(document).ready(function(){
 });
 </script>
 {% endblock%}
-
-

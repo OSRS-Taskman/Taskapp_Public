@@ -96,6 +96,7 @@ def add_task_account(username, is_official, lms_enabled):
         "username": str(username),
         "isOfficial": bool(is_official),
         "lmsEnabled": bool(lms_enabled),
+        "hideBelow": 'easy',
         "discordLinked": False,
         "discordNameSyncEnabled": False,
         "completedTasks": [],
@@ -472,7 +473,7 @@ Returns:
 '''
 
 
-def generate_task(username: str, hide_below: str = 'easy') -> TaskData | None:
+def generate_task(username: str) -> TaskData | None:
     user = get_user(username)
     if user.current_task() is not None:
         return
@@ -484,7 +485,7 @@ def generate_task(username: str, hide_below: str = 'easy') -> TaskData | None:
             return first_task_instance
         return generated_task
 
-    tier = user.current_rollable_tier(hide_below)
+    tier = user.current_rollable_tier()
 
     if tier is None:
         return None
@@ -494,6 +495,27 @@ def generate_task(username: str, hide_below: str = 'easy') -> TaskData | None:
     first_task_instance = get_first_task_instance(generated_task, tasks)
     __set_current_task(username, f'{tier}Tasks', first_task_instance.id, True)
     return first_task_instance
+
+
+def set_hide_below(username: str, hide_below: str) -> None:
+    if hide_below not in user_dao.ROLLABLE_TIERS:
+        raise ValueError(f"Invalid minimum rollable tier: {hide_below}")
+
+    result = mydb['taskLists'].update_one(
+        {'username': username, 'isOfficial': False},
+        {'$set': {'hideBelow': hide_below}}
+    )
+    if result.matched_count == 0:
+        user = mydb['taskLists'].find_one(
+            {'username': username},
+            {'_id': 0, 'isOfficial': 1}
+        )
+        if user is None:
+            raise LookupError(f"No task account found for username {username}")
+        if user.get('isOfficial', False):
+            raise PermissionError("Hide Tasks Below is only available for unofficial accounts.")
+        raise LookupError(f"Could not update task account for username {username}")
+
 
 # If user has just completed a task of the given tier and the progress is 100, then they've just completed the last task
 def __get_firework_variables(username, tier):
