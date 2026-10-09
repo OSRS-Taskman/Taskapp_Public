@@ -13,7 +13,8 @@ from task_database import (get_taskCurrent, generate_task, complete_task, get_ta
                            get_lms_status, lms_status_change, update_imported_tasks,
                            official_status_change, username_change, get_taskCurrent_tier, generate_task_for_tier,
                            complete_task_unofficial_tier, get_user, get_leaderboard,
-                           get_roll_candidates_for_tier, get_discord_name_sync_enabled, clear_leaderboard_cache)
+                           get_roll_candidates_for_tier, get_discord_name_sync_enabled, clear_leaderboard_cache,
+                           set_hide_below)
 import send_grid_email
 from templesync import check_logs, temple_player_data, import_logs
 from task_types import CollectionLogVerificationData
@@ -22,6 +23,7 @@ from task_api import login_required
 import task_api
 import discord_api
 import command_api
+from user_dao import ROLLABLE_TIERS
 
 
 '''
@@ -1083,6 +1085,8 @@ def profile():
         email_val=user_info.email_val,
         official=user_info.official,
         lms_status=user_info.user.lms_enabled,
+        hide_below=user_info.user.hide_below,
+        rollable_tiers=ROLLABLE_TIERS,
         discord_status=user_info.user.discord_linked,
         discord_default_username=discord_default_username,
         discord_name_sync_enabled=user_info.user.discord_name_sync_enabled,
@@ -1141,6 +1145,26 @@ def change_lms_status():
     data = False if data == 'false' else True
     lms_status_change(username, data)
     return {'success' : True}
+
+
+@app.route("/profile/change-hide-below/", methods=['POST'])
+@login_required
+def change_hide_below():
+    user = get_user(session['username'])
+    if user.is_official:
+        return {'success': False, 'error': 'Hide Tasks Below is only available for unofficial accounts.'}, 403
+
+    hide_below = request.form.get('hide_below')
+    if hide_below not in ROLLABLE_TIERS:
+        return {'success': False, 'error': 'Invalid minimum task tier.'}, 400
+
+    try:
+        set_hide_below(session['username'], hide_below)
+    except PermissionError as error:
+        return {'success': False, 'error': str(error)}, 403
+
+    return {'success': True}
+
 
 # AJAX route to change offical status
 @app.route("/profile/change-official/", methods=['POST'])

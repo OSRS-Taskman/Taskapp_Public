@@ -30,6 +30,7 @@ LMS_TASK_IDS = {
     "5cbcc790-10d1-4c17-8b39-cad7b48dadf8",
     "4a387bb0-dfc3-4374-aa35-9bacfc2fc92d",
 }
+ROLLABLE_TIERS = ('easy', 'medium', 'hard', 'elite', 'master')
 
 @dataclass
 class UserDatabaseObject:
@@ -37,6 +38,7 @@ class UserDatabaseObject:
     username: str
     is_official: bool
     lms_enabled: bool
+    hide_below: str
     discord_linked: bool
     discord_name_sync_enabled: bool
     has_migrated: bool
@@ -99,13 +101,22 @@ class UserDatabaseObject:
         else:
             return None
 
-    def current_rollable_tier(self) -> str | None:        
-        for tier in ['easy', 'medium', 'hard', 'elite', 'master']:
+    def current_rollable_tier(self) -> str | None:
+        hide_below = self.effective_hide_below
+        if hide_below not in ROLLABLE_TIERS:
+            raise ValueError(f"Invalid minimum rollable tier: {hide_below}")
+
+        first_tier_index = ROLLABLE_TIERS.index(hide_below)
+        for tier in ROLLABLE_TIERS[first_tier_index:]:
             tasks = self.get_incomplete_tasks(tier)
             if len(tasks) != 0:
                 return tier        
 
         return None
+
+    @property
+    def effective_hide_below(self) -> str:
+        return self.hide_below if not self.is_official else ROLLABLE_TIERS[0]
 
     def get_incomplete_tasks(self, tier: str) -> list[TaskData]:
         all_tasks = tasklists.list_for_tier(tier, self.lms_enabled)
@@ -252,6 +263,9 @@ Returns:
 def convert_database_user(user_data: dict) -> UserDatabaseObject:
     tiers = user_data['tiers']
     lms_enabled = user_data.get('lmsEnabled', False)
+    hide_below = user_data.get('hideBelow', 'easy')
+    if hide_below not in ROLLABLE_TIERS:
+        raise ValueError(f"Invalid stored minimum rollable tier: {hide_below}")
 
     def to_item_ids(value) -> list[int]:
         if not isinstance(value, list):
@@ -343,6 +357,7 @@ def convert_database_user(user_data: dict) -> UserDatabaseObject:
         username=user_data['username'],
         is_official=user_data['isOfficial'],
         lms_enabled=user_data['lmsEnabled'],
+        hide_below=hide_below,
         has_migrated=user_data.get('hasMigrated', False),
         discord_linked=user_data.get('discordLinked', False),
         discord_name_sync_enabled=user_data.get('discordNameSyncEnabled', False),

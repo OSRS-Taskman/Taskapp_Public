@@ -99,6 +99,7 @@ def apiv2_get_user_profile(user: UserDatabaseObject):
         'username': user.username,
         'is_official': user.is_official,
         'is_lms_enabled': user.lms_enabled,
+        'hide_below': user.effective_hide_below,
         'has_migrated': user.has_migrated,
         'active_task_id': user.current_task_id(),
         'completed_tasks': [
