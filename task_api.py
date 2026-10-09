@@ -5,8 +5,8 @@ import jwt
 from flask import Response, request, redirect, url_for, flash, session
 from functools import wraps
 from http import HTTPStatus
-
-from task_database import complete_task, generate_task, get_user, manual_complete_tasks, manual_revert_tasks, migrate_current_task
+from task_login import pw_bytes
+from task_database import complete_task, generate_task, get_user, manual_complete_tasks, manual_revert_tasks, migrate_current_task, clear_leaderboard_cache
 from app_setup import app, db
 from tasklists import get_task_tier, list_for_tier
 from templesync import sync_user_tasks
@@ -47,11 +47,17 @@ Returns:
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
-        if 'logged_in' in session:
-            return f(*args, **kwargs)
-        else:
+        if 'logged_in' not in session:
             flash("You must be logged in to access this page!")
             return redirect(url_for('login'))
+        
+        if not db['users'].count_documents({'username': session.get('username')}, limit=1):
+            session.clear()
+            flash("Your session has expired, please log in again.")
+            return redirect(url_for('login'))
+        
+        return f(*args, **kwargs)
+    
     return wrap
 
 
@@ -66,7 +72,7 @@ def apiv2_login():
     if not user:
         return { 'error': 'Invalid credentials' }, HTTPStatus.UNAUTHORIZED
 
-    if not bcrypt.checkpw(body['password'].encode('utf-8'), user['hashed_password']):
+    if not bcrypt.checkpw(pw_bytes(body['password']), user['hashed_password']):
         return { 'error': 'Invalid credentials' }, HTTPStatus.UNAUTHORIZED
 
     now = datetime.datetime.now(datetime.timezone.utc)
@@ -119,9 +125,11 @@ def apiv2_update_user_task(user: UserDatabaseObject, id: str) -> None:
             complete_task(user.username, play_time=play_time)
         else:
             manual_complete_tasks(user.username, tier, id, play_time=play_time)
+            clear_leaderboard_cache(user.username)
             discord_service.update_discord_if_enabled(user.username)
     elif completed == False:
         manual_revert_tasks(user.username, tier, id)
+        clear_leaderboard_cache(user.username)
         discord_service.update_discord_if_enabled(user.username)
 
     return Response(status=HTTPStatus.NO_CONTENT)

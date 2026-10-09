@@ -1,4 +1,4 @@
-from app_setup import app, isProd, db, taskapp_email, recaptcha
+from app_setup import app, isProd, db, recaptcha
 from flask import render_template, request, redirect, flash, url_for, session, jsonify, make_response # type: ignore
 import jwt
 import datetime
@@ -129,6 +129,8 @@ Functions will be explained in more detail in the functions themselves.
 # Base route for the website, renders hero.html
 @app.route('/')
 def index():
+    if session.get('logged_in'):
+        return redirect(url_for('dashboard'))
     return render_template('hero.html')
 
 # Register route, renders registerV2.html on GET request.
@@ -213,6 +215,8 @@ def register_user():
 # On POST request, verifies the users input and logs the user in.
 @app.route('/login/', methods= ['GET', 'POST'])
 def login():
+    if request.method == 'GET' and session.get('logged_in'):
+        return redirect(url_for('dashboard'))
     try:
         error = None
         coll = db['users']
@@ -224,7 +228,7 @@ def login():
                 username_found = coll.find_one({"username": attempted_username})
                 if username_found:
                     passwordcheck = username_found['hashed_password']
-                    if bcrypt.checkpw(attempted_password.encode('utf-8'), passwordcheck):
+                    if bcrypt.checkpw(task_login.pw_bytes(attempted_password), passwordcheck):
                         session.permanent = True
                         session['logged_in'] = True
                         session['username'] = request.form['username']
@@ -278,7 +282,6 @@ def dashboard():
         'email_verify': user_info.email_bool,
         'email_val': user_info.email_val,
         'official': user_info.official,
-        'taskapp_email': taskapp_email,
         'easy': progress['easy']['percent_complete'],
         'medium': progress['medium']['percent_complete'],
         'hard': progress['hard']['percent_complete'],
@@ -619,7 +622,6 @@ def complete_unofficial():
 #         items_otherpet=items_otherpet,
 #         items_extra=items_extra,
 #         items_passive=items_passive,
-#         taskapp_email=taskapp_email,
 #         official=user_info.official
 #         )
 
@@ -843,7 +845,6 @@ def faq():
         username=user_info.username,
         email_verify=user_info.email_bool,
         email_val=user_info.email_val,
-        taskapp_email=taskapp_email,
         **context
         )
 
@@ -870,7 +871,6 @@ def wall_of_pain():
         username=user_info.username,
         email_verify=user_info.email_bool,
         email_val=user_info.email_val,
-        taskapp_email=taskapp_email,
         **context
     )
 
@@ -894,7 +894,6 @@ def sync_collection_logs():
         username=user_info.username,
         email_verify=user_info.email_bool,
         email_val=user_info.email_val,
-        taskapp_email=taskapp_email,
         **context
     )
 #route for Rank Check Page
@@ -920,7 +919,6 @@ def rank_check():
         username=user_info.username,
         email_verify=user_info.email_bool,
         email_val=user_info.email_val,
-        taskapp_email=taskapp_email,
         **context
     )
 
@@ -1040,6 +1038,10 @@ def reset_token(token):
 
     if request.method == 'POST':
         user = task_login.verify_reset_token(token)
+        if user is None:
+            flash("Invalid or expired token.")
+            return redirect(url_for('reset_request'))
+        
         form_data = request.form
         password = form_data['password']
         repeat_password = form_data['confirmPassword']

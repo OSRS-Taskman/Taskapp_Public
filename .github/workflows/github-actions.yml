@@ -1,5 +1,0 @@
-- name: save secret to file
-  run: | 
-    echo $X509_CERT > X509-cert-6384797419160777460.pem
-  env:
-    PRIVATE_KEY: ${{ secrets.X509_CERT }}
