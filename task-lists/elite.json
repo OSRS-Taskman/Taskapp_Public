@@ -2188,11 +2188,11 @@
 		},
 		{
 			"id": "3e7a6706-dff2-452a-8e06-1170d8a13673",
-			"name": "Upgrade to the dragon archer headpiece",
+			"name": "Get the next 2 tiers of Chompy bird hat",
 			"shortName": "Chompy Hat",
-			"tip": "Guaranteed reward from Chompy bird hunting. The first time you receive this task, you must get the Dragon Archer Hat. Second time get the Expert Dragon Archer Hat.",
+			"tip": "Get the stabbie chucker from Rantz, make some stabbers, stick lotsa chompies.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Chompy_bird_hunting",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Chompy_bird_hat_(expert_dragon_archer)_detail.png/320px-Chompy_bird_hat_(expert_dragon_archer)_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Chompy_bird_hat_(marksman)_detail.png/320px-Chompy_bird_hat_(marksman)_detail.png",
 			"displayItemId": 2995,
 			"verification": {
 				"method": "collection-log",
@@ -2205,11 +2205,11 @@
 		},
 		{
 			"id": "031c79be-210b-4f64-9775-3fefd33561b9",
-			"name": "Upgrade to the expert dragon archer headpiece",
+			"name": "Get the next 2 tiers of Chompy bird hat",
 			"shortName": "Chompy Hat",
-			"tip": "Guaranteed reward from Chompy bird hunting. The first time you receive this task, you must get the Dragon Archer Hat. Second time get the Expert Dragon Archer Hat.",
+			"tip": "Get the stabbie chucker from Rantz, make some stabbers, stick lotsa chompies.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Chompy_bird_hunting",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Chompy_bird_hat_(expert_dragon_archer)_detail.png/320px-Chompy_bird_hat_(expert_dragon_archer)_detail.png",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Chompy_bird_hat_(marksman)_detail.png/320px-Chompy_bird_hat_(marksman)_detail.png",
 			"displayItemId": 2995,
 			"verification": {
 				"method": "collection-log",
