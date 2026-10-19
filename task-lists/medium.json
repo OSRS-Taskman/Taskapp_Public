@@ -1201,19 +1201,36 @@
 		},
 		{
 			"id": "a2c03154-445f-41d2-8cfc-db106262a64e",
-			"name": "Get the Ogre forester headpiece",
+			"name": "Get the next 2 tiers of Chompy bird hat",
 			"shortName": "Chompy Hat",
-			"tip": "Guaranteed from Chompy bird hunting.",
+			"tip": "Get the stabbie chucker from Rantz, make some stabbers, stick lotsa chompies.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Chompy_bird_hunting",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Chompy_bird_hat_(ogre_forester)_detail.png/320px-Chompy_bird_hat_(ogre_forester)_detail.png",
-			"displayItemId": 2986,
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Chompy_bird_hat_(marksman)_detail.png/320px-Chompy_bird_hat_(marksman)_detail.png",
+			"displayItemId": 2995,
 			"verification": {
 				"method": "collection-log",
 				"itemIds": [
 					2978, 2979, 2980, 2981, 2982, 2983, 2984, 2985, 2986, 2987, 2988, 2989, 2990,
 					2991, 2992, 2993, 2994, 2995
 				],
-				"count": 9
+				"count": 8
+			}
+		},
+		{
+			"id": "a3a9aa52-9f4f-4b53-9144-1d157c06160e",
+			"name": "Get the next 2 tiers of Chompy bird hat",
+			"shortName": "Chompy Hat",
+			"tip": "Get the stabbie chucker from Rantz, make some stabbers, stick lotsa chompies.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Chompy_bird_hunting",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Chompy_bird_hat_(marksman)_detail.png/320px-Chompy_bird_hat_(marksman)_detail.png",
+			"displayItemId": 2995,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					2978, 2979, 2980, 2981, 2982, 2983, 2984, 2985, 2986, 2987, 2988, 2989, 2990,
+					2991, 2992, 2993, 2994, 2995
+				],
+				"count": 10
 			}
 		},
 		{

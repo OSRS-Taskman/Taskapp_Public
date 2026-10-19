@@ -1008,13 +1008,47 @@
 			}
 		},
 		{
-			"id": "1d7c9237-a900-44f7-92e0-9013fb45dda8",
-			"name": "Get the Marksman headpiece",
+			"id": "ecf1d31c-086c-4a29-9875-1f3cacabd11b",
+			"name": "Get the next 2 tiers of Chompy bird hat",
 			"shortName": "Chompy Hat",
 			"tip": "Get the stabbie chucker from Rantz, make some stabbers, stick lotsa chompies.",
 			"wikiLink": "https://oldschool.runescape.wiki/w/Chompy_bird_hunting",
 			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Chompy_bird_hat_(marksman)_detail.png/320px-Chompy_bird_hat_(marksman)_detail.png",
-			"displayItemId": 2983,
+			"displayItemId": 2995,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					2978, 2979, 2980, 2981, 2982, 2983, 2984, 2985, 2986, 2987, 2988, 2989, 2990,
+					2991, 2992, 2993, 2994, 2995
+				],
+				"count": 2
+			}
+		},
+		{
+			"id": "d17da318-9759-4256-9399-6afbbf629391",
+			"name": "Get the next 2 tiers of Chompy bird hat",
+			"shortName": "Chompy Hat",
+			"tip": "Get the stabbie chucker from Rantz, make some stabbers, stick lotsa chompies.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Chompy_bird_hunting",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Chompy_bird_hat_(marksman)_detail.png/320px-Chompy_bird_hat_(marksman)_detail.png",
+			"displayItemId": 2995,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [
+					2978, 2979, 2980, 2981, 2982, 2983, 2984, 2985, 2986, 2987, 2988, 2989, 2990,
+					2991, 2992, 2993, 2994, 2995
+				],
+				"count": 4
+			}
+		},
+		{
+			"id": "1d7c9237-a900-44f7-92e0-9013fb45dda8",
+			"name": "Get the next 2 tiers of Chompy bird hat",
+			"shortName": "Chompy Hat",
+			"tip": "Get the stabbie chucker from Rantz, make some stabbers, stick lotsa chompies.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Chompy_bird_hunting",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Chompy_bird_hat_(marksman)_detail.png/320px-Chompy_bird_hat_(marksman)_detail.png",
+			"displayItemId": 2995,
 			"verification": {
 				"method": "collection-log",
 				"itemIds": [
