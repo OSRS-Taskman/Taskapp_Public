@@ -871,6 +871,19 @@
 				"itemIds": [ 34040 ],
 				"count": 1
 			}
+		},
+		{
+			"id": "912bade7-f606-4968-8e11-9360a4dcd959",
+			"name": "Orion",
+			"tip": "Can be obtained from Fred.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Orion",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Orion_(follower).png/320px-Orion_(follower).png",
+			"displayItemId": 34646,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34646 ],
+				"count": 1
+			}
 		}
 	]
 }

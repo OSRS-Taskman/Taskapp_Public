@@ -2577,6 +2577,20 @@
 			}
 		},
 		{
+			"id": "b8d6aac5-2580-4ca1-8129-a1f71d4c4ebf",
+			"name": "Get 1 unique from Custodian stalkers",
+			"shortName": "Custodian Uni",
+			"tip": "Three different variants can be found inside the Stalker Den in Varlamore, after completion of the Shadows of Custodia quest.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Custodian_stalker",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Broken_antler_detail.png/320px-Broken_antler_detail.png",
+			"displayItemId": 31086,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 31086, 31081, 31084 ],
+				"count": 1
+			}
+		},
+		{
 			"id": "b9298587-5e62-4a65-af06-ef7032cca3f1",
 			"name": "Get a Gryphon feather",
 			"shortName": "GryphonFeather",

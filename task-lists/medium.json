@@ -2684,20 +2684,6 @@
 			}
 		},
 		{
-			"id": "b8d6aac5-2580-4ca1-8129-a1f71d4c4ebf",
-			"name": "Get 1 unique from Custodian stalkers",
-			"shortName": "Custodian Uni",
-			"tip": "Three different variants can be found inside the Stalker Den in Varlamore, after completion of the Shadows of Custodia quest.",
-			"wikiLink": "https://oldschool.runescape.wiki/w/Custodian_stalker",
-			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Antler_guard_detail.png/320px-Antler_guard_detail.png",
-			"displayItemId": 31081,
-			"verification": {
-				"method": "collection-log",
-				"itemIds": [ 31086, 31081, 31084 ],
-				"count": 1
-			}
-		},
-		{
 			"id": "9ebbb378-a2c2-438e-9481-784d7ed7a8cf",
 			"name": "Get 1 unique from Custodian stalkers",
 			"shortName": "Custodian Uni",
@@ -3048,7 +3034,7 @@
 					12653, 12655, 12816, 12921, 13177, 13178, 13179, 13181, 13225, 13247, 13262,
 					20851, 21273, 21291, 21748, 21992, 22473, 22746, 23495, 23757, 24491, 26348,
 					27352, 27590, 28246, 28248, 28250, 28252, 28801, 28960, 29836, 30152, 30154,
-					30622, 30888, 31130, 31285, 33124, 34042, 33642
+					30622, 30888, 31130, 31285, 33124, 34042, 33642, 34646
 				],
 				"count": 1
 			}
