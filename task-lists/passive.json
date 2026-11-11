@@ -753,6 +753,136 @@
 				"itemIds": [ 31800 ],
 				"count": 1
 			}
+		},
+		{
+			"id": "3e6af413-4ca7-4fdf-bb8b-bc8a1e7f59b0",
+			"name": "Get the Fragment of deep water",
+			"tip": "Water.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Fragment_of_deep_water",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Fragment_of_deep_water.png/320px-Fragment_of_deep_water.png",
+			"displayItemId": 34673,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34673 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "0c5ba3bf-2070-4b68-af29-81cc6e5685f7",
+			"name": "Get the Fragment of living earth",
+			"tip": "Earth.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Fragment_of_living_earth",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Fragment_of_living_earth_detail.png/320px-Fragment_of_living_earth_detail.png",
+			"displayItemId": 34671,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34671 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "5af74113-cda3-48f9-8635-4eb99e7ae024",
+			"name": "Get the Fragment of burning fire",
+			"tip": "Fire.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Fragment_of_burning_fire",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Fragment_of_burning_fire.png/320px-Fragment_of_burning_fire.png",
+			"displayItemId": 34677,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34677 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "0199acfa-ecdd-4f17-aa58-2b4dcbd0cbe9",
+			"name": "Get the Fragment of whispering wind",
+			"tip": "Air.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Fragment_of_whispering_wind",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Fragment_of_whispering_wind_detail.png/320px-Fragment_of_whispering_wind_detail.png",
+			"displayItemId": 34675,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34675 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "6714a29d-50cb-4029-9b54-79943952ef0b",
+			"name": "Get the Archivist's folio",
+			"tip": "My grandmother used to tell me stories about the old days, a time of peace when the Avatar kept balance between the Water Tribes, Earth Kingdom, Fire Nation, and Air Nomads. But that all changed when the Fire Nation attacked.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Archivist's_folio",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Archivist's_folio_detail.png/320px-Archivist's_folio_detail.png",
+			"displayItemId": 34723,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34722 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "8076741a-dbe7-46fc-af6c-9c319a87e61a",
+			"name": "Get the Living record (tier 1)",
+			"tip": "Only the Avatar mastered all four elements. Only he could stop the ruthless firebenders.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Living_record_(tier_1)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Living_record_(tier_1)_detail.png/320px-Living_record_(tier_1)_detail.png",
+			"displayItemId": 34659,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34659 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "f9a180e1-f51a-4026-af89-539b86c45b7a",
+			"name": "Get the Living record (tier 2)",
+			"tip": "But when the world needed him most, he vanished. A hundred years have passed and the Fire Nation is nearing victory in the War.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Living_record_(tier_2)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Living_record_(tier_2)_detail.png/320px-Living_record_(tier_2)_detail.png",
+			"displayItemId": 34661,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34661 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "11ba7335-3214-4cee-b139-3c5f60fa648a",
+			"name": "Get the Living record (tier 3)",
+			"tip": "Two years ago, my father and the men of my tribe journeyed to the Earth Kingdom to help fight against the Fire Nation, leaving me and my brother to look after our tribe.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Living_record_(tier_3)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Living_record_(tier_3)_detail.png/320px-Living_record_(tier_3)_detail.png",
+			"displayItemId": 34663,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34663 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "abedd1f7-66c5-4391-aa71-5e66ec5de73b",
+			"name": "Get the Living record (tier 4)",
+			"tip": "Some people believe that the Avatar was never reborn into the Air Nomads, and that the cycle is broken.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Living_record_(tier_4)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Living_record_(tier_4)_detail.png/320px-Living_record_(tier_4)_detail.png",
+			"displayItemId": 34665,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34665 ],
+				"count": 1
+			}
+		},
+		{
+			"id": "3144435c-6979-4d06-aed3-4540f176e82d",
+			"name": "Get the Living record (tier 5)",
+			"tip": "But I haven't lost hope. I still believe that somehow, the Avatar will return to save the world.",
+			"wikiLink": "https://oldschool.runescape.wiki/w/Living_record_(tier_5)",
+			"imageLink": "https://oldschool.runescape.wiki/images/thumb/Living_record_(tier_5)_detail.png/320px-Living_record_(tier_5)_detail.png",
+			"displayItemId": 34667,
+			"verification": {
+				"method": "collection-log",
+				"itemIds": [ 34667 ],
+				"count": 1
+			}
 		}
 	]
 }
