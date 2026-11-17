@@ -7,21 +7,27 @@
 {% endblock %}
 {% block context %}
 <div class="task-title rsText">
+    {% set total = tasks|length %}
+    {% set completed = tasks|selectattr('is_completed')|list|length %}
+    {% set remaining = tasks|rejectattr('is_completed')|list|length %}
     <h1>{{task_type|capitalize}} Task List</h1>
+    <p>There are {{ total }} tasks in this tier!</p>
     <p>Hovering a Task Image shows a helpfulish tip!</p>
     <p>Clicking a Task Image opens a Wiki Link for the task!</p>
 </div>
 
     <div class="container">
+
         <div class="tasklist-main-content">
             <div class="space-under">
                 <div class="search-container">
-                    <button class="button-complete button-green shadow rsText" onclick="hideComplete()"> Toggle   Complete</button>
+                    <button class="button-complete button-green shadow rsText" onclick="hideComplete()"> Toggle   Complete ({{ completed }})</button>
                     <input type="text" class="txtInputTable form-control text-center rsText" placeholder="Search for a task..." id="txtInputTable">
-                     <button class="button-incomplete button-orange rsText" onclick="hideIncomplete()">Toggle Incomplete</button>
+                     <button class="button-incomplete button-orange rsText" onclick="hideIncomplete()">Toggle Incomplete ({{ remaining }})</button>
                 </div>
             </div>
-
+            <div>
+            </div>
             <table id="tableDetails">
                 <tbody>
 
